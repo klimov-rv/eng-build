@@ -1,0 +1,117 @@
+// stylelint-disable no-empty-source
+// @include font-face("../fonts/FontName/FontName", "FontName", 400, normal);
+// @include font-face("../fonts/FuturaNew/FuturaNewBold-Obl.woff2", "FuturaNew", bold, italic);
+// @include font-face("../fonts/FuturaNew/FuturaNewDemi-Obl.woff2", "FuturaNew", 500, italic);
+// @include font-face("../fonts/FuturaNew/FuturaNewBook-Obl.woff2", "FuturaNew", normal, italic);
+// @include font-face("../fonts/FuturaNew/FuturaNewDemi-Reg.woff2", "FuturaNew", 500, normal);
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewBold-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewBold-Obl.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewDemi-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewDemi-Obl.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewBook-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewBook-Obl.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewDemi-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewDemi-Reg.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewBook-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewBook-Reg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewBold-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewBold-Reg.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewLight-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewLight-Obl.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewExtraBold-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewExtraBold-Obl.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewLight-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewLight-Reg.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewExtraBold-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewExtraBold-Reg.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewHeavy-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewHeavy-Reg.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewHeavy-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewHeavy-Obl.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewMedium-Obl.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewMedium-Obl.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura New';
+    src: url('../fonts/FuturaNew/FuturaNewMedium-Reg.woff2') format('woff2'), url('../fonts/FuturaNew/FuturaNewMedium-Reg.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}

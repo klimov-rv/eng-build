@@ -1,0 +1,22 @@
+extends pug/base
+
+prepend vars
+	- title = 'PERCo — Скоростные проходы ST‑01, ST‑11, ST‑02, калитка, ограждение'
+
+append vars 
+	- meta.keywords = ['Скоростные', 'проходы', 'ST‑11']
+	- description = 'PERCo — Скоростные проходы ST‑01, ST‑11, ST‑02, калитка, ограждение'
+	- meta.viewport = 'width=device-width, initial-scale=1' 
+	- link.icon = 'images/favicon.ico'
+
+block content
+	include pug/data
+
+	.site#page
+		include pug/components/header
+
+		include pug/pages/home
+
+		include pug/components/footer
+
+	//- include pug/components/analytics

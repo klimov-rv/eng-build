@@ -1,0 +1,435 @@
+main.home#main
+
+	section.hero#hero
+		.header__container.reserve-height__container.text-center
+			.reserve-height Скоростные проходы
+				h1.header__text.text-pinned#js-dynamic-text-1
+			span.header__text.header__text_subtext
+				.header__text_subline(data-aos="flip-right" data-aos-delay="1700" data-aos-anchor-placement="top-center")
+				#js-dynamic-subtext-1(data-aos="flip-right" data-aos-delay="1900" data-aos-anchor-placement="top-center") Решение для бизнес-центров  
+		.slider-hero.swiper-container(data-aos="fade-in" data-aos-delay="2100" data-aos-anchor-placement="top-bottom")
+			.swiper-wrapper
+				.swiper-slide(data-subtext="Решение для бизнес-центров") 
+					picture
+						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide1-wide.jpg")
+						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide1-mobile.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide1.jpg")
+						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide1-wide.jpg") 
+						img.swiper-lazy(data-src="images/gallery-hero/Slide1.jpg", alt="Решение для бизнес-центров")
+					.swiper-lazy-preloader
+				.swiper-slide(data-subtext="Решение для офисов")
+					picture
+						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide2-wide.jpg")
+						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide2-mobile.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide2.jpg")
+						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide2-wide.jpg") 
+						img.swiper-lazy(data-src="images/gallery-hero/Slide2.jpg", alt="Решение для офисов") 
+					.swiper-lazy-preloader
+				.swiper-slide(data-subtext="Решение для спортивно-развлекательных объектов")
+					picture
+						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide3-wide.jpg")
+						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide3-mobile.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide3.jpg")
+						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide3-wide.jpg") 
+						img.swiper-lazy(data-src="images/gallery-hero/Slide3.jpg", alt="Решение для спортивно-развлекательных объектов") 
+					.swiper-lazy-preloader
+				.swiper-slide(data-subtext="Решение для учебных заведений")
+					picture
+						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide4-wide.jpg")
+						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide4-mobile.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide4.jpg")
+						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide4-wide.jpg") 
+						img.swiper-lazy(data-src="images/gallery-hero/Slide4.jpg", alt="Решение для учебных заведений") 
+					.swiper-lazy-preloader
+				.swiper-slide(data-subtext="Решение для транспортных объектов")
+					picture
+						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide5-wide.jpg")
+						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide5-mobile.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide5.jpg")
+						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide5-wide.jpg") 
+						img.swiper-lazy(data-src="images/gallery-hero/Slide5.jpg", alt="Решение для транспортных объектов") 
+					.swiper-lazy-preloader
+				.swiper-slide(data-subtext="Решение для банков")
+					picture
+						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide6-wide.jpg")
+						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide6-mobile.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide6.jpg")
+						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide6-wide.jpg")
+						img.swiper-lazy(data-src="images/gallery-hero/Slide6.jpg", alt="Решение для банков") 
+					.swiper-lazy-preloader
+			.swiper-pagination
+
+	section.advantages#advantages 
+		.container.reserve-height__container.text-center
+			//- Преимущества
+			.reserve-height Преимущества 
+				h2.advantages__header.text-pinned#js-dynamic-text-2
+		.container.text-center 
+			.advantages__icons 
+				.icons_wrap
+					.icons_list.advan.row
+						each object, key in data.home.advanages.icons
+							.icon__item.cell-2.cell-4-xs( class='advantages__icon-' + key data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom")
+								figure.icon(
+									class=object.svg 
+								)
+								span.icon__signature 
+									!= object.text
+								//- +svg("icon-adv-1") https://github.com/ninelines-team/ninelines-docs/blob/master/07_images.md#%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-svg-%D1%81%D0%BF%D1%80%D0%B0%D0%B9%D1%82%D0%B0%D0%BC%D0%B8 
+
+	section.two.white-bg#products
+		.header__container.reserve-height__container.text-center
+			.reserve-height 
+				span#js-dynamic-reserve Скоростной проход ST‑01
+				h2.header__text.text-pinned#js-dynamic-text-3
+				h2.header__text.text-pinned.hide#js-dynamic-text-3-double
+			span.header__text.header__text_subtext
+				.header__text_subline(data-aos="fade-right" data-aos-delay="1000" data-aos-anchor-placement="top-bottom")
+				#js-dynamic-subtext-3(data-aos="flip-right" data-aos-delay="1300" data-aos-anchor-placement="top-bottom") Универсальный скоростной проход с распашными створками   
+
+			.advantages__icons.container
+		.container#aos_anchor1(data-aos="fade-in" data-aos-delay="1500" data-aos-anchor-placement="top-bottom")
+			.row
+				.cell-2.cell-1-md.cell-0-xs
+				.cell-8.cell-10-md.cell-12-xs
+					.swiper-container.slider-prod
+						.swiper-wrapper 
+							a.swiper-slide.js-to-anchor(href="#prod-section-0" data-prod-section="0" data-text="Скоростной проход ST‑01" data-subtext="Универсальный скоростной проход с распашными створками")
+								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide1.ver3-min.jpg", alt="Скоростной проход ST‑01")
+								.swiper-lazy-preloader
+							a.swiper-slide.js-to-anchor(href="#prod-section-1" data-prod-section="1" data-text="Скоростной проход ST‑11" data-subtext="Компактный скоростной проход с распашными створками")
+								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide2.ver3-min.jpg", alt="Скоростной проход ST‑11")
+								.swiper-lazy-preloader
+							a.swiper-slide.js-to-anchor(href="#prod-section-2" data-prod-section="2" data-text="Скоростной проход ST‑02" data-subtext="Скоростной проход с раздвижными створками")
+								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide3.ver3-min.jpg", alt="Скоростной проход ST‑02")
+								.swiper-lazy-preloader
+							a.swiper-slide.js-to-anchor(href="#prod-section-3" data-prod-section="3" data-text="Калитка WMD‑06" data-subtext="Автоматическая калитка со створкой из закаленного стекла")
+								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide4.ver3-min.jpg", alt="Калитка WMD‑06")
+								.swiper-lazy-preloader
+							a.swiper-slide.js-to-anchor(href="#prod-section-3" data-prod-section="3" data-text="Ограждение ВН06" data-subtext="Ограждение из закаленного стекла")
+								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide5.ver3-min.jpg", alt="Ограждение ВН06") 
+								.swiper-lazy-preloader
+						.swiper-button-prev
+						.swiper-button-next
+						.swiper-pagination
+				.cell-2.cell-1-md.cell-0-xs
+		.container
+			.row
+				.cell-3.cell-0-md
+				.cell-6.cell-12-md
+					.icons_list.characteristics.row
+						.icon__item.char-buffer
+							figure.icon.icon-char-0
+							span.icon__signature напряжение питания
+						each object, key in data.home.characteristics.icons
+							.icon__item.cell-2( class=object.tag data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-anchor="#aos_anchor1")
+								figure.icon(
+									class=object.svg 
+								)
+								span.icon__signature 
+									!= object.text 		
+				.cell-3.cell-0-md 
+		#products-cube
+			.swiper-container.slider-cube
+				.swiper-wrapper 
+					.swiper-slide
+						include products/st01
+					.swiper-slide
+						include products/st11
+					.swiper-slide
+						include products/st02
+					.swiper-slide
+						include products/stAll_wmd06_bh06
+				.slider-cube-nav
+					.container
+						.row
+							.push-1.cell-10.post-1.push-1-sm.cell-10-sm.post-1-sm.push-0-xs.cell-12-xs.post-0-xs.slider-cube-relative
+								.swiper-button-prev
+								.swiper-button-next 
+						.row.hide.show-md
+							.swiper-pagination
+	section.dop-prod.white-bg#dop-prod
+		.header__container.reserve-height__container.text-center
+			.reserve-height Установка дополнительного оборудования
+				h2.header__text.text-pinned#js-dynamic-text-4
+		.centered-v-container(data-aos="fade-in" data-aos-anchor-placement="top-bottom")
+			.container
+				.row.flex-no-wrap
+					.slider-dop__wrap.post-2.cell-4.push-2-lg.cell-8-lg.post-2-lg
+						.swiper-container.slider-dop.js-sliderdemo-dop
+							.swiper-wrapper 
+								.swiper-slide(data-name="Биометрические считыватели") 
+									.dop-prod__image 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide1.jpg" src="images/gallery-dop/gallery-dop-slide1.jpg", alt="") 
+										.swiper-lazy-preloader
+									span.slide-signature Кронштейн для биометрических считывателей 
+								.swiper-slide(data-name="Пирометр")
+									.dop-prod__image 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide2.jpg" src="images/gallery-dop/gallery-dop-slide2.jpg", alt="") 
+										.swiper-lazy-preloader
+									span.slide-signature Пирометр
+								.swiper-slide(data-name="Терминал распознавания лиц Suprema")
+									.dop-prod__image 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide3.jpg" src="images/gallery-dop/gallery-dop-slide3.jpg", alt="") 
+										.swiper-lazy-preloader
+									span.slide-signature Кронштейны для терминалов распознавания лиц Suprema 
+								.swiper-slide(data-name="Терминал распознавания лиц ZKTeco")
+									.dop-prod__image 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide4.jpg" src="images/gallery-dop/gallery-dop-slide4.jpg", alt="") 
+										.swiper-lazy-preloader
+									span.slide-signature Терминал распознавания лиц ZKTeco
+								.swiper-slide(data-name="Штрихкод")
+									.dop-prod__image 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide5.jpg" src="images/gallery-dop/gallery-dop-slide5.jpg", alt="") 
+										.swiper-lazy-preloader
+									span.slide-signature Стойка для сканера штрихкода
+								.swiper-slide(data-name="Картоприемник")
+									.dop-prod__image 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide6.jpg" src="images/gallery-dop/gallery-dop-slide6.jpg", alt="") 
+										.swiper-lazy-preloader
+									span.slide-signature Стойка с картоприемником
+					.swiper-pagination-container.cell-4.push-2.push-2-lg.cell-8-lg.post-2-lg.push-1-xs.cell-10-xs.post-1-xs
+						.row.swiper-pagination
+
+	section.three
+		.header__container.reserve-height__container.text-center
+			.reserve-height Фотогалерея 
+				h2.header__text.text-pinned#js-dynamic-text-5
+		.swiper-container.slider-gallery(data-aos="fade-in" data-aos-anchor-placement="top-center")
+			.swiper-wrapper
+				.swiper-slide  
+					picture  
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide1-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide1-wide.jpg") 
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide1-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide1.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide1.jpg", alt="Скоростные проходы ST‑01, офис компании Latécoère, Франция")  
+					span.slide-signature Скоростные проходы ST‑01, офис компании Latécoère, Франция
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide2-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide2-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide2-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide2.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide2.jpg", alt="Скоростные проходы ST‑01, кинотеатр Cinamon Kosmos, Эстония") 
+					span.slide-signature Скоростные проходы ST‑01, кинотеатр Cinamon Kosmos, Эстония
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide3-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide3-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide3-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide3.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide3.jpg", alt="Скоростные проходы ST‑01, бизнес-школа Emlyon, Франция") 
+					span.slide-signature Скоростные проходы ST‑01, бизнес-школа Emlyon, Франция
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide4-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide4-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide4-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide4.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide4.jpg", alt="Скоростные проходы ST‑01, коворкинг SOK, Москва") 
+					span.slide-signature Скоростные проходы ST‑01, коворкинг SOK, Москва 
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide6-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide6-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide6-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide6.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide6.jpg", alt="Скоростные проходы ST‑01 в составе системы контроля доступа PERCo, бизнес-центр West East, Одинцово, Московская область") 
+					span.slide-signature Скоростные проходы ST‑01 в составе системы контроля доступа PERCo, бизнес-центр West East, Одинцово, Московская область 
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/mobile/gallery-slide8-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide8-wide.jpg")
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/tablet/gallery-slide8-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide8.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide8.jpg", alt="Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция") 
+					span.slide-signature Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/mobile/gallery-slide9-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide9-wide.jpg") 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/tablet/gallery-slide9-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide9.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide9.jpg", alt="Скоростные проходы ST‑01, бизнес-центр «Галерея 76», Москва") 
+					span.slide-signature Скоростные проходы ST‑01, бизнес-центр «Галерея 76», Москва
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide10-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide10-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide10-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide10.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide10.jpg", alt="Скоростные проходы ST‑01, бизнес-центр «Фили Град», Москва") 
+					span.slide-signature Скоростные проходы ST‑01, бизнес-центр «Фили Град», Москва
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/mobile/gallery-slide11-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide11-wide.jpg")
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/tablet/gallery-slide11-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide11.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide11.jpg", alt="Скоростные проходы ST‑01, жилой комплекс «Мосфильмовский», Москва") 
+					span.slide-signature Скоростные проходы ST‑01, жилой комплекс «Мосфильмовский», Москва
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide12-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide12-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide12-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide12.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide12.jpg", alt="Скоростные проходы ST‑01 и калитки WMD‑06, Назарбаев Университет, Нур-Султан") 
+					span.slide-signature Скоростные проходы ST‑01 и калитки WMD‑06, Назарбаев Университет, Нур-Султан
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide13-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide13-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide13-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide13.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide13.jpg", alt="Калитки WMD‑06, детский игровой комплекс KABONK, Нидерланды") 
+					span.slide-signature Калитки WMD‑06, детский игровой комплекс KABONK, Нидерланды
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide14-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide14-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide14-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide14.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide14.jpg", alt="Автоматическая калитка WMD‑06, музей железных дорог России, Санкт-Петербург") 
+					span.slide-signature Автоматическая калитка WMD‑06, музей железных дорог России, Санкт-Петербург
+					.swiper-lazy-preloader
+				.swiper-slide
+					picture 
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide15-m-min.jpg")
+						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide15-wide.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide15-t-min.jpg")
+						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide15.jpg")
+						img.swiper-lazy(data-src="images/gallery/gallery-slide15.jpg", alt="Автоматическая калитка WMD‑06, главный офис компании JYSK,Брабранд, Дания") 
+					span.slide-signature Автоматическая калитка WMD‑06, главный офис компании JYSK,Брабранд, Дания 
+					.swiper-lazy-preloader
+			.swiper-button-prev
+			.swiper-button-next 
+			#gallery
+
+	section.four#about
+		.container 
+			.row 
+				.cell-6.cell-12-elg
+					.about
+						.reserve-height__container
+							.reserve-height Почему PERCo 
+								h2.header__text.header__text_white.text-center.text-pinned#js-dynamic-text-6
+						.about__joint-photos.hide.show-elg.image-container.is-wide
+							.image-flex-center
+								+lazyImage({
+									src: `${baseDir}images/about_photos.png`, 
+									alt: '',
+									appear: false,
+								}).class(attrs) 
+						.about__text.hide-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
+							span
+							| PERCo - ведущий российский производитель систем и оборудования безопасности.
+							br
+							| PERCo разрабатывает и выпускает: шлагбаумы, турникеты, замки, контроллеры и считыватели, системы контроля доступа.
+							
+						.about__text.hide.show-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
+							span
+							| PERCo - ведущий российский производитель систем и оборудования безопасности
+							br
+							| PERCo разрабатывает и выпускает: 
+							br
+							ul
+								li шлагбаумы
+								li турникеты
+								li замки
+								li контроллеры и считыватели
+								li системы контроля доступа 
+						.about__text_icons.row
+							each object, key in data.home.about.icons
+								.icon__item.cell-6.cell-12-sm( 
+										data-aos="fade-in"
+										data-aos-delay=object.delay
+										data-aos-anchor-placement="top-bottom"
+									)
+									figure.icon(
+										class=object.svg 
+									)
+									span.icon__signature
+										!= object.text
+				.cell-6.cell-0-elg
+		.about-title.about-title-1 Главный офис PERCo
+		.about-title.about-title-2 Завод PERCo
+
+	section.five.white-bg#write-us 
+		.header__container.reserve-height__container.text-center
+			.reserve-height Напишите нам 
+				h2.header__text.text-pinned#js-dynamic-text-7
+		.container(data-aos="fade-up" data-aos-anchor-placement="top-bottom")
+			.row 
+				.cell-3.cell-2-md.cell-0-xs
+				.cell-6.cell-8-md.cell-12-xs
+					form.feedback-form(action="")
+						label.feedback-form-label 
+							input.feedback-form-label__input(name="name", placeholder="Имя*") 
+							
+						label.feedback-form-label 
+							input.feedback-form-label__input(name="company", placeholder="Компания")
+							
+						label.feedback-form-label 
+							input.feedback-form-label__input(name="phone", placeholder="Телефон") 
+							
+						label.feedback-form-label 
+							input.feedback-form-label__input(name="email", placeholder="Email*", required, pattern="^\S+@\S+\.\S+$")  
+							
+						label.feedback-form-label 
+							textarea.feedback-form-label__input.feedback-form-label__input_textarea(name="message", placeholder="Сообщение")
+						
+						label.feedback-form-label-checkbox
+							input.feedback-form-label-checkbox__input(name="check" type="checkbox", required) 
+							span Я прочитал(а) 
+								a.feedback-form-policy-link(href="", data-fancybox="" data-src="#policy-content") политику конфиденциальности
+								|  и соглас(на)ен на обработку данных 	
+						.col.flex-middle
+							.recaptcha
+							button.feedback-form-btn(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content") Отправить 
+				.cell-3.cell-2-md.cell-0-xs
+			.row 
+				.push-4.cell-4.post-4.icons_list.social.push-2-md.cell-8-md.post-2-md.push-1-sm.cell-10-sm.post-1-sm
+					each object, key in data.home.soc.icons
+						a.icon__item(href=object.link target="_blank")
+							figure.icon(
+								class=object.svg
+							)
+				
+a#scroll-top(href="#main")
+
+.fancy-hide#policy-content 
+	.popup_policy 
+		h4.policy__title Общество с ограниченной ответственностью «ПЭРКО» 
+		h5.policy__subtitle СОКРАЩЕННАЯ ВЕРСИЯ 
+		p.policy__paragraph ПЭРКо серьезно относится к конфиденциальности и защите Ваших Персональных данных.</p>
+		p.policy__paragraph Термин «Персональные данные» означает информацию, которая прямо или косвенно может идентифицировать Вас или других лиц («<b>Персональные данные</b>»). Данный термин обычно включает такие сведения как фамилия, имя, среднее имя, применяемые дополнительные обращения (степени, титулы и т.д.), отчество, дату рождения, гражданство, паспортные данные, адрес, адрес электронной почты, телефонный номер, а также Ваш статус участника программы сертификации партнеров ПЭРКо. К персональным данным также может относиться другая информация, в том числе, информация об IP-адресе, потребительских предпочтениях, половой принадлежности, возрасте, состоянии Вашего здоровья, образе жизни или информация о Ваших увлечениях и интересах.</p>
+		p.policy__paragraph Мы обрабатываем те или иные категории Персональных данных в зависимости от того, каким образом Вы пользуетесь нашими услугами. Мы используем Ваши Персональные данные для предоставления Вам сервисов (функционала) нашего веб-сайта в соответствии с Вашими предпочтениями, обработки Ваших запросов, а также для связи с Вами по вопросам продуктов и услуг, которые могут представлять для Вас интерес и которые мы подобрали специально для Вас, розыгрышей призов, проведения игр или соревнований, а также решения соответствующих вопросов организационного (административного) характера. Все Персональные данные обрабатываются в соответствии с применимым законодательством в сфере защиты данных.</p>
+		p.policy__paragraph Мы передаем Ваши Персональные данные исключительно привлекаемым нами обработчикам (т.е. третьим лиц, действующим по нашему поручению), которые содействуют нам при оказании услуг, а также уполномоченных государственных органов. На основании Вашего согласия мы можем использовать куки для маркетинговых целей, а также улучшения функциональности наших сервисов и также в целях статистического анализа.</p>
+		p.policy__paragraph Мы также предлагаем Вам как нашему клиенту различные опции контроля за использованием Ваших Персональных данных.</p>
+		p.policy__paragraph Если вы желаете получить более подробную информацию об обработке Ваших Персональных данных и куки, которые мы используем, пожалуйста, обратитесь к расширенной версии Политики конфиденциальности.</p>
+		h5.policy__subtitle
+			a(href="https://www.perco.ru/politika-konfidentsialnosti/", target="_blank", rel="noopener") РАСШИРЕННАЯ ВЕРСИЯ   
+		
+.fancy-hide#form-result-content 
+	.popup-ok.col
+		span.popup-ok__header Спасибо!
+		.popup-ok__msg 
+			p Ваше сообщение
+			| отправлено
+		figure.icon.icon-ok
+		
+
+		

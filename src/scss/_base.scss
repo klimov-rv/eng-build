@@ -1,0 +1,383 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//     line-height: 1em;
+// }
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: $font-primary;
+    scroll-behavior: smooth;
+    &.has-cursor,
+    &.has-cursor * {
+        // stylelint-disable-next-line
+        cursor: none !important;
+    }
+    &.is-lock-scroll,
+    &.is-lock-scroll body {
+        overflow: hidden;
+    }
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-decoration-skip: objects;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+main {
+    flex: 1;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: $h2common-size;
+    font-weight: 300;
+}
+
+h3,
+h4 {
+    font-size: 30px;
+    line-height: 35px;
+}
+
+h5 {
+    font-size: 24px;
+    line-height: 35px;
+}
+
+p {
+    margin: 0;
+    padding: 5px 0;
+    line-height: 1.3em;
+}
+
+a,
+button {
+    outline: none;
+    transition: $duration-normal;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+svg {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+figure,
+picture {
+    display: inline-block;
+    margin: 0;
+    line-height: 0;
+    img {
+        width: 100%;
+    }
+}
+
+img {
+    vertical-align: top;
+    max-width: 100%;
+    user-select: none;
+}
+
+img[draggable="false"] {
+    pointer-events: none;
+    // stylelint-disable-next-line
+    -webkit-user-drag: none;
+}
+
+fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+textarea[placeholder],
+input[placeholder] {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font: 22px $font-primary;
+    font-weight: 300;
+    outline: none;
+}
+
+//  ::-webkit-input-placeholder {
+//     color: $light-gray-color;
+// }
+//  ::-moz-placeholder {
+//     color: $light-gray-color;
+// }
+//  :-ms-input-placeholder {
+//     color: $light-gray-color;
+// }
+//  ::-ms-input-placeholder {
+//     color: $light-gray-color;
+// }
+ ::placeholder {
+    color: $light-gray-color;
+}
+
+//  :-moz-placeholder {
+//     /* Firefox 18- */
+//     color: $light-gray-color;
+// }
+//  ::-moz-placeholder {
+//     /* Firefox 19+ */
+//     color: $light-gray-color;
+// }
+//  ::-ms-input-placeholder {
+//     /* IE 10+ */
+//     color: $light-gray-color;
+// }
+//  ::-webkit-input-placeholder {
+//     /* Chrome/Opera/Safari */
+//     color: $light-gray-color;
+// }
+video {
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+iframe {
+    display: block;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    text-align: center;
+    background-color: transparent;
+    transition: $duration-normal;
+    user-select: none;
+    &__content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        color: currentColor;
+        transform: translateZ(0);
+    }
+}
+
+.js-lazy-load:not(.is-loaded) {
+    max-height: 50vh;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; // fallback
+    // stylelint-disable-next-line
+    min-height: var(--vh);
+    background-color: #F0F0F0;
+    font-family: "Futura New";
+    overflow: hidden;
+}
+
+
+/* stylelint-disable */
+
+
+/*
+* Немедленно переместите любую анимацию в конечную точку, если пользователь установил свое устройство в положение "prefers reduced motion".
+* Это может привести к плохим(непреднамеренным) последствиям. Удалите по мере необходимости и напишите свой собственный код для prefers-reduced-motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *:before,
+    *:after {
+        animation-duration: 0.001s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.001s !important;
+        transition-delay: 0s !important;
+    }
+}
+
+
+/* stylelint-enable */
