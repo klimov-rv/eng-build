@@ -136,9 +136,9 @@
     .home section.hero {
         height: 100vh;
     }
-    .init-body .home section.hero {
-        height: auto;
-    }
+    // .init-body .home section.hero {
+    //     height: auto;
+    // }
     .header__nav-container .nav-container__item .nav-sublist {
         width: 47vw;
     }
@@ -713,6 +713,10 @@
 }
 
 @media screen and (max-width: 480px) {
+    .site .init-loader {
+        opacity: 1;
+        background-size: 25vw;
+    }
     .home section .reserve-height .text-pinned#js-dynamic-text-5 {
         top: 50%;
         left: 50%;

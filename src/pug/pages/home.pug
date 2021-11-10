@@ -95,8 +95,7 @@ main.home#main
 					.swiper-container.slider-prod
 						.swiper-wrapper 
 							a.swiper-slide.js-to-anchor(href="#prod-section-0" data-prod-section="0" data-text="Скоростной проход ST‑01" data-subtext="Универсальный скоростной проход с распашными створками")
-								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide1.ver3-min.jpg", alt="Скоростной проход ST‑01")
-								.swiper-lazy-preloader
+								img(src="images/gallery-prod/prod-slide__slide1.ver3-min.jpg", alt="Скоростной проход ST‑01")
 							a.swiper-slide.js-to-anchor(href="#prod-section-1" data-prod-section="1" data-text="Скоростной проход ST‑11" data-subtext="Компактный скоростной проход с распашными створками")
 								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide2.ver3-min.jpg", alt="Скоростной проход ST‑11")
 								.swiper-lazy-preloader
@@ -122,10 +121,8 @@ main.home#main
 							figure.icon.icon-char-0
 							span.icon__signature напряжение питания
 						each object, key in data.home.characteristics.icons
-							.icon__item.cell-2( class=object.tag data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-anchor="#aos_anchor1")
-								figure.icon(
-									class=object.svg 
-								)
+							.icon__item.cell-2(class=object.tag data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-anchor="#aos_anchor1") 
+								+lazyBackground2(object.bg).icon(class=object.tag)
 								span.icon__signature 
 									!= object.text 		
 				.cell-3.cell-0-md 
@@ -160,32 +157,32 @@ main.home#main
 							.swiper-wrapper 
 								.swiper-slide(data-name="Биометрические считыватели") 
 									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide1.jpg" src="images/gallery-dop/gallery-dop-slide1.jpg", alt="") 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide1.jpg", alt="Биометрические считыватели") 
 										.swiper-lazy-preloader
 									span.slide-signature Кронштейн для биометрических считывателей 
 								.swiper-slide(data-name="Пирометр")
 									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide2.jpg" src="images/gallery-dop/gallery-dop-slide2.jpg", alt="") 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide2.jpg", alt="Пирометр") 
 										.swiper-lazy-preloader
 									span.slide-signature Пирометр
 								.swiper-slide(data-name="Терминал распознавания лиц Suprema")
 									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide3.jpg" src="images/gallery-dop/gallery-dop-slide3.jpg", alt="") 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide3.jpg", alt="Терминал распознавания лиц Suprema") 
 										.swiper-lazy-preloader
 									span.slide-signature Кронштейны для терминалов распознавания лиц Suprema 
 								.swiper-slide(data-name="Терминал распознавания лиц ZKTeco")
 									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide4.jpg" src="images/gallery-dop/gallery-dop-slide4.jpg", alt="") 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide4.jpg", alt="Терминал распознавания лиц ZKTeco") 
 										.swiper-lazy-preloader
 									span.slide-signature Терминал распознавания лиц ZKTeco
 								.swiper-slide(data-name="Штрихкод")
 									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide5.jpg" src="images/gallery-dop/gallery-dop-slide5.jpg", alt="") 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide5.jpg", alt="Штрихкод") 
 										.swiper-lazy-preloader
 									span.slide-signature Стойка для сканера штрихкода
 								.swiper-slide(data-name="Картоприемник")
 									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide6.jpg" src="images/gallery-dop/gallery-dop-slide6.jpg", alt="") 
+										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide6.jpg", alt="Картоприемник") 
 										.swiper-lazy-preloader
 									span.slide-signature Стойка с картоприемником
 					.swiper-pagination-container.cell-4.push-2.push-2-lg.cell-8-lg.post-2-lg.push-1-xs.cell-10-xs.post-1-xs
@@ -404,9 +401,7 @@ main.home#main
 				.push-4.cell-4.post-4.icons_list.social.push-2-md.cell-8-md.post-2-md.push-1-sm.cell-10-sm.post-1-sm
 					each object, key in data.home.soc.icons
 						a.icon__item(href=object.link target="_blank")
-							figure.icon(
-								class=object.svg
-							)
+							+lazyBackground2(object.bg).icon(class=object.svg)
 				
 a#scroll-top(href="#main")
 

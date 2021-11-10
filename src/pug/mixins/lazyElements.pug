@@ -55,6 +55,13 @@ mixin lazyBackground(url)
 		data-background-image=url
 	)&attributes(attributes)
 
+	
+//- @demo +lazyBackground('url(`${baseDir}images/path.type`) 1x, url(`${baseDir}images/path@2x.type 2x`) 2x').class(attrs)
+mixin lazyBackground2(url)
+	figure.js-lazy(
+		data-background-image=url
+	)&attributes(attributes)
+
 //- @demo +lazyVideo({
 		poster: '',
 		source: [

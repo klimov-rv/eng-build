@@ -105,7 +105,6 @@ async function asyncPlay(video) {
     }
 }
 
-
 function anchorPhotoGallery() {
     var galleryToScrollElHeight = document.querySelector(".slider-gallery").offsetHeight / 2;
     var galleryConst = (intViewportHeight / 2) - galleryToScrollElHeight + 90;
@@ -138,15 +137,13 @@ function showHidedSections() {
     if (!$(".site").hasClass("add-sections")) {
         $(".site").addClass("add-sections");
         anchorPhotoGallery();
-        console.log("test1");
         AOS.refresh();
     }
 }
 
 function hideHidedSections() {
     if ($(".site").hasClass("add-sections")) {
-        $(".site").addClass("add-sections");
-        console.log("test2");
+        $(".site").removeClass("add-sections");
         anchorPhotoGallery();
         AOS.refresh();
     }
@@ -187,6 +184,25 @@ window.onload = function() {
         ['3_3', ['wmd06_bh06', '4']],
     ];
 
+    let tl = gsap.timeline();
+    if (document.querySelector(".hero").offsetHeight > intViewportHeight) {
+        console.log("('.hero').offsetHeight > intViewportHeight");
+        tl.from(".hero", { height: "100vh" })
+            .to(".init-loader", { opacity: 0, duration: .7 })
+            .from(".header", { top: -300 })
+            .from(".nav-container__link", { opacity: 0, stagger: .2 })
+            .from(".slider-hero .swiper-pagination", { opacity: 0 })
+            .to(".init-loader", { top: "-1000%", duration: .5 })
+
+    } else {
+        console.log("not ('.hero').offsetHeight > intViewportHeight");
+        tl.to(".init-loader", { opacity: 0, duration: .7 })
+            .from(".header", { top: -300 })
+            .from(".nav-container__link", { opacity: 0, stagger: .2 })
+            .from(".slider-hero .swiper-pagination", { opacity: 0 })
+            .to(".init-loader", { top: "-1000%", duration: .5 })
+    }
+
     if (intViewportWidth < 480) {
         InsertCorrectVideo(refactorProdMap, resolution_s);
     } else if (intViewportWidth > 480 && intViewportWidth < 2000) {
@@ -197,19 +213,6 @@ window.onload = function() {
         InsertCorrectVideo(refactorProdMap, resolution_wide);
     }
 
-    let tl = gsap.timeline();
-    if (document.querySelector(".hero").offsetHeight > intViewportHeight) {
-        tl.from(".header", { top: -300 })
-            .from(".nav-container__link", { opacity: 0, stagger: .2 })
-            .from(".hero", { height: "100vh" })
-            .to(".hero", { height: "auto" })
-            .from(".slider-hero .swiper-pagination", { opacity: 0 })
-    } else {
-        tl.from(".header", { top: -300 })
-            .from(".nav-container__link", { opacity: 0, stagger: .2 })
-    }
-    // tl.to(".init-loader", { opacity: 0, y: -9000, ease: "elastic" })
-
     AOS.init({
         once: true,
     });
@@ -219,31 +222,31 @@ window.onload = function() {
 
     if (document.getElementsByTagName("body").length > 0) {
         document.getElementsByTagName("body")[0].classList.add("init-body");
-        let promise1 = new Promise(resolve => {
-            setTimeout(resolve, 2500, 'one');
-        });
-        let promise2 = new Promise(resolve => {
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 0) {
-                    resolve;
-                }
-            });
-        });
+        // let promise1 = new Promise(resolve => {
+        //     setTimeout(resolve, 2500, 'one');
+        // });
+        // let promise2 = new Promise(resolve => {
+        //     window.addEventListener('scroll', () => {
+        //         if (window.pageYOffset > 0) {
+        //             resolve;
+        //         }
+        //     });
+        // });
 
-        Promise.race([promise1, promise2]).then(function(value) {
-            var sectionToShow = document.getElementById("advantages");
-            sectionToShow.classList.add('show-to-AOS-animate');
-        }, function(reason) {
-            console.log(reason);
-        });
+        // Promise.race([promise1, promise2]).then(function(value) {
+        //     var sectionToShow = document.getElementById("advantages");
+        //     sectionToShow.classList.add('show-to-AOS-animate');
+        // }, function(reason) {
+        //     console.log(reason);
+        // });
     };
     Fancybox.bind("[data-fancybox-plyr]", {
         mainClass: 'fullVid',
         on: {
             done: (fancybox, slide) => {
 
-                var sliderVideos = $("#prod-section-" + swiperCube.activeIndex + " video");
-                sliderVideos.each(function(index) {
+                var $sliderVideos = $("#prod-section-" + swiperCube.activeIndex + " video");
+                $sliderVideos.each(function(index) {
                     this.pause();
                     console.log("pause из Fancybox");
                 });
@@ -336,25 +339,32 @@ window.onload = function() {
     inView('#js-dynamic-text-3')
         .once('enter', el => {
             var typed3 = new Typed(el, tOptions3);
+            swiper2.init();
         })
 
     inView('#js-dynamic-text-4')
         .once('enter', el => {
             var typed4 = new Typed(el, tOptions4);
+            swiperDop.init();
             positionArrowsCube();
         })
 
     inView('#js-dynamic-text-5')
         .once('enter', el => {
             var typed5 = new Typed(el, tOptions5);
-
-            if (intViewportWidth < 480) {
-                var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
-                var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
-                var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
-                galleryButtonsNext.style.top = gallerySlideElHeight + "px";
-                galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
-            }
+            swiper4.init();
+            swiper4.on('afterInit', function() {
+                // якорь по центру фотогалереи
+                anchorPhotoGallery();
+                if (intViewportWidth < 480) {
+                    var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
+                    var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
+                    var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
+                    galleryButtonsNext.style.top = gallerySlideElHeight + "px";
+                    galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
+                }
+            });
+            swiper4.autoplay.stop();
         })
 
     inView('#js-dynamic-text-6')
@@ -376,7 +386,17 @@ window.onload = function() {
     inView('.slider-gallery')
         .once('enter', el => {
             swiper4.autoplay.start();
+            // якорь по центру фотогалереи
+            anchorPhotoGallery();
+            if (intViewportWidth < 480) {
+                var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
+                var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
+                var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
+                galleryButtonsNext.style.top = gallerySlideElHeight + "px";
+                galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
+            }
         })
+
     const ShowScrollToTop = btnScrollTop => {
         var offsetToTrigger = document.getElementById("advantages").offsetTop + 250;
         window.addEventListener('scroll', () => {
@@ -390,7 +410,7 @@ window.onload = function() {
         history.scrollRestoration = 'manual';
     }
     if (window.pageYOffset > 0) {
-        var hash = $(this).attr("href");
+        var $hash = $(this).attr("href");
         window.scrollTo({
             top: 0,
         });
@@ -410,6 +430,133 @@ window.onload = function() {
     } else {
         console.log("test height > 851");
     }
+
+    var swiper2 = new Swiper(".slider-prod", {
+        init: false,
+        preloadImages: false,
+        lazy: {
+            loadPrevNext: true,
+        },
+        loop: true,
+        pagination: {
+            el: ".slider-prod .swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.slider-prod .swiper-button-next',
+            prevEl: '.slider-prod .swiper-button-prev',
+        },
+    });
+
+    swiper2.on('slideChangeTransitionEnd', function() {
+        let dynamicText = document.getElementById("js-dynamic-text-3");
+        let dynamicTextDouble = document.getElementById("js-dynamic-text-3-double");
+        let dynamicTextReserve = document.getElementById("js-dynamic-reserve");
+        let dynamicSubtext = document.getElementById("js-dynamic-subtext-3");
+        let $sliderCharsRefactor = $(".characteristics");
+
+        // клёвый костыль что бы не накладывался inview + typed на подставленный текст при прокрутке из подменю товаров
+        dynamicText.classList.add("hide");
+        dynamicTextDouble.classList.remove("hide");
+        dynamicTextDouble.innerHTML = this.slides[this.activeIndex].dataset.text;
+        dynamicSubtext.innerHTML = this.slides[this.activeIndex].dataset.subtext;
+        dynamicTextReserve.innerHTML = this.slides[this.activeIndex].dataset.text;
+
+        $sliderCharsRefactor.removeClass("prodIcons-index-0");
+        $sliderCharsRefactor.removeClass("prodIcons-index-1");
+        $sliderCharsRefactor.removeClass("prodIcons-index-2");
+        $sliderCharsRefactor.removeClass("prodIcons-index-3");
+        $sliderCharsRefactor.removeClass("prodIcons-index-4");
+        $sliderCharsRefactor.removeClass("prodIcons-index-5");
+        $sliderCharsRefactor.removeClass("prodIcons-index-6");
+        // $sliderCharsRefactor.removeClass("prodIcons-index-" + this.slides[this.previousIndex].dataset.swiperSlideIndex);
+        $sliderCharsRefactor.addClass("prodIcons-index-" + this.slides[this.activeIndex].dataset.swiperSlideIndex);
+        console.log("prodIcons-index-" + this.slides[this.activeIndex].dataset.swiperSlideIndex);
+    });
+
+    swiper2.on('slideChangeTransitionStart', function() {
+        if (prohodDone) {
+            triggerSlidePrevEnable();
+        }
+        if (this.activeIndex == 1 || this.activeIndex == 6) {
+            swiperCube.slideTo(0);
+        } else if (this.activeIndex == 2) {
+            swiperCube.slideTo(1);
+        } else if (this.activeIndex == 3) {
+            swiperCube.slideTo(2);
+        } else if (this.activeIndex == 4 || this.activeIndex == 5) {
+            swiperCube.slideTo(3);
+        }
+    });
+
+
+    var swiperDop = new Swiper(".slider-dop", {
+        init: false,
+        preloadImages: false,
+        lazy: {
+            loadPrevNext: true,
+        },
+        effect: "fade",
+        loop: true,
+        slidesPerView: 1,
+        speed: 500,
+        pagination: {
+            el: '.slider-dop__wrap + .swiper-pagination-container .swiper-pagination',
+            type: 'custom',
+            clickable: true,
+            renderCustom: function(swiper, current, total) {
+                var namesDop = [];
+                $(".js-sliderdemo-dop .swiper-slide").each(function(i) {
+                    namesDop.push($(this).data("name"));
+                });
+                var text = "";
+                for (let i = 1; i <= total; i++) {
+                    let j = i;
+                    if (current == i) {
+                        text += "<span class='cell-6 cell-4-lg cell-2-xs swiper-pagination-btn swiper-pagination-bullet swiper-pagination-btn-active'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
+                    } else {
+                        text += "<span class='cell-6 cell-4-lg cell-2-xs swiper-pagination-btn swiper-pagination-bullet'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
+                    }
+                }
+                return text;
+            },
+        },
+    });
+
+
+    var swiper4 = new Swiper(".slider-gallery", {
+        init: false,
+        preloadImages: false,
+        lazy: {
+            loadPrevNext: true,
+        },
+        effect: "fade",
+        loop: true,
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.slider-gallery .swiper-button-next',
+            prevEl: '.slider-gallery .swiper-button-prev',
+        },
+        on: {
+            init: function() {
+                this.autoplay.stop();
+                // якорь по центру фотогалереи
+                anchorPhotoGallery();
+                if (intViewportWidth < 480) {
+                    var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
+                    var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
+                    var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
+                    galleryButtonsNext.style.top = gallerySlideElHeight + "px";
+                    galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
+                }
+            }
+        }
+    });
+    swiper4.autoplay.stop();
+
 
     // ST‑01 
     var names0 = [];
@@ -441,8 +588,8 @@ window.onload = function() {
         },
     });
 
-    var sliderVideos0 = $(".js-sliderdemo-0 .swiper-slide video");
-    sliderVideos0.each(function(index) {
+    var $sliderVideos0 = $(".js-sliderdemo-0 .swiper-slide video");
+    $sliderVideos0.each(function(index) {
         this.addEventListener('ended', () => {
             // if slider-cube .swiper-wrapper .swiper-slide-active have video0 { 
             if (swiper3prod0.activeIndex == swiper3prod0.slides.length - 1) {
@@ -462,7 +609,7 @@ window.onload = function() {
         let currentVideo = swiper3prod0.slides[swiper3prod0.activeIndex].children[0].children[0];
         let prevVideo = swiper3prod0.slides[swiper3prod0.previousIndex].children[0].children[0];
         console.log(this);
-        sliderVideos0.each(function(index) {
+        $sliderVideos0.each(function(index) {
             if (!this.paused) {
                 this.pause();
                 console.log("pause из swiper3prod0-slideChange");
@@ -518,8 +665,8 @@ window.onload = function() {
         },
     });
 
-    var sliderVideos1 = $(".js-sliderdemo-1 .swiper-slide video");
-    sliderVideos1.each(function(index) {
+    var $sliderVideos1 = $(".js-sliderdemo-1 .swiper-slide video");
+    $sliderVideos1.each(function(index) {
         this.addEventListener('ended', () => {
             if (swiper3prod1.activeIndex == swiper3prod1.slides.length - 1) {
                 swiper3prod1.slideTo(0)
@@ -536,7 +683,7 @@ window.onload = function() {
     swiper3prod1.on('slideChange', function() {
         let currentVideo = swiper3prod1.slides[swiper3prod1.activeIndex].children[0].children[0];
         let prevVideo = swiper3prod1.slides[swiper3prod1.previousIndex].children[0].children[0];
-        sliderVideos1.each(function(index) {
+        $sliderVideos1.each(function(index) {
             if (!this.paused) {
                 this.pause();
                 console.log("pause из swiper3prod0-slideChange");
@@ -595,8 +742,8 @@ window.onload = function() {
         },
     });
 
-    var sliderVideos2 = $(".js-sliderdemo-2 .swiper-slide video");
-    sliderVideos2.each(function(index) {
+    var $sliderVideos2 = $(".js-sliderdemo-2 .swiper-slide video");
+    $sliderVideos2.each(function(index) {
         this.addEventListener('ended', () => {
             if (swiper3prod2.activeIndex == swiper3prod2.slides.length - 1) {
                 swiper3prod2.slideTo(0)
@@ -614,7 +761,7 @@ window.onload = function() {
     swiper3prod2.on('slideChange', function() {
         let currentVideo = swiper3prod2.slides[swiper3prod2.activeIndex].children[0].children[0];
         let prevVideo = swiper3prod2.slides[swiper3prod2.previousIndex].children[0].children[0];
-        sliderVideos2.each(function(index) {
+        $sliderVideos2.each(function(index) {
             if (!this.paused) {
                 this.pause();
                 console.log("pause из swiper3prod0-slideChange");
@@ -945,65 +1092,8 @@ window.onload = function() {
     }
     swiperCube.mousewheel.disable();
 
-    var swiper2 = new Swiper(".slider-prod", {
-        preloadImages: false,
-        lazy: {
-            loadPrevNext: true,
-        },
-        loop: true,
-        pagination: {
-            el: ".slider-prod .swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.slider-prod .swiper-button-next',
-            prevEl: '.slider-prod .swiper-button-prev',
-        },
-    });
-
-    swiper2.on('slideChangeTransitionEnd', function() {
-        let dynamicText = document.getElementById("js-dynamic-text-3");
-        let dynamicTextDouble = document.getElementById("js-dynamic-text-3-double");
-        let dynamicTextReserve = document.getElementById("js-dynamic-reserve");
-        let dynamicSubtext = document.getElementById("js-dynamic-subtext-3");
-        let sliderCharsRefactor = $(".characteristics");
-
-        // клёвый костыль что бы не накладывался inview + typed на подставленный текст при прокрутке из подменю товаров
-        dynamicText.classList.add("hide");
-        dynamicTextDouble.classList.remove("hide");
-        dynamicTextDouble.innerHTML = this.slides[this.activeIndex].dataset.text;
-        dynamicSubtext.innerHTML = this.slides[this.activeIndex].dataset.subtext;
-        dynamicTextReserve.innerHTML = this.slides[this.activeIndex].dataset.text;
-
-        sliderCharsRefactor.removeClass("prodIcons-index-0");
-        sliderCharsRefactor.removeClass("prodIcons-index-1");
-        sliderCharsRefactor.removeClass("prodIcons-index-2");
-        sliderCharsRefactor.removeClass("prodIcons-index-3");
-        sliderCharsRefactor.removeClass("prodIcons-index-4");
-        sliderCharsRefactor.removeClass("prodIcons-index-5");
-        sliderCharsRefactor.removeClass("prodIcons-index-6");
-        // sliderCharsRefactor.removeClass("prodIcons-index-" + this.slides[this.previousIndex].dataset.swiperSlideIndex);
-        sliderCharsRefactor.addClass("prodIcons-index-" + this.slides[this.activeIndex].dataset.swiperSlideIndex);
-        console.log("prodIcons-index-" + this.slides[this.activeIndex].dataset.swiperSlideIndex);
-    });
-
-    swiper2.on('slideChangeTransitionStart', function() {
-        if (prohodDone) {
-            triggerSlidePrevEnable();
-        }
-        if (this.activeIndex == 1 || this.activeIndex == 6) {
-            swiperCube.slideTo(0);
-        } else if (this.activeIndex == 2) {
-            swiperCube.slideTo(1);
-        } else if (this.activeIndex == 3) {
-            swiperCube.slideTo(2);
-        } else if (this.activeIndex == 4 || this.activeIndex == 5) {
-            swiperCube.slideTo(3);
-        }
-    });
-
-    var sliderVideosAll = $("#products-cube .swiper-slide video");
-    sliderVideosAll.each(function(index) {
+    var $sliderVideosAll = $("#products-cube .swiper-slide video");
+    $sliderVideosAll.each(function(index) {
         this.addEventListener('play', (event) => {
             // console.log(event);
         });
@@ -1166,6 +1256,20 @@ window.onload = function() {
 
     $('[href="#gallery"], [href="#about"], [href="#write-us"]').on("click", function() {
         showHidedSections();
+        swiper4.init();
+        swiper4.on('afterInit', function() {
+            // якорь по центру фотогалереи
+            anchorPhotoGallery();
+            if (intViewportWidth < 480) {
+                var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
+                var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
+                var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
+                galleryButtonsNext.style.top = gallerySlideElHeight + "px";
+                galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
+            }
+        });
+        swiper4.autoplay.stop();
+        anchorPhotoGallery();
     })
 
     $('.slider-cube .swiper-pagination').on("click", triggerSlidePrevEnable());
@@ -1217,68 +1321,17 @@ window.onload = function() {
             clickable: true,
         },
         on: {
+            init: function() {
+                setTimeout(function() {
+                    document.querySelector(".hero").classList.add("swiper-initted");
+                }, 1000);
+            },
             slideChange: function(swiper) {
                 let dynamicSubtext = document.getElementById("js-dynamic-subtext-1");
                 dynamicSubtext.innerHTML = swiper.slides[swiper.activeIndex].dataset.subtext;
             }
         },
     });
-
-    var swiperDop = new Swiper(".slider-dop", {
-        preloadImages: false,
-        lazy: {
-            loadPrevNext: true,
-        },
-        effect: "fade",
-        loop: true,
-        slidesPerView: 1,
-        speed: 500,
-        pagination: {
-            el: '.slider-dop__wrap + .swiper-pagination-container .swiper-pagination',
-            type: 'custom',
-            clickable: true,
-            renderCustom: function(swiper, current, total) {
-                var namesDop = [];
-                $(".js-sliderdemo-dop .swiper-slide").each(function(i) {
-                    namesDop.push($(this).data("name"));
-                });
-                var text = "";
-                for (let i = 1; i <= total; i++) {
-                    let j = i - 1
-                    if (current == i) {
-                        text += "<span class='cell-6 cell-4-lg cell-2-xs swiper-pagination-btn swiper-pagination-bullet swiper-pagination-btn-active'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
-                    } else {
-                        text += "<span class='cell-6 cell-4-lg cell-2-xs swiper-pagination-btn swiper-pagination-bullet'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
-                    }
-                }
-                return text;
-            },
-        },
-    });
-
-    var swiper4 = new Swiper(".slider-gallery", {
-        preloadImages: false,
-        lazy: {
-            loadPrevNext: true,
-        },
-        effect: "fade",
-        loop: true,
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-        },
-        navigation: {
-            nextEl: '.slider-gallery .swiper-button-next',
-            prevEl: '.slider-gallery .swiper-button-prev',
-        },
-        on: {
-            init: function() {
-                this.autoplay.stop();
-            }
-        }
-    });
-    swiper4.autoplay.stop();
-
 
 };
 
