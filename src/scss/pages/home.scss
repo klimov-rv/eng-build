@@ -15,6 +15,10 @@
         }
     }
     section {
+        .header__container,
+        .header__text {
+            user-select: none;
+        }
         &.ver2 {
             display: none;
         }
@@ -67,6 +71,9 @@
                     top: 21%;
                 }
             }
+        }
+        .slider-hero {
+            background-color: #003067;
         }
         // центрированная версия
         .slider-hero.centered-version {
@@ -291,6 +298,7 @@
         .slider-gallery {
             --swiper-nav-color: white;
             position: relative;
+            min-height: 800px;
             .slide-signature {
                 width: 100%;
                 position: absolute;
@@ -499,6 +507,9 @@
         --swiper-navigation-size: 100px;
         position: relative;
         background-color: #f0f0f0;
+        .swiper-wrapper {
+            height: auto;
+        }
         .swiper-slide {
             flex: 1 0 100%;
             position: relative;
@@ -1178,12 +1189,26 @@
             text-transform: lowercase;
             font-weight: 300;
             font-size: 22px;
+            transition: all 300ms;
+            &:hover {
+                border-color: #003067;
+                color: #003067;
+            }
+            &.btn-active {
+                background-color: #003067;
+                color: white;
+            }
+            &.btn-block {
+                cursor: initial;
+                pointer-events: none;
+            }
         }
         .recaptcha {
-            width: 256px;
+            width: 100%;
             height: 55px;
-            background: url("/images/captcha.jpg") no-repeat center center transparent;
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
         }
     }
     .five {
@@ -1208,10 +1233,10 @@
             // .icon-soc-2 {
             //     background-image: url("../images/icons/soc-2-insta.svg");
             // }
-            // .icon-soc-3 {
-            //     width: 99px;
-            //     background-image: url("../images/icons/soc-3-yt.svg");
-            // }
+            .icon-soc-3 {
+                width: 99px;
+                // background-image: url("../images/icons/soc-3-yt.svg");
+            }
             // .icon-soc-4 {
             //     background-image: url("../images/icons/soc-4-dzen.svg");
             // }
@@ -1627,19 +1652,19 @@ video.js-lazy+.loader-spin {
     }
 }
 
-textarea:focus,
-input:focus {
-    outline: 0;
-}
-
-input:focus:invalid,
-textarea:focus:invalid {
-    border: 1px solid #F5192F;
-    box-shadow: 0 0 4px #F5192F;
-}
-
-input:focus:valid,
-textarea:focus:valid {
-    border: 1px solid #64C364;
-    box-shadow: 0 0 4px #64C364;
-}
+// input:invalid,
+// textarea:invalid {
+//     border: 2px solid #FF0303;
+// }
+// textarea:focus,
+// input:focus {
+//     outline: 0;
+// }
+// input:focus:invalid,
+// textarea:focus:invalid {
+//     border: 2px solid #FF0303;
+// }
+// input:focus:valid,
+// textarea:focus:valid {
+//     border: 2px solid #64C364;
+// }

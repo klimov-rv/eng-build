@@ -18,6 +18,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 // import SplitText from './modules/splitText';
 import MmenuLight from "mmenu-light";
 import AOS from "aos";
+import Inputmask from "inputmask";
 import { each } from 'jquery';
 
 ieFix();
@@ -37,6 +38,8 @@ let resolution_wide = "990x560";
 
 var intViewportHeight = window.innerHeight;
 var intViewportWidth = window.innerWidth;
+
+var prohodDone = false;
 
 async function InsertCorrectVideo(videoOptions, resolution) {
     var videos = document.getElementsByTagName("video")
@@ -111,6 +114,23 @@ function anchorPhotoGallery() {
     document.getElementById("gallery").style.top = "-" + galleryConst + "px";
 }
 
+function checkValidnost(input) {
+    // document.forms["feedback"][input.name].value 
+    if (input.name == "check") {
+        if (document.forms["feedback"][input.name].checked) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        if (document.forms["feedback"][input.name].value != "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 function positionArrowsCube() {
     var cubeWrapVideoHeight = document.querySelector(".js-sliderdemo-0").offsetHeight / 2;
     var cubeWrapVideoOffset = document.querySelector(".js-sliderdemo-0").offsetTop;
@@ -133,9 +153,20 @@ function positionArrowsCube() {
     }
 }
 
+function positionArrowsGallery() {
+    if (intViewportWidth < 480) {
+        var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
+        var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
+        var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
+        galleryButtonsNext.style.top = gallerySlideElHeight + "px";
+        galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
+    }
+}
+
 function showHidedSections() {
     if (!$(".site").hasClass("add-sections")) {
         $(".site").addClass("add-sections");
+        prohodDone = true;
         anchorPhotoGallery();
         AOS.refresh();
     }
@@ -186,18 +217,15 @@ window.onload = function() {
 
     let tl = gsap.timeline();
     if (document.querySelector(".hero").offsetHeight > intViewportHeight) {
-        console.log("('.hero').offsetHeight > intViewportHeight");
         tl.from(".hero", { height: "100vh" })
             .to(".init-loader", { opacity: 0, duration: .7 })
-            .from(".header", { top: -300 })
             .from(".nav-container__link", { opacity: 0, stagger: .2 })
             .from(".slider-hero .swiper-pagination", { opacity: 0 })
             .to(".init-loader", { top: "-1000%", duration: .5 })
-
+            .to(".hero", { height: "auto" })
     } else {
-        console.log("not ('.hero').offsetHeight > intViewportHeight");
+        console.log("NOT ('.hero').offsetHeight > intViewportHeight");
         tl.to(".init-loader", { opacity: 0, duration: .7 })
-            .from(".header", { top: -300 })
             .from(".nav-container__link", { opacity: 0, stagger: .2 })
             .from(".slider-hero .swiper-pagination", { opacity: 0 })
             .to(".init-loader", { top: "-1000%", duration: .5 })
@@ -284,6 +312,17 @@ window.onload = function() {
         strings: ['Скоростной проход ST‑01'],
         typeSpeed: type_speed,
         showCursor: false,
+
+        onComplete: function(self) {
+
+            let dynamicText = document.getElementById("js-dynamic-text-3");
+            let dynamicTextDouble = document.getElementById("js-dynamic-text-3-double");
+
+            // клёвый костыль что бы не накладывался inview + typed на подставленный текст при прокрутке из подменю товаров 
+
+            dynamicText.classList.add("hide");
+            dynamicTextDouble.classList.remove("hide");
+        }
     };
 
     var tOptions4 = {
@@ -320,8 +359,12 @@ window.onload = function() {
 
             console.log("remove poster fire (tOptions8 onComplete)");
             swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
-            asyncPlay(document.getElementById("index-" + swiperCube.activeIndex + "_0"));
-            // }
+
+            inView("#index-" + swiperCube.activeIndex + "_0")
+                .once('enter', el => {
+                    asyncPlay(document.getElementById("index-" + swiperCube.activeIndex + "_0"));
+                })
+                // }
         }
     };
 
@@ -356,13 +399,6 @@ window.onload = function() {
             swiper4.on('afterInit', function() {
                 // якорь по центру фотогалереи
                 anchorPhotoGallery();
-                if (intViewportWidth < 480) {
-                    var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
-                    var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
-                    var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
-                    galleryButtonsNext.style.top = gallerySlideElHeight + "px";
-                    galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
-                }
             });
             swiper4.autoplay.stop();
         })
@@ -388,13 +424,7 @@ window.onload = function() {
             swiper4.autoplay.start();
             // якорь по центру фотогалереи
             anchorPhotoGallery();
-            if (intViewportWidth < 480) {
-                var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
-                var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
-                var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
-                galleryButtonsNext.style.top = gallerySlideElHeight + "px";
-                galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
-            }
+            positionArrowsGallery();
         })
 
     const ShowScrollToTop = btnScrollTop => {
@@ -449,15 +479,11 @@ window.onload = function() {
     });
 
     swiper2.on('slideChangeTransitionEnd', function() {
-        let dynamicText = document.getElementById("js-dynamic-text-3");
         let dynamicTextDouble = document.getElementById("js-dynamic-text-3-double");
         let dynamicTextReserve = document.getElementById("js-dynamic-reserve");
         let dynamicSubtext = document.getElementById("js-dynamic-subtext-3");
         let $sliderCharsRefactor = $(".characteristics");
 
-        // клёвый костыль что бы не накладывался inview + typed на подставленный текст при прокрутке из подменю товаров
-        dynamicText.classList.add("hide");
-        dynamicTextDouble.classList.remove("hide");
         dynamicTextDouble.innerHTML = this.slides[this.activeIndex].dataset.text;
         dynamicSubtext.innerHTML = this.slides[this.activeIndex].dataset.subtext;
         dynamicTextReserve.innerHTML = this.slides[this.activeIndex].dataset.text;
@@ -540,20 +566,6 @@ window.onload = function() {
             nextEl: '.slider-gallery .swiper-button-next',
             prevEl: '.slider-gallery .swiper-button-prev',
         },
-        on: {
-            init: function() {
-                this.autoplay.stop();
-                // якорь по центру фотогалереи
-                anchorPhotoGallery();
-                if (intViewportWidth < 480) {
-                    var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
-                    var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
-                    var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
-                    galleryButtonsNext.style.top = gallerySlideElHeight + "px";
-                    galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
-                }
-            }
-        }
     });
     swiper4.autoplay.stop();
 
@@ -1086,7 +1098,7 @@ window.onload = function() {
 
     var swiperCube = new Swiper(".slider-cube", swiperCubeOptions);
     // пересоздаём слайдер для устройств, которые плохо переваривают 3д-эффект Cube 
-    if (document.querySelector("html").classList.contains("is-os-mac-os") || document.querySelector("html").classList.contains("is-os-mac-os")) {
+    if (document.querySelector("html").classList.contains("is-os-mac-os") || document.querySelector("html").classList.contains("is-os-ios")) {
         swiperCube.destroy();
         var swiperCube = new Swiper(".slider-cube", swiperCubeOptions2);
     }
@@ -1108,7 +1120,6 @@ window.onload = function() {
         }
     };
 
-    var prohodDone = false;
     var firstEnterDone = false;
     var easeTime = .3;
 
@@ -1116,7 +1127,7 @@ window.onload = function() {
         swiperCube.allowSlidePrev = false;
         if (!prohodDone) {
             if (!firstEnterDone && event.deltaY > 0) {
-                setTimeout(() => swiperCube.mousewheel.enable(), 2500);
+                setTimeout(() => swiperCube.mousewheel.enable(), 2000);
                 firstEnterDone = true;
                 // gsap.to(window, {
                 //     delay: 0,
@@ -1213,13 +1224,37 @@ window.onload = function() {
 
     }
 
-    if (intViewportWidth < 480) {
-        var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
-        var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
-        var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
-        galleryButtonsNext.style.top = gallerySlideElHeight + "px";
-        galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
-    }
+
+    document.querySelector('.feedback-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const response = await fetch('/', {
+            method: 'POST',
+            body: new FormData(this)
+        });
+        // console.log(response);
+        // console.log("-----");
+        if (!response.ok) {
+            console.error(`Ошибка отправки формы, статус ответа: ${response.status}`);
+            return;
+        }
+        if (await response.text() != '0') {
+            Fancybox.show([{
+                html: document.getElementById('form-result-content')
+            }], {
+                on: {
+                    done: (fancybox, slide) => {
+                        document.querySelector(".feedback-form-btn").classList.add("btn-block");
+                        setTimeout(function() {
+                            fancybox.close();
+                        }, 5000);
+                    }
+                }
+            });
+            return;
+        }
+    });
+
+
     $("[data-prod-slide]").on("click", function(e) {
         e.preventDefault;
         gsap.to(window, { delay: 0, duration: easeTime, scrollTo: "#products" });
@@ -1251,7 +1286,7 @@ window.onload = function() {
 
     $('[href="#advantages"], [href="#products"]').on("click", function() {
         showHidedSections();
-        hideHidedSections();
+        // hideHidedSections();
     })
 
     $('[href="#gallery"], [href="#about"], [href="#write-us"]').on("click", function() {
@@ -1260,19 +1295,52 @@ window.onload = function() {
         swiper4.on('afterInit', function() {
             // якорь по центру фотогалереи
             anchorPhotoGallery();
-            if (intViewportWidth < 480) {
-                var galleryButtonsNext = document.querySelector(".slider-gallery .swiper-button-next");
-                var galleryButtonsPrev = document.querySelector(".slider-gallery .swiper-button-prev");
-                var gallerySlideElHeight = (document.querySelector(".slider-gallery .swiper-slide picture").offsetHeight / 2) - (galleryButtonsPrev.offsetHeight / 2);
-                galleryButtonsNext.style.top = gallerySlideElHeight + "px";
-                galleryButtonsPrev.style.top = gallerySlideElHeight + "px";
-            }
+            positionArrowsGallery();
         });
-        swiper4.autoplay.stop();
-        anchorPhotoGallery();
     })
 
     $('.slider-cube .swiper-pagination').on("click", triggerSlidePrevEnable());
+    var inptPhone = document.getElementById("js-input-phone");
+    var inptName = document.getElementById("js-input-name");
+    var inptEmail = document.getElementById("js-input-email");
+    var inptCheck = document.getElementById("js-input-check");
+
+    var inptPhoneMask = new Inputmask("8(999)999-9999");
+    var inptEmaiMask = new Inputmask({
+        mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
+        greedy: false,
+        onBeforePaste: function(pastedValue, opts) {
+            pastedValue = pastedValue.toLowerCase();
+            return pastedValue.replace("mailto:", "");
+        },
+        definitions: {
+            '*': {
+                validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~\-]",
+                casing: "lower"
+            }
+        }
+    });
+    inptPhoneMask.mask(inptPhone);
+    inptEmaiMask.mask(inptEmail);
+
+    var inputsR = document.querySelectorAll(".js-input-require");
+    inputsR.forEach(input => {
+            console.log(input);
+            input.oninput = function() {
+                if (checkValidnost(inptName) && checkValidnost(inptEmail) && checkValidnost(inptCheck)) {
+                    document.querySelector(".feedback-form-btn").classList.add("btn-active");
+                } else {
+                    console.log(document.querySelector(".feedback-form-btn").classList);
+                    document.querySelector(".feedback-form-btn").classList.remove("btn-active");
+                }
+
+            };
+        })
+        //   input.oninput = function() {
+        //     result.innerHTML = input.value;
+        //   };
+
+
 
     // $('.play-button__link').on("click", function(e) {
     //     console.log(e.currentTarget.offsetParent.children[0].children[0].play());
@@ -1297,9 +1365,6 @@ window.onload = function() {
         console.log(swiperDop.slideNext());
     });
 
-    // якорь по центру фотогалереи
-    anchorPhotoGallery();
-
 
     var swiper1 = new Swiper(".slider-hero", {
         preloadImages: false,
@@ -1319,6 +1384,10 @@ window.onload = function() {
         pagination: {
             el: ".slider-hero .swiper-pagination",
             clickable: true,
+        },
+        navigation: {
+            nextEl: '.slider-hero .swiper-button-next',
+            prevEl: '.slider-hero .swiper-button-prev',
         },
         on: {
             init: function() {
@@ -1377,6 +1446,7 @@ window.addEventListener(`resize`, event => {
 
 
 }, false);
+
 
 
 // $(".btn-change").on("click", function(e) {

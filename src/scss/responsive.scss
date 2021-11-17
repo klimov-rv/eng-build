@@ -183,6 +183,10 @@
 }
 
 @media screen and (max-width: 1024px) {
+    .slider-hero .swiper-button-prev,
+    .slider-hero .swiper-button-next {
+        display: none;
+    }
     .home .four .about-title {
         top: 169px;
     }
@@ -194,6 +198,8 @@
     }
     .home section.four .reserve-height {
         min-height: auto;
+        margin-bottom: auto;
+        margin: 40px 0 30px;
     }
     .home .slider-cube>.swiper-wrapper>.swiper-slide .ver1 {
         min-height: 685px;
@@ -330,9 +336,6 @@
     }
     .home section.advantages .reserve-height {
         margin-bottom: 0px;
-    }
-    .home section.four .reserve-height {
-        margin-bottom: 35px;
     }
     .home section.two .header__container {
         height: 190px;
@@ -591,7 +594,7 @@
         padding: 0;
     }
     .home .about {
-        padding: 40px 0;
+        padding: 0;
     }
     .home section.five .header__container {
         margin-bottom: 40px;
@@ -1025,7 +1028,19 @@
 //         top: 51%;
 //     }
 // }
-@media screen and (max-height: 851px) {
+@media screen and (max-height: 900px) {
+    .js-video-main-wrap {
+        padding-bottom: 70px;
+    }
+    .add-sections .js-video-main-wrap {
+        padding-bottom: 170px;
+    }
+}
+
+@media screen and (max-height: 815px) {
+    .home section .slider-gallery {
+        min-height: 510px;
+    }
     .home section.hero h1.header__text,
     .home section.hero .reserve-height {
         font-size: 64px;
@@ -1098,7 +1113,7 @@
     }
 }
 
-@media screen and (max-height: 851px) and (max-width: 1024px) {
+@media screen and (max-height: 815px) and (max-width: 1024px) {
     .home .slider-cube .js-sliderdemo-3+.swiper-pagination-custom .swiper-pagination-bullet:after {
         max-width: 336px;
     }
@@ -1121,7 +1136,7 @@
     }
 }
 
-@media screen and (max-height: 851px) and (max-width: 640px) {
+@media screen and (max-height: 815px) and (max-width: 640px) {
     .home section.two .header-demo {
         margin-bottom: 65px;
     }
@@ -1155,7 +1170,7 @@
     }
 }
 
-@media screen and (max-height: 851px) and (min-width: 640px) {
+@media screen and (max-height: 815px) and (min-width: 640px) {
     .home section.hero .header__text_subtext {
         font-size: 26px;
         height: auto;
@@ -1172,7 +1187,7 @@
     }
 }
 
-@media screen and (max-height: 851px) and (max-width: 480px) {
+@media screen and (max-height: 815px) and (max-width: 480px) {
     .home .slider-cube-nav .swiper-pagination {
         bottom: -155px;
     }
@@ -1607,3 +1622,15 @@
 }
 
 @media screen and (max-height: 471px) and (max-width: 667px) {}
+
+@media screen and (max-width: 815px) and (min-height: 814px) {
+    .home section .slider-gallery {
+        min-height: 600px;
+    }
+}
+
+@media screen and (max-width: 480px) and (min-height: 480px) {
+    .home section .slider-gallery {
+        min-height: 480px;
+    }
+}

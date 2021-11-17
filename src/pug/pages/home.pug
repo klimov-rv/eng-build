@@ -57,6 +57,8 @@ main.home#main
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide6-wide.jpg")
 						img.swiper-lazy(data-src="images/gallery-hero/Slide6.jpg", alt="Решение для банков") 
 					.swiper-lazy-preloader
+			.swiper-button-prev
+			.swiper-button-next
 			.swiper-pagination
 
 	section.advantages#advantages 
@@ -241,21 +243,21 @@ main.home#main
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
-						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/mobile/gallery-slide8-m-min.jpg")
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide8-m-min.jpg")
 						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide8-wide.jpg")
-						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/tablet/gallery-slide8-t-min.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide8-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide8.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide8.jpg", alt="Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция") 
 					span.slide-signature Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
-						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/mobile/gallery-slide9-m-min.jpg")
+						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/mobile/gallery-slide9-m-min.jpg")
 						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide9-wide.jpg") 
-						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/tablet/gallery-slide9-t-min.jpg")
+						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide9-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide9.jpg")
-						img.swiper-lazy(data-src="images/gallery/gallery-slide9.jpg", alt="Скоростные проходы ST‑01, бизнес-центр «Галерея 76», Москва") 
-					span.slide-signature Скоростные проходы ST‑01, бизнес-центр «Галерея 76», Москва
+						img.swiper-lazy(data-src="images/gallery/gallery-slide9.jpg", alt="Скоростные проходы ST-01, офис компании Student Loans Company, Шотландия") 
+					span.slide-signature Скоростные проходы ST-01, офис компании Student Loans Company, Шотландия
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -263,8 +265,8 @@ main.home#main
 						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide10-wide.jpg")
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide10-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide10.jpg")
-						img.swiper-lazy(data-src="images/gallery/gallery-slide10.jpg", alt="Скоростные проходы ST‑01, бизнес-центр «Фили Град», Москва") 
-					span.slide-signature Скоростные проходы ST‑01, бизнес-центр «Фили Град», Москва
+						img.swiper-lazy(data-src="images/gallery/gallery-slide10.jpg", alt="Скоростные проходы ST-01, офис компании PepsiCo, Мексика") 
+					span.slide-signature Скоростные проходы ST-01, офис компании PepsiCo, Мексика
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -372,30 +374,32 @@ main.home#main
 			.row 
 				.cell-3.cell-2-md.cell-0-xs
 				.cell-6.cell-8-md.cell-12-xs
-					form.feedback-form(action="")
+					form.feedback-form(action="", name="feedback")
 						label.feedback-form-label 
-							input.feedback-form-label__input(name="name", placeholder="Имя*") 
+							input.feedback-form-label__input.js-input-require#js-input-name(name="name", placeholder="Имя*", required) 
 							
 						label.feedback-form-label 
 							input.feedback-form-label__input(name="company", placeholder="Компания")
 							
 						label.feedback-form-label 
-							input.feedback-form-label__input(name="phone", placeholder="Телефон") 
+							input.feedback-form-label__input#js-input-phone(name="phone", placeholder="Телефон") 
 							
 						label.feedback-form-label 
-							input.feedback-form-label__input(name="email", placeholder="Email*", required, pattern="^\S+@\S+\.\S+$")  
+							input.feedback-form-label__input.js-input-require#js-input-email(name="email", placeholder="Email*", required, pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$")  
 							
 						label.feedback-form-label 
 							textarea.feedback-form-label__input.feedback-form-label__input_textarea(name="message", placeholder="Сообщение")
 						
 						label.feedback-form-label-checkbox
-							input.feedback-form-label-checkbox__input(name="check" type="checkbox", required) 
+							input.feedback-form-label-checkbox__input.js-input-require#js-input-check(name="check" type="checkbox", required) 
 							span Я прочитал(а) 
 								a.feedback-form-policy-link(href="", data-fancybox="" data-src="#policy-content") политику конфиденциальности
-								|  и соглас(на)ен на обработку данных 	
+								|  и соглас(на)ен на обработку данных 	 
+						input(value="feedback" name="form" hidden="") 
 						.col.flex-middle
 							.recaptcha
-							button.feedback-form-btn(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content") Отправить 
+							//- button.feedback-form-btn(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content") Отправить 
+							button.feedback-form-btn(type="submit", aria-label="Отправить") Отправить  
 				.cell-3.cell-2-md.cell-0-xs
 			.row 
 				.push-4.cell-4.post-4.icons_list.social.push-2-md.cell-8-md.post-2-md.push-1-sm.cell-10-sm.post-1-sm
@@ -425,6 +429,3 @@ a#scroll-top(href="#main")
 			p Ваше сообщение
 			| отправлено
 		figure.icon.icon-ok
-		
-
-		
