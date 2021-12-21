@@ -33,9 +33,10 @@ header.header(data-aos="fade-in" data-aos-anchor-placement="top-center")
 			ul.header__list
 				each object, key in data.header.mmenu
 					li
-						a.header__mmlink.js-mmenu-close(
+						a.header__mmlink.lang.js-mmenu-close(
 							href=object.url
 							data-link=key
+							translate=object.translate
 						)
 							!= object.name
 		a.header__logo(href=data.header.links.logo)
@@ -61,9 +62,10 @@ header.header(data-aos="fade-in" data-aos-anchor-placement="top-center")
 			ul.nav-container
 				each object, key in data.header.menu
 					li.nav-container__item
-						a.nav-container__link(
+						a.nav-container__link.lang(
 							href=object.url
 							data-link=key
+							translate=object.translate
 						)
 							!= object.name 
 						if object.sublist
@@ -77,22 +79,17 @@ header.header(data-aos="fade-in" data-aos-anchor-placement="top-center")
 										)
 											.nav-sublist__img
 												img(src=subobject.img)
-											span.nav-sublist__span
+											span.nav-sublist__span.lang(translate=subobject.translate)
 												!= subobject.name 
 		
 		.header__language
 			.select-lang
-				span.select-lang__name EN
+				span.select-lang__name RU
 				ul.select-lang__list 
 					li
-						a(href="#").select-lang__item.select-lang__item_active English
+						a(href="#").select-lang__item#ru Русский
 					li
-						a(href="#").select-lang__item Italian
+						a(href="#").select-lang__item#en English
 
 		a.header__pen(href=data.header.links.writeus data-aos="fade-in" data-aos-easing="ease-in-out" data-aos-anchor-placement="top-center" data-aos-delay="700" data-aos-duration="1000")
 			.header__pen-img
-
-		//- a.header__pen.header__pen-ver(href="#products-versions") 
-		//- 	.header__pen.header__pen-ver-trigger
-		//- 		#ver1.btn-change.active Версия 1
-		//- 		#ver2.btn-change Версия 2 

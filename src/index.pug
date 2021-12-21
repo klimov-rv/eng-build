@@ -15,8 +15,9 @@ block content
 	.site#page
 		include pug/components/header
 
-		include pug/pages/home
-
+		include pug/pages/home 
+ 
 		include pug/components/footer
 
-	//- include pug/components/analytics
+		script(async src="https://www.google.com/recaptcha/api.js") 
+		include pug/components/analytics

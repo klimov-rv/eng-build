@@ -1,15 +1,15 @@
-main.home#main
-
+main.home#main 
 	section.hero#hero
 		.header__container.reserve-height__container.text-center
-			.reserve-height Скоростные проходы
-				h1.header__text.text-pinned#js-dynamic-text-1
+			.reserve-height
+				span.lang(translate="speed_gates") Скоростные проходы
+				h1.header__text.text-pinned.lang#js-dynamic-text-1(translate="speed_gates")
 			span.header__text.header__text_subtext
 				.header__text_subline(data-aos="flip-right" data-aos-delay="1700" data-aos-anchor-placement="top-center")
-				#js-dynamic-subtext-1(data-aos="flip-right" data-aos-delay="1900" data-aos-anchor-placement="top-center") Решение для бизнес-центров  
+				.lang#js-dynamic-subtext-1(translate="hero_slide1" data-aos="flip-right" data-aos-delay="1900" data-aos-anchor-placement="top-center") Решение для бизнес-центров  
 		.slider-hero.swiper-container(data-aos="fade-in" data-aos-delay="2100" data-aos-anchor-placement="top-bottom")
 			.swiper-wrapper
-				.swiper-slide(data-subtext="Решение для бизнес-центров") 
+				.swiper-slide
 					picture
 						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide1-wide.jpg")
 						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide1-mobile.jpg")
@@ -17,7 +17,8 @@ main.home#main
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide1-wide.jpg") 
 						img.swiper-lazy(data-src="images/gallery-hero/Slide1.jpg", alt="Решение для бизнес-центров")
 					.swiper-lazy-preloader
-				.swiper-slide(data-subtext="Решение для офисов")
+					.subtext.lang.hide(translate="hero_slide1") Решение для бизнес-центров
+				.swiper-slide
 					picture
 						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide2-wide.jpg")
 						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide2-mobile.jpg")
@@ -25,7 +26,8 @@ main.home#main
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide2-wide.jpg") 
 						img.swiper-lazy(data-src="images/gallery-hero/Slide2.jpg", alt="Решение для офисов") 
 					.swiper-lazy-preloader
-				.swiper-slide(data-subtext="Решение для спортивно-развлекательных объектов")
+					.subtext.lang.hide(translate="hero_slide2") Решение для офисов
+				.swiper-slide
 					picture
 						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide3-wide.jpg")
 						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide3-mobile.jpg")
@@ -33,7 +35,8 @@ main.home#main
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide3-wide.jpg") 
 						img.swiper-lazy(data-src="images/gallery-hero/Slide3.jpg", alt="Решение для спортивно-развлекательных объектов") 
 					.swiper-lazy-preloader
-				.swiper-slide(data-subtext="Решение для учебных заведений")
+					.subtext.lang.hide(translate="hero_slide3") Решение для спортивно-развлекательных объектов
+				.swiper-slide
 					picture
 						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide4-wide.jpg")
 						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide4-mobile.jpg")
@@ -41,7 +44,8 @@ main.home#main
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide4-wide.jpg") 
 						img.swiper-lazy(data-src="images/gallery-hero/Slide4.jpg", alt="Решение для учебных заведений") 
 					.swiper-lazy-preloader
-				.swiper-slide(data-subtext="Решение для транспортных объектов")
+					.subtext.lang.hide(translate="hero_slide4") Решение для учебных заведений
+				.swiper-slide
 					picture
 						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide5-wide.jpg")
 						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide5-mobile.jpg")
@@ -49,13 +53,15 @@ main.home#main
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide5-wide.jpg") 
 						img.swiper-lazy(data-src="images/gallery-hero/Slide5.jpg", alt="Решение для транспортных объектов") 
 					.swiper-lazy-preloader
-				.swiper-slide(data-subtext="Решение для банков")
+					.subtext.lang.hide(translate="hero_slide5") Решение для транспортных объектов
+				.swiper-slide
 					picture
 						source.swiper-lazy(media="(max-width:814px) and (max-height: 415px)" 		data-srcset="images/gallery-hero/Slide6-wide.jpg")
 						source.swiper-lazy(media="(max-width: 814px) and (min-height: 415px)" 		data-srcset="images/gallery-hero/Slide6-mobile.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery-hero/Slide6.jpg")
 						source.swiper-lazy(media="(max-height: 768px) and (min-width:814px)" 		data-srcset="images/gallery-hero/Slide6-wide.jpg")
 						img.swiper-lazy(data-src="images/gallery-hero/Slide6.jpg", alt="Решение для банков") 
+					.subtext.lang.hide(translate="hero_slide6") Решение для банков
 					.swiper-lazy-preloader
 			.swiper-button-prev
 			.swiper-button-next
@@ -64,8 +70,9 @@ main.home#main
 	section.advantages#advantages 
 		.container.reserve-height__container.text-center
 			//- Преимущества
-			.reserve-height Преимущества 
-				h2.advantages__header.text-pinned#js-dynamic-text-2
+			.reserve-height 
+				span.lang(translate="advantages") Преимущества 
+				h2.advantages__header.text-pinned.lang#js-dynamic-text-2(translate="advantages")
 		.container.text-center 
 			.advantages__icons 
 				.icons_wrap
@@ -75,19 +82,19 @@ main.home#main
 								figure.icon(
 									class=object.svg 
 								)
-								span.icon__signature 
+								span.icon__signature.lang(translate=object.translate) 
 									!= object.text
 								//- +svg("icon-adv-1") https://github.com/ninelines-team/ninelines-docs/blob/master/07_images.md#%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-svg-%D1%81%D0%BF%D1%80%D0%B0%D0%B9%D1%82%D0%B0%D0%BC%D0%B8 
 
 	section.two.white-bg#products
 		.header__container.reserve-height__container.text-center
 			.reserve-height 
-				span#js-dynamic-reserve Скоростной проход ST‑01
-				h2.header__text.text-pinned#js-dynamic-text-3
-				h2.header__text.text-pinned.hide#js-dynamic-text-3-double
+				span#js-dynamic-reserve.lang(translate="st-01_speed_gate") Скоростной проход ST‑01
+				h2.header__text.text-pinned.lang#js-dynamic-text-3(translate="st-01_speed_gate")
+				h2.header__text.text-pinned.hide.lang#js-dynamic-text-3-double(translate="st-01_speed_gate")
 			span.header__text.header__text_subtext
 				.header__text_subline(data-aos="fade-right" data-aos-delay="1000" data-aos-anchor-placement="top-bottom")
-				#js-dynamic-subtext-3(data-aos="flip-right" data-aos-delay="1300" data-aos-anchor-placement="top-bottom") Универсальный скоростной проход с распашными створками   
+				.lang#js-dynamic-subtext-3(data-aos="flip-right" data-aos-delay="1300" data-aos-anchor-placement="top-bottom" translate="st-01_speed_gate") Универсальный скоростной проход с распашными створками   
 
 			.advantages__icons.container
 		.container#aos_anchor1(data-aos="fade-in" data-aos-delay="1500" data-aos-anchor-placement="top-bottom")
@@ -95,21 +102,14 @@ main.home#main
 				.cell-2.cell-1-md.cell-0-xs
 				.cell-8.cell-10-md.cell-12-xs
 					.swiper-container.slider-prod
-						.swiper-wrapper 
-							a.swiper-slide.js-to-anchor(href="#prod-section-0" data-prod-section="0" data-text="Скоростной проход ST‑01" data-subtext="Универсальный скоростной проход с распашными створками")
-								img(src="images/gallery-prod/prod-slide__slide1.ver3-min.jpg", alt="Скоростной проход ST‑01")
-							a.swiper-slide.js-to-anchor(href="#prod-section-1" data-prod-section="1" data-text="Скоростной проход ST‑11" data-subtext="Компактный скоростной проход с распашными створками")
-								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide2.ver3-min.jpg", alt="Скоростной проход ST‑11")
-								.swiper-lazy-preloader
-							a.swiper-slide.js-to-anchor(href="#prod-section-2" data-prod-section="2" data-text="Скоростной проход ST‑02" data-subtext="Скоростной проход с раздвижными створками")
-								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide3.ver3-min.jpg", alt="Скоростной проход ST‑02")
-								.swiper-lazy-preloader
-							a.swiper-slide.js-to-anchor(href="#prod-section-3" data-prod-section="3" data-text="Калитка WMD‑06" data-subtext="Автоматическая калитка со створкой из закаленного стекла")
-								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide4.ver3-min.jpg", alt="Калитка WMD‑06")
-								.swiper-lazy-preloader
-							a.swiper-slide.js-to-anchor(href="#prod-section-3" data-prod-section="3" data-text="Ограждение ВН06" data-subtext="Ограждение из закаленного стекла")
-								img.swiper-lazy(data-src="images/gallery-prod/prod-slide__slide5.ver3-min.jpg", alt="Ограждение ВН06") 
-								.swiper-lazy-preloader
+						.swiper-wrapper  
+							each object, key in data.home.prod_slider.slide 
+								a.swiper-slide.js-to-anchor(href='#prod-section-' + key data-prod-section=key)
+									img.swiper-lazy(data-src=object.img_src alt=object.text ) 
+									.text.lang.hide(translate=object.translate) 
+										!= object.text
+									.subtext.lang.hide(translate=object.translate_sub) 
+										!= object.subtext
 						.swiper-button-prev
 						.swiper-button-next
 						.swiper-pagination
@@ -149,51 +149,32 @@ main.home#main
 							.swiper-pagination
 	section.dop-prod.white-bg#dop-prod
 		.header__container.reserve-height__container.text-center
-			.reserve-height Установка дополнительного оборудования
+			.reserve-height
+				span.lang(translate="installation_of_additional") Установка дополнительного оборудования
 				h2.header__text.text-pinned#js-dynamic-text-4
 		.centered-v-container(data-aos="fade-in" data-aos-anchor-placement="top-bottom")
 			.container
 				.row.flex-no-wrap
 					.slider-dop__wrap.post-2.cell-4.push-2-lg.cell-8-lg.post-2-lg
 						.swiper-container.slider-dop.js-sliderdemo-dop
-							.swiper-wrapper 
-								.swiper-slide(data-name="Биометрические считыватели") 
-									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide1.jpg", alt="Биометрические считыватели") 
-										.swiper-lazy-preloader
-									span.slide-signature Кронштейн для биометрических считывателей 
-								.swiper-slide(data-name="Пирометр")
-									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide2.jpg", alt="Пирометр") 
-										.swiper-lazy-preloader
-									span.slide-signature Пирометр
-								.swiper-slide(data-name="Терминал распознавания лиц Suprema")
-									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide3.jpg", alt="Терминал распознавания лиц Suprema") 
-										.swiper-lazy-preloader
-									span.slide-signature Кронштейны для терминалов распознавания лиц Suprema 
-								.swiper-slide(data-name="Терминал распознавания лиц ZKTeco")
-									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide4.jpg", alt="Терминал распознавания лиц ZKTeco") 
-										.swiper-lazy-preloader
-									span.slide-signature Терминал распознавания лиц ZKTeco
-								.swiper-slide(data-name="Штрихкод")
-									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide5.jpg", alt="Штрихкод") 
-										.swiper-lazy-preloader
-									span.slide-signature Стойка для сканера штрихкода
-								.swiper-slide(data-name="Картоприемник")
-									.dop-prod__image 
-										img.swiper-lazy(data-src="images/gallery-dop/gallery-dop-slide6.jpg", alt="Картоприемник") 
-										.swiper-lazy-preloader
-									span.slide-signature Стойка с картоприемником
+							.swiper-wrapper  
+								each object, key in data.home.dop_slider.slide 
+									.swiper-slide
+										.dop-prod__image 
+											img.swiper-lazy(data-src=object.img_src, alt=object.name)
+											.swiper-lazy-preloader 
+										span.slide-signature.lang(translate=object.translate_sign)
+											!= object.signature
+										.name.lang.hide(translate=object.translate) 
+											!= object.name
 					.swiper-pagination-container.cell-4.push-2.push-2-lg.cell-8-lg.post-2-lg.push-1-xs.cell-10-xs.post-1-xs
 						.row.swiper-pagination
 
 	section.three
 		.header__container.reserve-height__container.text-center
-			.reserve-height Фотогалерея 
-				h2.header__text.text-pinned#js-dynamic-text-5
+			.reserve-height  
+				span#js-dynamic-reserve.lang(translate="gallery") Фотогалерея
+				h2.header__text.text-pinned.lang#js-dynamic-text-5(translate="gallery")
 		.swiper-container.slider-gallery(data-aos="fade-in" data-aos-anchor-placement="top-center")
 			.swiper-wrapper
 				.swiper-slide  
@@ -203,7 +184,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide1-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide1.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide1.jpg", alt="Скоростные проходы ST‑01, офис компании Latécoère, Франция")  
-					span.slide-signature Скоростные проходы ST‑01, офис компании Latécoère, Франция
+					span.slide-signature.lang(translate="gallery_slide1") Скоростные проходы ST‑01, офис компании Latécoère, Франция
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -212,7 +193,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide2-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide2.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide2.jpg", alt="Скоростные проходы ST‑01, кинотеатр Cinamon Kosmos, Эстония") 
-					span.slide-signature Скоростные проходы ST‑01, кинотеатр Cinamon Kosmos, Эстония
+					span.slide-signature.lang(translate="gallery_slide2") Скоростные проходы ST‑01, кинотеатр Cinamon Kosmos, Эстония
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -221,7 +202,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide3-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide3.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide3.jpg", alt="Скоростные проходы ST‑01, бизнес-школа Emlyon, Франция") 
-					span.slide-signature Скоростные проходы ST‑01, бизнес-школа Emlyon, Франция
+					span.slide-signature.lang(translate="gallery_slide3") Скоростные проходы ST‑01, бизнес-школа Emlyon, Франция
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -230,7 +211,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide4-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide4.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide4.jpg", alt="Скоростные проходы ST‑01, коворкинг SOK, Москва") 
-					span.slide-signature Скоростные проходы ST‑01, коворкинг SOK, Москва 
+					span.slide-signature.lang(translate="gallery_slide4") Скоростные проходы ST‑01, коворкинг SOK, Москва 
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -239,7 +220,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide6-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide6.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide6.jpg", alt="Скоростные проходы ST‑01 в составе системы контроля доступа PERCo, бизнес-центр West East, Одинцово, Московская область") 
-					span.slide-signature Скоростные проходы ST‑01 в составе системы контроля доступа PERCo, бизнес-центр West East, Одинцово, Московская область 
+					span.slide-signature.lang(translate="gallery_slide6") Скоростные проходы ST‑01 в составе системы контроля доступа PERCo, бизнес-центр West East, Одинцово, Московская область 
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -248,7 +229,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide8-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide8.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide8.jpg", alt="Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция") 
-					span.slide-signature Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция
+					span.slide-signature.lang(translate="gallery_slide8") Скоростные проходы ST‑01, фитнес-клуб L'Appart Fitness, Франция
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -257,7 +238,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide9-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide9.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide9.jpg", alt="Скоростные проходы ST-01, офис компании Student Loans Company, Шотландия") 
-					span.slide-signature Скоростные проходы ST-01, офис компании Student Loans Company, Шотландия
+					span.slide-signature.lang(translate="gallery_slide9") Скоростные проходы ST-01, офис компании Student Loans Company, Шотландия
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -266,7 +247,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide10-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide10.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide10.jpg", alt="Скоростные проходы ST-01, офис компании PepsiCo, Мексика") 
-					span.slide-signature Скоростные проходы ST-01, офис компании PepsiCo, Мексика
+					span.slide-signature.lang(translate="gallery_slide10") Скоростные проходы ST-01, офис компании PepsiCo, Мексика
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -275,7 +256,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:480px) and (min-height: 568px)" 		data-srcset="images/gallery/tablet/gallery-slide11-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide11.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide11.jpg", alt="Скоростные проходы ST‑01, жилой комплекс «Мосфильмовский», Москва") 
-					span.slide-signature Скоростные проходы ST‑01, жилой комплекс «Мосфильмовский», Москва
+					span.slide-signature.lang(translate="gallery_slide11") Скоростные проходы ST‑01, жилой комплекс «Мосфильмовский», Москва
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -284,7 +265,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide12-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide12.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide12.jpg", alt="Скоростные проходы ST‑01 и калитки WMD‑06, Назарбаев Университет, Нур-Султан") 
-					span.slide-signature Скоростные проходы ST‑01 и калитки WMD‑06, Назарбаев Университет, Нур-Султан
+					span.slide-signature.lang(translate="gallery_slide12") Скоростные проходы ST‑01 и калитки WMD‑06, Назарбаев Университет, Нур-Султан
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -293,7 +274,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide13-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide13.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide13.jpg", alt="Калитки WMD‑06, детский игровой комплекс KABONK, Нидерланды") 
-					span.slide-signature Калитки WMD‑06, детский игровой комплекс KABONK, Нидерланды
+					span.slide-signature.lang(translate="gallery_slide13") Калитки WMD‑06, детский игровой комплекс KABONK, Нидерланды
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -302,7 +283,7 @@ main.home#main
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide14-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide14.jpg")
 						img.swiper-lazy(data-src="images/gallery/gallery-slide14.jpg", alt="Автоматическая калитка WMD‑06, музей железных дорог России, Санкт-Петербург") 
-					span.slide-signature Автоматическая калитка WMD‑06, музей железных дорог России, Санкт-Петербург
+					span.slide-signature.lang(translate="gallery_slide14") Автоматическая калитка WMD‑06, музей железных дорог России, Санкт-Петербург
 					.swiper-lazy-preloader
 				.swiper-slide
 					picture 
@@ -310,8 +291,8 @@ main.home#main
 						source.swiper-lazy(media="(min-width:814px) and (max-height: 814px)" 		data-srcset="images/gallery/wide/gallery-slide15-wide.jpg")
 						source.swiper-lazy(media="(max-width:814px) and (min-height: 814px)" 		data-srcset="images/gallery/tablet/gallery-slide15-t-min.jpg")
 						source.swiper-lazy(media="(max-width: 1024px)" 								data-srcset="images/gallery/gallery-slide15.jpg")
-						img.swiper-lazy(data-src="images/gallery/gallery-slide15.jpg", alt="Автоматическая калитка WMD‑06, главный офис компании JYSK,Брабранд, Дания") 
-					span.slide-signature Автоматическая калитка WMD‑06, главный офис компании JYSK,Брабранд, Дания 
+						img.swiper-lazy(data-src="images/gallery/gallery-slide15.jpg", alt="Автоматическая калитка WMD‑06, главный офис компании JYSK, Брабранд, Дания") 
+					span.slide-signature.lang(translate="gallery_slide15") Автоматическая калитка WMD‑06, главный офис компании JYSK, Брабранд, Дания 
 					.swiper-lazy-preloader
 			.swiper-button-prev
 			.swiper-button-next 
@@ -323,8 +304,9 @@ main.home#main
 				.cell-6.cell-12-elg
 					.about
 						.reserve-height__container
-							.reserve-height Почему PERCo 
-								h2.header__text.header__text_white.text-center.text-pinned#js-dynamic-text-6
+							.reserve-height
+								span.lang(translate="about") Почему PERCo 
+								h2.header__text.header__text_white.text-center.text-pinned.lang#js-dynamic-text-6(translate="about")
 						.about__joint-photos.hide.show-elg.image-container.is-wide
 							.image-flex-center
 								+lazyImage({
@@ -333,23 +315,24 @@ main.home#main
 									appear: false,
 								}).class(attrs) 
 						.about__text.hide-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
-							span
-							| PERCo - ведущий российский производитель систем и оборудования безопасности.
-							br
-							| PERCo разрабатывает и выпускает: шлагбаумы, турникеты, замки, контроллеры и считыватели, системы контроля доступа.
+							span.lang(translate="about1")
+								| PERCo - ведущий российский производитель систем и оборудования безопасности.
+								br
+								| PERCo разрабатывает и выпускает: шлагбаумы, турникеты, замки, контроллеры и считыватели, системы контроля доступа.
+								br
 							
 						.about__text.hide.show-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
-							span
-							| PERCo - ведущий российский производитель систем и оборудования безопасности
-							br
-							| PERCo разрабатывает и выпускает: 
-							br
+							span.lang(translate="about2")
+								| PERCo - ведущий российский производитель систем и оборудования безопасности
+								br
+								| PERCo разрабатывает и выпускает: 
+								br
 							ul
-								li шлагбаумы
-								li турникеты
-								li замки
-								li контроллеры и считыватели
-								li системы контроля доступа 
+								li.lang(translate="aboutli1") шлагбаумы
+								li.lang(translate="aboutli2") турникеты
+								li.lang(translate="aboutli3") замки
+								li.lang(translate="aboutli4") контроллеры и считыватели
+								li.lang(translate="aboutli5") системы контроля доступа 
 						.about__text_icons.row
 							each object, key in data.home.about.icons
 								.icon__item.cell-6.cell-12-sm( 
@@ -360,46 +343,49 @@ main.home#main
 									figure.icon(
 										class=object.svg 
 									)
-									span.icon__signature
+									span.icon__signature.lang(translate=object.svg)
 										!= object.text
 				.cell-6.cell-0-elg
-		.about-title.about-title-1 Главный офис PERCo
-		.about-title.about-title-2 Завод PERCo
+		.about-title.about-title-1.lang(translate="headquarters") Главный офис PERCo
+		.about-title.about-title-2.lang(translate="manufacturing_plant") Завод PERCo
 
 	section.five.white-bg#write-us 
 		.header__container.reserve-height__container.text-center
-			.reserve-height Напишите нам 
-				h2.header__text.text-pinned#js-dynamic-text-7
+			.reserve-height
+				span.lang(translate="contact_us") Напишите нам
+				h2.header__text.text-pinned.lang#js-dynamic-text-7(translate="contact_us")
 		.container(data-aos="fade-up" data-aos-anchor-placement="top-bottom")
 			.row 
 				.cell-3.cell-2-md.cell-0-xs
 				.cell-6.cell-8-md.cell-12-xs
 					form.feedback-form(action="", name="feedback")
 						label.feedback-form-label 
-							input.feedback-form-label__input.js-input-require#js-input-name(name="name", placeholder="Имя*", required) 
+							input.feedback-form-label__input.js-input-require#js-input-name(name="name", placeholder="Имя*", translate="contact_us_name", required) 
 							
 						label.feedback-form-label 
-							input.feedback-form-label__input(name="company", placeholder="Компания")
+							input.feedback-form-label__input(name="company", placeholder="Компания", translate="contact_us_company",)
 							
 						label.feedback-form-label 
-							input.feedback-form-label__input#js-input-phone(name="phone", placeholder="Телефон") 
+							input.feedback-form-label__input#js-input-phone(name="phone", placeholder="Телефон", translate="contact_us_phone") 
 							
 						label.feedback-form-label 
-							input.feedback-form-label__input.js-input-require#js-input-email(name="email", placeholder="Email*", required, pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$")  
+							input.feedback-form-label__input.js-input-require#js-input-email(name="email", placeholder="Email*", translate="contact_us_e-mail", required, pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$")  
 							
 						label.feedback-form-label 
-							textarea.feedback-form-label__input.feedback-form-label__input_textarea(name="message", placeholder="Сообщение")
+							textarea.feedback-form-label__input.feedback-form-label__input_textarea(name="message", placeholder="Сообщение", translate="contact_us_message")
 						
 						label.feedback-form-label-checkbox
 							input.feedback-form-label-checkbox__input.js-input-require#js-input-check(name="check" type="checkbox", required) 
-							span Я прочитал(а) 
-								a.feedback-form-policy-link(href="", data-fancybox="" data-src="#policy-content") политику конфиденциальности
-								|  и соглас(на)ен на обработку данных 	 
+							span
+								span.lang(translate="contact_us_privacy_policy1") Я прочитал(а) 
+								a.feedback-form-policy-link.lang(translate="contact_us_privacy_policy2" href="", data-fancybox="" data-src="#policy-content") политику конфиденциальности 
+								span.lang(translate="contact_us_privacy_policy3") и соглас(на)ен на обработку данных 	 
 						input(value="feedback" name="form" hidden="") 
 						.col.flex-middle
 							.recaptcha
-							//- button.feedback-form-btn(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content") Отправить 
-							button.feedback-form-btn(type="submit", aria-label="Отправить") Отправить  
+								.g-recaptcha(data-sitekey="6LeckzodAAAAADM_3RRin9uIuHCwCqHsudWOUI3E")
+							button.feedback-form-btn.lang(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content" translate="contact_us_send") Отправить 
+							//- button.feedback-form-btn.lang(type="submit", aria-label="Отправить" translate="contact_us_send") Отправить  
 				.cell-3.cell-2-md.cell-0-xs
 			.row 
 				.push-4.cell-4.post-4.icons_list.social.push-2-md.cell-8-md.post-2-md.push-1-sm.cell-10-sm.post-1-sm
@@ -411,16 +397,29 @@ a#scroll-top(href="#main")
 
 .fancy-hide#policy-content 
 	.popup_policy 
-		h4.policy__title Общество с ограниченной ответственностью «ПЭРКО» 
-		h5.policy__subtitle СОКРАЩЕННАЯ ВЕРСИЯ 
-		p.policy__paragraph ПЭРКо серьезно относится к конфиденциальности и защите Ваших Персональных данных.</p>
-		p.policy__paragraph Термин «Персональные данные» означает информацию, которая прямо или косвенно может идентифицировать Вас или других лиц («<b>Персональные данные</b>»). Данный термин обычно включает такие сведения как фамилия, имя, среднее имя, применяемые дополнительные обращения (степени, титулы и т.д.), отчество, дату рождения, гражданство, паспортные данные, адрес, адрес электронной почты, телефонный номер, а также Ваш статус участника программы сертификации партнеров ПЭРКо. К персональным данным также может относиться другая информация, в том числе, информация об IP-адресе, потребительских предпочтениях, половой принадлежности, возрасте, состоянии Вашего здоровья, образе жизни или информация о Ваших увлечениях и интересах.</p>
-		p.policy__paragraph Мы обрабатываем те или иные категории Персональных данных в зависимости от того, каким образом Вы пользуетесь нашими услугами. Мы используем Ваши Персональные данные для предоставления Вам сервисов (функционала) нашего веб-сайта в соответствии с Вашими предпочтениями, обработки Ваших запросов, а также для связи с Вами по вопросам продуктов и услуг, которые могут представлять для Вас интерес и которые мы подобрали специально для Вас, розыгрышей призов, проведения игр или соревнований, а также решения соответствующих вопросов организационного (административного) характера. Все Персональные данные обрабатываются в соответствии с применимым законодательством в сфере защиты данных.</p>
-		p.policy__paragraph Мы передаем Ваши Персональные данные исключительно привлекаемым нами обработчикам (т.е. третьим лиц, действующим по нашему поручению), которые содействуют нам при оказании услуг, а также уполномоченных государственных органов. На основании Вашего согласия мы можем использовать куки для маркетинговых целей, а также улучшения функциональности наших сервисов и также в целях статистического анализа.</p>
-		p.policy__paragraph Мы также предлагаем Вам как нашему клиенту различные опции контроля за использованием Ваших Персональных данных.</p>
-		p.policy__paragraph Если вы желаете получить более подробную информацию об обработке Ваших Персональных данных и куки, которые мы используем, пожалуйста, обратитесь к расширенной версии Политики конфиденциальности.</p>
-		h5.policy__subtitle
-			a(href="https://www.perco.ru/politika-konfidentsialnosti/", target="_blank", rel="noopener") РАСШИРЕННАЯ ВЕРСИЯ   
+		.lang-ru-content
+			h4.policy__title Общество с ограниченной ответственностью «ПЭРКО» 
+			h5.policy__subtitle СОКРАЩЕННАЯ ВЕРСИЯ 
+			p.policy__paragraph ПЭРКо серьезно относится к конфиденциальности и защите Ваших Персональных данных.</p>
+			p.policy__paragraph Термин «Персональные данные» означает информацию, которая прямо или косвенно может идентифицировать Вас или других лиц («<b>Персональные данные</b>»). Данный термин обычно включает такие сведения как фамилия, имя, среднее имя, применяемые дополнительные обращения (степени, титулы и т.д.), отчество, дату рождения, гражданство, паспортные данные, адрес, адрес электронной почты, телефонный номер, а также Ваш статус участника программы сертификации партнеров ПЭРКо. К персональным данным также может относиться другая информация, в том числе, информация об IP-адресе, потребительских предпочтениях, половой принадлежности, возрасте, состоянии Вашего здоровья, образе жизни или информация о Ваших увлечениях и интересах.</p>
+			p.policy__paragraph Мы обрабатываем те или иные категории Персональных данных в зависимости от того, каким образом Вы пользуетесь нашими услугами. Мы используем Ваши Персональные данные для предоставления Вам сервисов (функционала) нашего веб-сайта в соответствии с Вашими предпочтениями, обработки Ваших запросов, а также для связи с Вами по вопросам продуктов и услуг, которые могут представлять для Вас интерес и которые мы подобрали специально для Вас, розыгрышей призов, проведения игр или соревнований, а также решения соответствующих вопросов организационного (административного) характера. Все Персональные данные обрабатываются в соответствии с применимым законодательством в сфере защиты данных.</p>
+			p.policy__paragraph Мы передаем Ваши Персональные данные исключительно привлекаемым нами обработчикам (т.е. третьим лиц, действующим по нашему поручению), которые содействуют нам при оказании услуг, а также уполномоченных государственных органов. На основании Вашего согласия мы можем использовать куки для маркетинговых целей, а также улучшения функциональности наших сервисов и также в целях статистического анализа.</p>
+			p.policy__paragraph Мы также предлагаем Вам как нашему клиенту различные опции контроля за использованием Ваших Персональных данных.</p>
+			p.policy__paragraph Если вы желаете получить более подробную информацию об обработке Ваших Персональных данных и куки, которые мы используем, пожалуйста, обратитесь к расширенной версии Политики конфиденциальности.</p>
+			h5.policy__subtitle
+				a(href="https://www.perco.ru/politika-konfidentsialnosti/", target="_blank", rel="noopener") РАСШИРЕННАЯ ВЕРСИЯ
+				
+		.lang-eng-content
+			h4.policy__title “PERCO”
+			h5.policy__subtitle REDUCED VERSION
+			p.policy__paragraph PERCo seriously treats the confidentiality and the protection of Your Personal data.</p>
+			p.policy__paragraph The term "Personal data" means information which directly or indirectly can identify You or other persons ("<b>Personal data</b>"). This term usually includes such data as surname, name, middle name, applied additional addresses (degrees, titles, etc.), middle name, date of birth, nationality, passport data, address, e-mail address, phone number. Other information including an information about the IP address, consumer preferences, sex, age, state of Your health, lifestyle or information about Your hobbies and interests can also belong to Personal data.</p>
+			p.policy__paragraph We process these or those categories of Personal data depending on how You use our services. We use Your personal data for providing the services (functionality) of our website for You according to Your preferences, Your inquiries processing and also for a communication with You concerning our products and services which can be of interest to You and which we have picked up especially for you, draws of prizes, holding games or competitions and also solution of appropriate organizational (administrative) questions. All Personal data is processed in accordance with an applicable legislation in the sphere of data protection.</p>
+			p.policy__paragraph We pass Your Personal data to the handlers who are exclusively involved by us (i.e. the third persons, acting on our assignment) who assist us while rendering the services and also to the authorized public authorities. On the basis of your consent we can use cookies for the marketing purposes and also improvements of functionality of our services and also for the statistical analysis.</p>
+			p.policy__paragraph As our client, we offer You various control options of your Personal data usage.</p>
+			p.policy__paragraph If you wish to obtain more detailed information about your Personal data processing and cookies which we use, please see the expanded version of Privacy policy.</p>
+			h5.policy__subtitle
+				a(href="https://www.perco.com/privacy-policy/", target="_blank", rel="noopener") EXPANDED VERSION 
 		
 .fancy-hide#form-result-content 
 	.popup-ok.col

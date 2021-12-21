@@ -8,70 +8,84 @@
 			menu: [
 				{
 					url: '#advantages',
+					translate: 'advantages',
 					name: 'Преимущества'
 				},
 				{
 					url: '#products',
+					translate: 'products',
 					name: 'Продукция',
 					sublist: [
 						{
 							slideto: '1',
 							url: '#prod-section-0',
 							img: 'images/nav-prod-thumb1-min.png',
-							name: 'Универсальный скоростной проход с распашными створками'
+							name: 'Универсальный скоростной проход с распашными створками',
+							translate: 'sublist_prod_1',
 						},
 						{
 							slideto: '2',
 							url: '#prod-section-1',
 							img: 'images/nav-prod-thumb2-min.png',
-							name: 'Компактный скоростной проход с распашными створками'
+							name: 'Компактный скоростной проход с распашными створками',
+							translate: 'sublist_prod_2',
 						},
 						{
 							slideto: '3',
 							url: '#prod-section-2',
 							img: 'images/nav-prod-thumb3-min.png',
-							name: 'Скоростной проход с раздвижными створками'
+							name: 'Скоростной проход с раздвижными створками',
+							translate: 'sublist_prod_3',
 						},
 						{
 							slideto: '4',
 							url: '#prod-section-3',
 							img: 'images/nav-prod-thumb4-min.png',
-							name: 'Калитка и ограждение'
+							name: 'Калитка и ограждение',
+							translate: 'sublist_prod_4',
 						},
 					]
 				},
 				{
 					url: '#gallery',
+					translate: 'gallery',
 					name: 'Фотогалерея'
 				},
 				{
 					url: '#about',
+					translate: 'about_us',
 					name: 'О компании'
 				}
 			],
 			mmenu: [
 				{
 					url: '#advantages',
+					translate: 'mm_advantages',
 					name: 'Преимущества'
 				},
 				{
 					url: '#products',
+					translate: 'mm_products',
 					name: 'Продукция', 
 				},
 				{
 					url: '#gallery',
+					translate: 'mm_gallery',
 					name: 'Фотогалерея'
 				},
 				{
 					url: '#about',
+					translate: 'mm_about',
 					name: 'О компании'
 				},
 				{
 					url: '#write-us',
+					translate: 'mm_write-us',
 					name: 'Обратная связь'
 				},
 				{
 					url: '#contacts',
+					translate: 'mm_contacts',
 					name: 'Контакты'
 				}
 			] 
@@ -82,39 +96,93 @@
 				icons: [
 					{
 						svg: 'icon-adv-1',
-						text: 'Бесконтактность',
+						text: 'Бесконтактность', 
+						translate: 'touch_free',
 						delay: '300'
 					}, 
 					
 					{
 						svg: 'icon-adv-2',
 						text: 'Безопасность прохода с детьми',
+						translate: 'safe_passage',
 						delay: '500'
 					}, 
 					
 					{
 						svg: 'icon-adv-3',
 						text: 'Проезд маломобильных групп населения',
+						translate: 'passage_of_people',
 						delay: '700'
 					}, 
 					
 					{
 						svg: 'icon-adv-4',
 						text: 'Безопасность в аварийной ситуации',
+						translate: 'safety_in_case',
 						delay: '900'
 					}, 
 					
 					{
 						svg: 'icon-adv-5',
 						text: 'Комфортный провоз багажа',
+						translate: 'convenient_luggage',
 						delay: '1100'
 					}, 
 					
 					{
 						svg: 'icon-adv-6',
 						text: '5 лет гарантии',
+						translate: '5_years_of_warranty',
 						delay: '1300'
 					}, 
+				]
+			},
+			prod_slider: {
+				slide: [
+					{
+						img_src: 'images/gallery-prod/prod-slide__slide1.ver3-min.jpg',
+						prod_section: "0",
+						text: 'Скоростной проход ST‑01', 
+						subtext: 'Универсальный скоростной проход с распашными створками', 
+						translate: 'prod_slide0__text', 
+						translate_sub: 'prod_slide0__subtext', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-prod/prod-slide__slide2.ver3-min.jpg',
+						prod_section: "1",
+						text: 'Скоростной проход ST‑11', 
+						subtext: 'Компактный скоростной проход с распашными створками', 
+						translate: 'prod_slide1__text', 
+						translate_sub: 'prod_slide1__subtext', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-prod/prod-slide__slide3.ver3-min.jpg',
+						prod_section: "2",
+						text: 'Скоростной проход ST‑02', 
+						subtext: 'Скоростной проход с раздвижными створками', 
+						translate: 'prod_slide2__text', 
+						translate_sub: 'prod_slide2__subtext', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-prod/prod-slide__slide4.ver3-min.jpg',
+						prod_section: "3",
+						text: 'Калитка WMD‑06', 
+						subtext: 'Автоматическая калитка со створкой из закаленного стекла', 
+						translate: 'prod_slide3__text', 
+						translate_sub: 'prod_slide3__subtext', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-prod/prod-slide__slide5.ver3-min.jpg',
+						prod_section: "3",
+						text: 'Ограждение ВН06', 
+						subtext: 'Ограждение из закаленного стекла', 
+						translate: 'prod_slide4__text', 
+						translate_sub: 'prod_slide4__subtext', 
+					},  
 				]
 			},
 			characteristics: {
@@ -167,6 +235,57 @@
 						text: 'степень защиты'
 					}, 
 					 
+				]
+			},
+			dop_slider: {
+				slide: [
+					{
+						img_src: 'images/gallery-dop/gallery-dop-slide1.jpg', 
+						name: 'Биометрические считыватели', 
+						signature: 'Универсальный скоростной проход с распашными створками', 
+						translate: 'dop_slide0__name', 
+						translate_sign: 'dop_slide0__signature', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-dop/gallery-dop-slide2.jpg', 
+						name: 'Пирометр', 
+						signature: 'Компактный скоростной проход с распашными створками', 
+						translate: 'dop_slide1__name', 
+						translate_sign: 'dop_slide1__signature', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-dop/gallery-dop-slide3.jpg', 
+						name: 'Терминал распознавания лиц Suprema', 
+						signature: 'Скоростной проход с раздвижными створками', 
+						translate: 'dop_slide2__name', 
+						translate_sign: 'dop_slide2__signature', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-dop/gallery-dop-slide4.jpg', 
+						name: 'Терминал распознавания лиц ZKTeco', 
+						signature: 'Автоматическая калитка со створкой из закаленного стекла', 
+						translate: 'dop_slide3__name', 
+						translate_sign: 'dop_slide3__signature', 
+					}, 
+					
+					{
+						img_src: 'images/gallery-dop/gallery-dop-slide5.jpg', 
+						name: 'Штрихкод', 
+						signature: 'Ограждение из закаленного стекла', 
+						translate: 'dop_slide4__name', 
+						translate_sign: 'dop_slide4__signature', 
+					},  
+					
+					{
+						img_src: 'images/gallery-dop/gallery-dop-slide6.jpg', 
+						name: 'Картоприемник', 
+						signature: 'Стойка с картоприемником', 
+						translate: 'dop_slide5__name', 
+						translate_sign: 'dop_slide5__signature', 
+					}, 
 				]
 			},
 			about: {
