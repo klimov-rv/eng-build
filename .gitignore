@@ -59,5 +59,4 @@ aero-deploy.tar.gz
 package-lock.json
 package.json
 .husky/_/husky.sh
-
 .npmrc
