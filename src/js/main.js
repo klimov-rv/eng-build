@@ -42,7 +42,7 @@ var intViewportWidth = window.innerWidth;
 
 var prohodDone = false;
 
-async function InsertCorrectVideo(videoOptions, resolution) {
+async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
     var videos = document.getElementsByTagName("video")
     var videosList = Array.prototype.slice.call(videos);
     var promises = [];
@@ -54,15 +54,14 @@ async function InsertCorrectVideo(videoOptions, resolution) {
             let model = id[1][0];
             let video_name = id[1][1];
             if (value.id == `index-${id[0]}`) {
-
                 let video = document.getElementById(value.id);
                 let vidSource = document.createElement('source');
                 if (video.canPlayType('video/mp4').length > 0) {
                     var typeVid = 'video/mp4; codecs="avc1.4D401E, mp4a.40.2"';
-                    var pathToVid = `video/${model}/${resolution}/${video_name}.mp4`;
+                    var pathToVid = `video/${curr_lang}/${model}/${resolution}/${video_name}.mp4`;
                 } else if (video.canPlayType('video/webm').length > 0) {
                     var typeVid = 'video/webm';
-                    var pathToVid = `video/${model}/${resolution}/webm/${video_name}.webm`;
+                    var pathToVid = `video/${curr_lang}/${resolution}/webm/${video_name}.webm`;
                 } else {
                     var pathToVid = "";
                 }
@@ -190,8 +189,8 @@ function smoothBulletsScrollLeft(activeBullet, bulletsWrap, intViewportWidth) {
 
 window.onload = function() {
 
-    let curr_lang = "ru";
-    console.log(curr_lang);
+    let curr_lang = "en";
+    // console.log(curr_lang);
 
     // порядок подгрузки видео
     var refactorProdMap = [
@@ -234,11 +233,11 @@ window.onload = function() {
     }
 
     if (intViewportWidth < 480) {
-        InsertCorrectVideo(refactorProdMap, resolution_s);
+        InsertCorrectVideo(refactorProdMap, resolution_s, curr_lang);
     } else if (intViewportWidth > 480 && intViewportWidth < 2000) {
-        InsertCorrectVideo(refactorProdMap, resolution_lg);
+        InsertCorrectVideo(refactorProdMap, resolution_lg, curr_lang);
     } else if (intViewportWidth > 2000) {
-        InsertCorrectVideo(refactorProdMap, resolution_wide);
+        InsertCorrectVideo(refactorProdMap, resolution_wide, curr_lang);
     }
 
     AOS.init({
@@ -316,6 +315,12 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["speed_gates"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
+                onComplete: function(self) {
+                    el.classList.add("lang");
+                }
             });
         })
 
@@ -326,6 +331,9 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["advantages"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
             });
             positionArrowsCube();
         })
@@ -338,13 +346,14 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["st-01_speed_gate"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
                 onComplete: function() {
 
+                    // клёвый костыль что бы не накладывался inview + typed на подставленный текст при прокрутке из подменю товаров 
                     let dynamicText = document.getElementById("js-dynamic-text-3");
                     let dynamicTextDouble = document.getElementById("js-dynamic-text-3-double");
-
-                    // клёвый костыль что бы не накладывался inview + typed на подставленный текст при прокрутке из подменю товаров 
-
                     dynamicText.classList.add("hide");
                     dynamicTextDouble.classList.remove("hide");
                 }
@@ -360,6 +369,9 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["installation_of_additional"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
             });
             swiperDop.init();
             positionArrowsCube();
@@ -372,6 +384,9 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["gallery"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
             });
             swiper4.init();
             swiper4.on('afterInit', function() {
@@ -388,6 +403,9 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["about"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
             });
         })
 
@@ -398,6 +416,9 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["contact_us"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
             });
         })
 
@@ -410,12 +431,17 @@ window.onload = function() {
                 strings: [arrLang[curr_lang]["st-01_speed_gate"]],
                 typeSpeed: type_speed,
                 showCursor: false,
+                onBegin: function(self) {
+                    el.parentNode.classList.add("visible");
+                },
                 onComplete: function(self) {
                     swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
 
+                    console.log("#index-" + swiperCube.activeIndex + "_0");
                     inView("#index-" + swiperCube.activeIndex + "_0")
                         .once('enter', el => {
                             asyncPlay(document.getElementById("index-" + swiperCube.activeIndex + "_0"));
+                            console.log("test: start vid index-" + swiperCube.activeIndex + "_0");
                         })
                 }
             });
@@ -604,7 +630,6 @@ window.onload = function() {
                         text += "<span data-played='" + ended0[j] + "' class='swiper-pagination-bullet'><div class='centered-bullet'>" + names0[j] + "</div></span>";
                     }
                 }
-                console.log(names0);
                 return text;
             },
         },
@@ -1422,7 +1447,6 @@ window.onload = function() {
             $(".js-sliderdemo-3 .swiper-slide .videoname").each(function(i) {
                 names3[i] = $(this).html();
             });
-            console.log(swiperDop.params.init);
             if (swiperDop.params.init == false) {
                 swiperDop.init();
             }
@@ -1432,13 +1456,62 @@ window.onload = function() {
             });
             swiperDop.pagination.update();
             $(".feedback-form-label__input").each(function(i) {
-
                 $(this)[0].placeholder = arrLang[curr_lang][$(this).attr('translate')]
-                console.log(arrLang[curr_lang][$(this).attr('translate')]);
             });
         });
     });
 
+    // Перевод страницы при загрузке
+    $(function() {
+        curr_lang = "en";
+        var matches = $('body').attr('class').match(/\blang-is-\S+/g);
+        $.each(matches, function() {
+            var className = this;
+            $('body').removeClass(className.toString());
+        });
+        $("body").addClass("lang-is-" + curr_lang);
+        $('.lang').each(function() {
+            $(this).text(arrLang[curr_lang][$(this).attr('translate')]);
+        });
+
+        var names0 = [];
+        var names1 = [];
+        var names2 = [];
+        var names3 = [];
+        var namesDop = [];
+        $(".js-sliderdemo-dop .swiper-slide").each(function(i) {
+            namesDop.push($(this).data("name"));
+        });
+
+        $(".js-sliderdemo-0 .swiper-slide .videoname").each(function(i) {
+            names0[i] = $(this).html();
+        });
+        swiper3prod0.pagination.update();
+        $(".js-sliderdemo-1 .swiper-slide .videoname").each(function(i) {
+            names1[i] = $(this).html();
+        });
+        swiper3prod1.pagination.update();
+        $(".js-sliderdemo-2 .swiper-slide .videoname").each(function(i) {
+            names2[i] = $(this).html();
+        });
+        swiper3prod2.pagination.update();
+        $(".js-sliderdemo-3 .swiper-slide .videoname").each(function(i) {
+            names3[i] = $(this).html();
+        });
+        console.log(swiperDop.params.init);
+        if (swiperDop.params.init == false) {
+            swiperDop.init();
+        }
+        swiper3prod3.pagination.update();
+        $(".js-sliderdemo-dop .swiper-slide .name").each(function(i) {
+            namesDop[i] = $(this).html();
+        });
+        swiperDop.pagination.update();
+        $(".feedback-form-label__input").each(function(i) {
+
+            $(this)[0].placeholder = arrLang[curr_lang][$(this).attr('translate')]
+        });
+    });
 };
 
 window.addEventListener(`resize`, event => {

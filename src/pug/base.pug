@@ -190,8 +190,8 @@ html(class=html.classList)&attributes(html.attrs)
 			if meta.formatDetection !== null && (typeof meta.formatDetection === 'string' || Object.values(meta.formatDetection).some(function (value) { return !value }))
 				meta(name="format-detection" content!=(typeof meta.formatDetection === 'string' ? meta.formatDetection : Object.entries(meta.formatDetection).filter(function (entry) { return !entry[1] || entry[1] === 'no' }).map(function (entry) { return `${entry[0]}=no` }).join(',')))
 		if title !== null
-			title!= title
-		block links 
+			title.lang(translate="page_title")!= title
+		block links
 			if link.icon !== null
 				link(rel="shortcut icon" type="image/x-icon" href!=link.icon)
 			if link.appleTouchIconPrecomposed !== null
@@ -287,12 +287,6 @@ html(class=html.classList)&attributes(html.attrs)
 		block body-start
 		block content
 		block scripts
-			script.
-				if (!('IntersectionObserver' in window)) {
-					var script = document.createElement("script");
-					script.src = "https://raw.githubusercontent.com/w3c/IntersectionObserver/master/polyfill/intersection-observer.js";
-					document.getElementsByTagName('head')[0].appendChild(script);
-				}
 			script(src!=`${baseDir}js/vendor.js?v=${Date.now()}`)
 			script(src!=`${baseDir}js/main.js?v=${Date.now()}`)
 		block body-end

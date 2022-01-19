@@ -192,7 +192,8 @@
 						svg: 'icon-char-1',
 						bg: 'images/icon-char-1.svg',
 						delay: '2200',
-						text: 'напряжение питания'
+						text: 'напряжение питания',
+						translate: 'operating_voltage'
 					}, 
 					
 					{
@@ -200,7 +201,8 @@
 						svg: 'icon-char-2',
 						bg: 'images/icon-char-2.v2.svg',
 						delay: '2300',
-						text: 'аварийный выход'
+						text: 'аварийный выход',
+						translate: 'emergency_exit'
 					},  
 					
 					{
@@ -208,7 +210,8 @@
 						svg: 'icon-char-4',
 						bg: 'images/icon-char-4.v3.svg',
 						delay: '2400',
-						text: 'человек в минуту'
+						text: 'человек в минуту',
+						translate: 'persons-min'
 					}, 
 					
 					{
@@ -216,7 +219,8 @@
 						svg: 'icon-char-4_1',
 						bg: 'images/icon-char-4_1.svg',
 						delay: '2400',
-						text: 'человек в минуту'
+						text: 'человек в минуту',
+						translate: 'persons-min'
 					}, 
 					
 					{
@@ -224,7 +228,8 @@
 						svg: 'icon-char-5',
 						bg: 'images/icon-char-5.v3.svg',
 						delay: '2500',
-						text: 'диапазон температур'
+						text: 'диапазон температур',
+						translate: 'temperature_range'
 					}, 
 
 					{
@@ -232,7 +237,8 @@
 						svg: 'icon-char-6',
 						bg: 'images/icon-char-6.v3.svg',
 						delay: '2600',
-						text: 'степень защиты'
+						text: 'степень защиты',
+						translate: 'ip_rating'
 					}, 
 					 
 				]
@@ -338,39 +344,80 @@
 				list: ['fb', 'tw', 'vk', 'ok'],
 			},
 			soc: {
-				icons: [
-					{
-						svg: 'icon-soc-1',
-						bg: 'images/icons/soc-1-dribbble.svg',
-						link: 'https://www.perco.ru/'
-					},
-					{
-						svg: 'icon-soc-2',
-						bg: 'images/icons/soc-2-insta.svg',
-						link: 'https://www.instagram.com/perco_com/'
-					},
-					{
-						svg: 'icon-soc-3',
-						bg: 'images/icons/soc-3-yt.svg',
-						link: 'https://www.youtube.com/channel/UChZJeHXWSHQuRvXokuGPBFw'
-					},
-					{
-						svg: 'icon-soc-4',
-						bg: 'images/icons/soc-4-dzen.svg',
-						link: 'https://zen.yandex.ru/id/5dd3ece3f5a25e6c5ca78bf8'
-					},  
-					{
-						svg: 'icon-soc-5',
-						bg: 'images/icons/soc-5-telegram.svg',
-						link: 'https://t.me/perco_com'
-					},  
-				]
+				eng: {
+					icons: [
+						{
+							svg: 'icon-soc-1',
+							bg: 'images/icons/soc-1-dribbble.svg',
+							link: 'https://www.perco.com/'
+						},
+						{
+							svg: 'icon-soc-2',
+							bg: 'images/icons/soc-2-insta.svg',
+							link: 'https://www.instagram.com/perco_com/'
+						},
+						{
+							svg: 'icon-soc-3',
+							bg: 'images/icons/soc-3-yt.svg',
+							link: 'https://www.youtube.com/c/PercoEng'
+						},
+						//- {
+						//- 	svg: 'icon-soc-4',
+						//- 	bg: 'images/icons/soc-4-dzen.svg',
+						//- 	link: 'https://zen.yandex.ru/id/5dd3ece3f5a25e6c5ca78bf8'
+						//- },  
+						//- {
+						//- 	svg: 'icon-soc-5',
+						//- 	bg: 'images/icons/soc-5-telegram.svg',
+						//- 	link: 'https://t.me/perco_com'
+						//- },
+						//- {
+						//- 	svg: 'icon-soc-6',
+						//- 	bg: 'images/icons/soc-6-fb.svg',
+						//- 	link: 'https://www.facebook.com/perco.systems'
+						//- },  
+						{
+							svg: 'icon-soc-7',
+							bg: 'images/icons/soc-7-linked.svg',
+							link: 'https://www.linkedin.com/company/3540826/'
+						},
+					],
+				},
+				ru: {
+					icons: [
+						{
+							svg: 'icon-soc-1',
+							bg: 'images/icons/soc-1-dribbble.svg',
+							link: 'https://www.perco.ru/'
+						},
+						{
+							svg: 'icon-soc-2',
+							bg: 'images/icons/soc-2-insta.svg',
+							link: 'https://www.instagram.com/perco_com/'
+						},
+						{
+							svg: 'icon-soc-3',
+							bg: 'images/icons/soc-3-yt.svg',
+							link: 'https://www.youtube.com/channel/UChZJeHXWSHQuRvXokuGPBFw'
+						},
+						{
+							svg: 'icon-soc-4',
+							bg: 'images/icons/soc-4-dzen.svg',
+							link: 'https://zen.yandex.ru/id/5dd3ece3f5a25e6c5ca78bf8'
+						},  
+						{
+							svg: 'icon-soc-5',
+							bg: 'images/icons/soc-5-telegram.svg',
+							link: 'https://t.me/perco_com'
+						},  
+					],
+				}
 			},
 			ytLink: {
-				st01: 'https://www.youtube.com/watch?v=eNX-OC2NxtU',  
-				st11: 'https://www.youtube.com/watch?v=1Ap-dv-lEQY',
-				st02: 'https://www.youtube.com/watch?v=EMKkVgHqSKw',
-				wmd06_bh06: 'https://www.youtube.com/watch?v=iOHLL3jilwA', 
+				st01: 'https://www.youtube.com/watch?v=vxxDimvLS1s',  
+				st11: 'https://www.youtube.com/watch?v=mdujv0R9Epg',
+				st02: 'https://www.youtube.com/watch?v=9tUNhSt4-5k',
+				wmd06_bh06: 'https://www.youtube.com/watch?v=YwArj7dbX68', 
 			}
 		}, 
 		modal: {
