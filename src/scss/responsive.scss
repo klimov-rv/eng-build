@@ -360,6 +360,15 @@
 }
 
 @media screen and (max-width: 920px) {
+    .cookie-warning .block {
+        padding: 0 30px;
+    }
+    .cookie-warning .block .close {
+        right: 5px;
+    }
+    .cookie-warning .text {
+        padding-right: 35px;
+    }
     .home .five .header__container {
         padding-top: 50px;
     }

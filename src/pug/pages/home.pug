@@ -431,3 +431,17 @@ a#scroll-top(href="#main")
 			p Ваше сообщение
 			| отправлено
 		figure.icon.icon-ok
+
+
+.cookie-warning#js-cookie-warning
+	.block
+		.text.lang-ru-content
+			| OOO «ПЭРКо» использует файлы «cookie» с целью персонализации сервисов и повышения удобства пользования веб-сайтом. «Cookie» представляют собой небольшие файлы, содержащие информацию о предыдущих посещениях веб-сайта. 
+			| Если вы не хотите использовать файлы «cookie», измените настройки браузера.
+		.text.lang-eng-content
+			| «PERCo» uses «cookie» files to personalize the services and to increase website usability. «Cookies» are little text files containing information about previous website visits. 
+			| If you don't want to use «cookie» files, please change browser settings. 
+		.close(onclick="this.parentNode.parentNode.style.display = 'none'")
+			span.icon
+				svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1")
+					path(d="M20 20L4 4m16 0L4 20")

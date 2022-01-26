@@ -1667,9 +1667,6 @@ video.js-lazy+.loader-spin {
     }
 }
 
-// .is-os-mac-os {
-//     .home .slider-cube {}
-// }
 @keyframes infinite-spinning {
     from {
         transform: rotate(0deg);
@@ -1679,19 +1676,76 @@ video.js-lazy+.loader-spin {
     }
 }
 
-// input:invalid,
-// textarea:invalid {
-//     border: 2px solid #FF0303;
-// }
-// textarea:focus,
-// input:focus {
-//     outline: 0;
-// }
-// input:focus:invalid,
-// textarea:focus:invalid {
-//     border: 2px solid #FF0303;
-// }
-// input:focus:valid,
-// textarea:focus:valid {
-//     border: 2px solid #64C364;
-// }
+// Стили для переделки иконок с подсчётом лет и количеством стран
+.new-about-icon_exp {
+    display: flex;
+    color: #4885fa;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    top: 4px;
+    font-size: 32px;
+}
+
+.new-about-icon_count {
+    display: flex;
+    color: #4885fa;
+    position: absolute;
+    width: 55px;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-weight: bold;
+    top: 0;
+    font-size: 32px;
+}
+
+// Стили для плашки с информацией о "куках"
+.cookie-warning {
+    background-color: #F0F0F0;
+    color: #808080;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    .block {
+        max-width: 625px;
+        margin: 25px auto;
+        position: relative;
+        .close {
+            position: absolute;
+            top: -10px;
+            right: -75px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            .icon {
+                border-radius: 50%;
+                border: 1.5px solid #B3B3B3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25px;
+                height: 25px;
+            }
+            svg {
+                stroke: #B3B3B3;
+                width: 15px;
+                outline: none;
+            }
+        }
+    }
+    .text {
+        text-align: justify;
+        font-size: 16px;
+    }
+}

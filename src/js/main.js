@@ -42,6 +42,8 @@ var intViewportWidth = window.innerWidth;
 
 var prohodDone = false;
 
+
+
 async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
     var videos = document.getElementsByTagName("video")
     var videosList = Array.prototype.slice.call(videos);
@@ -184,6 +186,45 @@ function smoothBulletsScrollLeft(activeBullet, bulletsWrap, intViewportWidth) {
         left: posX,
         behavior: 'smooth'
     });
+}
+
+
+var isCookie = getCookie("firstVisit");
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value, options) {
+    options = options || {};
+
+    var expires = options.expires;
+
+    if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+            updatedCookie += "=" + propValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
 }
 
 
@@ -1512,6 +1553,50 @@ window.onload = function() {
             $(this)[0].placeholder = arrLang[curr_lang][$(this).attr('translate')]
         });
     });
+
+
+
+
+    console.log(location.hostname);
+    // console.log(document.getElementById('js-cookie-warning'));
+    // console.log(isCookie);
+
+    // document.getElementById('js-cookie-warning').style.display = "block";
+
+    if (location.hostname == "localhost") {
+        if (isCookie == undefined) {
+            document.getElementById('js-cookie-warning').style.display = "block";
+            setCookie("firstVisit", "", {
+                expires: 86400 * 365
+            })
+        }
+    }
+    if (location.hostname == "perco.local") {
+        if (isCookie == undefined) {
+            document.getElementById('js-cookie-warning').style.display = "block";
+            setCookie("firstVisit", "", {
+                expires: 86400 * 365
+            })
+        }
+    }
+    if (location.hostname == "speedgate.perco.ru") {
+        if (isCookie == undefined) {
+            document.getElementById('js-cookie-warning').style.display = "block";
+            setCookie("firstVisit", "", {
+                expires: 86400 * 365
+            })
+        }
+    }
+    if (location.hostname == "speedgate.perco.com") {
+        if (isCookie == undefined) {
+            document.getElementById('js-cookie-warning').style.display = "block";
+            setCookie("firstVisit", "", {
+                expires: 86400 * 365
+            })
+        }
+    }
+
+
 };
 
 window.addEventListener(`resize`, event => {
