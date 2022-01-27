@@ -230,7 +230,7 @@ function setCookie(name, value, options) {
 
 window.onload = function() {
 
-    let curr_lang = "en";
+    let curr_lang = "ru";
     // console.log(curr_lang);
 
     // порядок подгрузки видео
@@ -1504,7 +1504,7 @@ window.onload = function() {
 
     // Перевод страницы при загрузке
     $(function() {
-        curr_lang = "en";
+        curr_lang = "ru";
         var matches = $('body').attr('class').match(/\blang-is-\S+/g);
         $.each(matches, function() {
             var className = this;
@@ -1559,7 +1559,7 @@ window.onload = function() {
 
     console.log(location.hostname);
     // console.log(document.getElementById('js-cookie-warning'));
-    // console.log(isCookie);
+    console.log(isCookie);
 
     // document.getElementById('js-cookie-warning').style.display = "block";
 
@@ -1571,7 +1571,7 @@ window.onload = function() {
             })
         }
     }
-    if (location.hostname == "perco.local") {
+    if (location.hostname == "perco.local" || location.hostname == "www.perco.local") {
         if (isCookie == undefined) {
             document.getElementById('js-cookie-warning').style.display = "block";
             setCookie("firstVisit", "", {
@@ -1595,8 +1595,6 @@ window.onload = function() {
             })
         }
     }
-
-
 };
 
 window.addEventListener(`resize`, event => {

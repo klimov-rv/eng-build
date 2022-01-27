@@ -65,6 +65,16 @@
 }
 
 @media screen and (max-width: 1366px) {
+    .cookie-warning .block {
+        padding: 0 30px;
+    }
+    .cookie-warning .block .close {
+        top: -10px;
+        right: 7px;
+    }
+    .cookie-warning .text {
+        padding-right: 35px;
+    }
     .home .five .icon__item .icon-soc-3 {
         margin: 0 15px;
     }
@@ -360,15 +370,6 @@
 }
 
 @media screen and (max-width: 920px) {
-    .cookie-warning .block {
-        padding: 0 30px;
-    }
-    .cookie-warning .block .close {
-        right: 5px;
-    }
-    .cookie-warning .text {
-        padding-right: 35px;
-    }
     .home .five .header__container {
         padding-top: 50px;
     }
