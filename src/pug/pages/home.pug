@@ -78,7 +78,13 @@ main.home#main
 				.icons_wrap
 					.icons_list.advan.row
 						each object, key in data.home.advanages.icons
-							.icon__item.cell-2.cell-4-xs( class='advantages__icon-' + key data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom")
+							- superclass = ""
+							if(object.translate == "5_years_of_warranty")
+								if(object.svg == "icon-section2-6-eng")
+									- superclass = "lang-eng-content"
+								else
+									- superclass = "lang-ru-content"
+							.icon__item.cell-2.cell-4-xs(class='advantages__icon-' + key + ' '+superclass data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom")
 								figure.icon(
 									class=object.svg 
 								)

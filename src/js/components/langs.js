@@ -190,7 +190,7 @@ export default {
         'gallery_slide10': 'ST‑01 Speed gates, PepsiCo company office, Mexico',
         'gallery_slide11': 'ST‑01 Speed gates, Residential complex, Russia',
         'gallery_slide12': 'ST‑01 Speed gates and WMD‑06 Swing gates, Nazarbaev University, Kazakhstan',
-        'gallery_slide13': 'WMD‑06 swing gates, KABONK Amusement Park, the Netherlands',
+        'gallery_slide13': 'WMD‑06 Swing gates, KABONK Amusement Park, the Netherlands',
         'gallery_slide14': 'WMD‑06 Motorized swing gate, The Railway Museum, Russia',
         'gallery_slide15': 'WMD‑06 Motorized swing gate, JYSK Headquarters, Denmark',
         'about': 'About PERCo',

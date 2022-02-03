@@ -230,7 +230,8 @@ function setCookie(name, value, options) {
 
 window.onload = function() {
 
-    let curr_lang = "ru";
+    // let curr_lang = "ru";
+    let curr_lang = "en";
     // console.log(curr_lang);
 
     // порядок подгрузки видео
@@ -501,7 +502,14 @@ window.onload = function() {
         window.addEventListener('scroll', () => {
             const shouldBeVisible = window.pageYOffset + intViewportHeight > offsetToTrigger;
             btnScrollTop.classList.toggle('visible', shouldBeVisible);
-        })
+
+            try {
+                history.replaceState(window.location.href.split('#')[0], 'Заголовок', window.location.href.split('#')[0]);
+            } catch (z) {
+                console.log(z);
+            }
+            console.log(window.location.href);
+        });
     }
     ShowScrollToTop(document.getElementById('scroll-top'));
 
@@ -1354,6 +1362,7 @@ window.onload = function() {
     var inptCheck = document.getElementById("js-input-check");
 
     var inptPhoneMask = new Inputmask("8(999)999-9999");
+    var inptPhoneMaskEn = new Inputmask("+9[9*{1,20}]");
     var inptEmaiMask = new Inputmask({
         mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
         greedy: false,
@@ -1368,7 +1377,7 @@ window.onload = function() {
             }
         }
     });
-    inptPhoneMask.mask(inptPhone);
+    inptPhoneMaskEn.mask(inptPhone);
     inptEmaiMask.mask(inptEmail);
 
     var inputsR = document.querySelectorAll(".js-input-require");
@@ -1454,6 +1463,9 @@ window.onload = function() {
             e.preventDefault();
             $(".select-lang__name").html($(this).attr('id').toUpperCase());
             curr_lang = $(this).attr('id');
+
+            var inptPhoneMask = new Inputmask("8(999)999-9999");
+
             var matches = $('body').attr('class').match(/\blang-is-\S+/g);
             $.each(matches, function() {
                 var className = this;
@@ -1504,7 +1516,7 @@ window.onload = function() {
 
     // Перевод страницы при загрузке
     $(function() {
-        curr_lang = "ru";
+        curr_lang = "en";
         var matches = $('body').attr('class').match(/\blang-is-\S+/g);
         $.each(matches, function() {
             var className = this;
@@ -1553,15 +1565,6 @@ window.onload = function() {
             $(this)[0].placeholder = arrLang[curr_lang][$(this).attr('translate')]
         });
     });
-
-
-
-
-    console.log(location.hostname);
-    // console.log(document.getElementById('js-cookie-warning'));
-    console.log(isCookie);
-
-    // document.getElementById('js-cookie-warning').style.display = "block";
 
     if (location.hostname == "localhost") {
         if (isCookie == undefined) {
