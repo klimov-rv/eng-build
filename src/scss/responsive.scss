@@ -5,6 +5,12 @@
 @media screen and (max-width: 1675px) {}
 
 @media screen and (max-width: 1550px) {
+    .home section.two #prod-section-3 .js-video-main-wrap {
+        align-items: center;
+    }
+    .home section.two #prod-section-3 .header-demo {
+        max-width: 671px;
+    }
     .js-video-main-wrap {
         padding-bottom: 130px;
     }
@@ -193,6 +199,11 @@
 }
 
 @media screen and (max-width: 1024px) {
+    .home .about__text_icons .icon__item .icon-about-1 .work_years {
+        position: absolute;
+        top: 23px;
+        left: 8px;
+    }
     .slider-hero .swiper-button-prev,
     .slider-hero .swiper-button-next {
         display: none;
@@ -726,6 +737,11 @@
 }
 
 @media screen and (max-width: 480px) {
+    .home .about__text_icons .icon__item .icon-about-1 .work_years {
+        top: 23px;
+        left: 10px;
+        font-size: 25px;
+    }
     .site .init-loader {
         opacity: 1;
         background-size: 25vw;

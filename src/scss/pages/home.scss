@@ -188,6 +188,16 @@
                     padding-bottom: 0px;
                 }
             }
+            #prod-section-3 {
+                .header-demo {
+                    max-width: 845px;
+                }
+                .js-video-main-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
             .video-btn__wrap_bottom {
                 width: 100%;
                 justify-content: center;
@@ -961,6 +971,17 @@
                     }
                     .icon-about-1 {
                         background-image: url("../images/icons/icon-about-1.svg");
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .work_years {
+                            font-size: 35px;
+                            position: relative;
+                            top: 7px;
+                            left: auto;
+                            font-weight: 500;
+                        }
                     }
                     .icon-about-2 {
                         background-image: url("../images/icons/icon-about-2.svg");

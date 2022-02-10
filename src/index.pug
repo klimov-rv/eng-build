@@ -2,6 +2,7 @@ extends pug/base
 
 prepend vars
 	- title = 'Скоростные проходы PERCo'
+	- curr_lang = 'en'
 
 append vars 
 	- meta.keywords = ['скоростные проходы', 'турникет скоростной проход', 'скоростной проход perco',  'скоростной проход perco st 01', 'турникет скоростной проход st 01', 'perco st 01 турникет скоростной проход', 'скоростной проход st 01 со встроенным картоприемником', 'скоростной проход st 11 +с распашными с распашными створками', 'турникеты с раздвижными створками', 'бесконтактный турникет', 'турникет', 'купить турникет' ]
@@ -19,5 +20,6 @@ block content
  
 		include pug/components/footer
 
-		script(async src="https://www.google.com/recaptcha/api.js") 
-		include pug/components/analytics
+		script(async src="https://www.google.com/recaptcha/api.js?hl="+curr_lang) 
+		if (curr_lang = 'ru')
+			include pug/components/analytics

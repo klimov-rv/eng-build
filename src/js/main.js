@@ -26,6 +26,19 @@ ieFix();
 vhFix();
 actualYear();
 
+let work_years = parseInt(document.getElementById("data-actual-year").textContent) - 1988;
+
+const para1 = document.createElement("p");
+para1.classList.add("work_years");
+const node1 = document.createTextNode(work_years);
+para1.appendChild(node1);
+const element = document.querySelector(".icon-about-1");
+element.appendChild(para1);
+
+
+console.log("Current language: " + curr_lang);
+
+
 header.init();
 lazyLoading.init();
 
@@ -231,7 +244,7 @@ function setCookie(name, value, options) {
 window.onload = function() {
 
     // let curr_lang = "ru";
-    let curr_lang = "en";
+    // let curr_lang = "en";
     // console.log(curr_lang);
 
     // порядок подгрузки видео
@@ -508,7 +521,7 @@ window.onload = function() {
             } catch (z) {
                 console.log(z);
             }
-            console.log(window.location.href);
+            // console.log(window.location.href);
         });
     }
     ShowScrollToTop(document.getElementById('scroll-top'));
@@ -1516,7 +1529,8 @@ window.onload = function() {
 
     // Перевод страницы при загрузке
     $(function() {
-        curr_lang = "en";
+        // curr_lang = "ru";
+        // curr_lang = "en";
         var matches = $('body').attr('class').match(/\blang-is-\S+/g);
         $.each(matches, function() {
             var className = this;
