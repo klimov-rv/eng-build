@@ -189,9 +189,9 @@
                 }
             }
             #prod-section-3 {
-                .header-demo {
-                    max-width: 845px;
-                }
+                // .header-demo {
+                //     max-width: 845px;
+                // }
                 .js-video-main-wrap {
                     display: flex;
                     flex-direction: column;
@@ -967,6 +967,7 @@
                         background: url("../images/icons/icon-about-1.svg") no-repeat center center transparent;
                         &__signature {
                             padding-top: 25px;
+                            flex: 1 0 100%;
                         }
                     }
                     .icon-about-1 {

@@ -481,7 +481,6 @@ window.onload = function() {
     inView('#js-dynamic-prod1')
         .once('enter', el => {
             document.getElementById("js-dynamic-prod1").innerHTML = "";
-            console.log(curr_lang);
             new Typed(el, {
                 strings: [arrLang[curr_lang]["st-01_speed_gate"]],
                 typeSpeed: type_speed,
@@ -869,7 +868,6 @@ window.onload = function() {
                 this.pause();
             }
         });
-        console.log(this);
         if (swiperCube.activeIndex == 2) {
             var currSwiperSlide = document.getElementById(currentVideo.id).parentNode.parentNode;
             asyncPlay(currentVideo);
@@ -1565,7 +1563,6 @@ window.onload = function() {
         $(".js-sliderdemo-3 .swiper-slide .videoname").each(function(i) {
             names3[i] = $(this).html();
         });
-        console.log(swiperDop.params.init);
         if (swiperDop.params.init == false) {
             swiperDop.init();
         }

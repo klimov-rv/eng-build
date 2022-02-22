@@ -208,7 +208,7 @@ export default {
         'icon-about-5': 'Warranty period - 5 years',
         'icon-about-6': 'Technical support and training',
         'headquarters': 'PERCo Headquarters',
-        'manufacturing_plant': 'PERCo manufacturing plant',
+        'manufacturing_plant': 'PERCo Manufacturing plant',
         'contact_us': 'Contact us',
         'contact_us_name': 'Name*',
         'contact_us_company': 'Company',
