@@ -91,8 +91,6 @@ main.home#main
 									)
 									span.icon__signature.lang(translate=object.translate) 
 										!= object.text
-									//- +svg("icon-adv-1") https://github.com/ninelines-team/ninelines-docs/blob/master/07_images.md#%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-svg-%D1%81%D0%BF%D1%80%D0%B0%D0%B9%D1%82%D0%B0%D0%BC%D0%B8 
-
 	section.two.white-bg#products
 		.header__container.reserve-height__container.text-center
 			.reserve-height 
@@ -365,6 +363,20 @@ main.home#main
 			.row 
 				.cell-3.cell-2-md.cell-0-xs
 				.cell-6.cell-8-md.cell-12-xs
+					if (curr_lang == 'sg')
+						.row.dealer_r-tech.hide
+							.cell-3
+								+lazyPicture({
+									src: `${baseDir}images/icons/R-tech-logo.svg`,
+									alt: 'r-tech',
+								}, [
+									{
+										srcset: `${baseDir}images/icons/R-tech-logo.svg`,
+									}
+								]).dealer_r-tech__logo
+							.cell-9
+								span.dealer_r-tech__text Since 2011, Reddot Engineering Pte Ltd has been dedicated to providing systems that dealers and installers need to effectively compete in a global market place with carefully selected products. Reddot is an official PERCo represantive in Singapore with dozens of succefull projects across the country.
+
 					form.feedback-form(action="", name="feedback")
 						label.feedback-form-label 
 							input.feedback-form-label__input.js-input-require#js-input-name(name="name", placeholder="Имя*", translate="contact_us_name", required) 
@@ -390,9 +402,11 @@ main.home#main
 						input(value="feedback" name="form" hidden="") 
 						.col.flex-middle
 							.recaptcha
-								.g-recaptcha(data-sitekey="6LeckzodAAAAADM_3RRin9uIuHCwCqHsudWOUI3E")
+								#g-recaptcha
+								//- .g-recaptcha(data-sitekey="6LeckzodAAAAADM_3RRin9uIuHCwCqHsudWOUI3E" data-callback="onReturnCallback")
+								#g-recaptcha-error
 							//- button.feedback-form-btn.lang(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content" translate="contact_us_send") Отправить 
-							button.feedback-form-btn.lang(type="submit", aria-label="Отправить" translate="contact_us_send") Отправить  
+							button.feedback-form-btn.lang(type="submit" name="submit" aria-label="Отправить" translate="contact_us_send") Отправить  
 				.cell-3.cell-2-md.cell-0-xs
 			.row 
 				.push-4.cell-4.post-4.icons_list.social.push-2-md.cell-8-md.post-2-md.push-1-sm.cell-10-sm.post-1-sm
@@ -416,8 +430,7 @@ a#scroll-top(href="#main")
 			p.policy__paragraph Мы передаем Ваши Персональные данные исключительно привлекаемым нами обработчикам (т.е. третьим лиц, действующим по нашему поручению), которые содействуют нам при оказании услуг, а также уполномоченных государственных органов. На основании Вашего согласия мы можем использовать куки для маркетинговых целей, а также улучшения функциональности наших сервисов и также в целях статистического анализа.</p>
 			p.policy__paragraph Мы также предлагаем Вам как нашему клиенту различные опции контроля за использованием Ваших Персональных данных.</p>
 			p.policy__paragraph Если вы желаете получить более подробную информацию об обработке Ваших Персональных данных и куки, которые мы используем, пожалуйста, обратитесь к расширенной версии Политики конфиденциальности.</p>
-			h5.policy__subtitle
-				a(href="https://www.perco.ru/politika-konfidentsialnosti/", target="_blank", rel="noopener") РАСШИРЕННАЯ ВЕРСИЯ
+			h5.policy__subtitle #[a(href="https://www.perco.ru/politika-konfidentsialnosti/" target="_blank", rel="noopener") РАСШИРЕННАЯ ВЕРСИЯ] 
 				
 		.lang-eng-content
 			h4.policy__title “PERCO”
@@ -428,8 +441,7 @@ a#scroll-top(href="#main")
 			p.policy__paragraph We pass Your Personal data to the handlers who are exclusively involved by us (i.e. the third persons, acting on our assignment) who assist us while rendering the services and also to the authorized public authorities. On the basis of your consent we can use cookies for the marketing purposes and also improvements of functionality of our services and also for the statistical analysis.</p>
 			p.policy__paragraph As our client, we offer You various control options of your Personal data usage.</p>
 			p.policy__paragraph If you wish to obtain more detailed information about your Personal data processing and cookies which we use, please see the expanded version of Privacy policy.</p>
-			h5.policy__subtitle
-				a(href="https://www.perco.com/privacy-policy/", target="_blank", rel="noopener") EXPANDED VERSION 
+			h5.policy__subtitle #[a(href="https://www.perco.com/privacy-policy/" target="_blank", rel="noopener") EXPANDED VERSION] 
 		
 .fancy-hide#form-result-content 
 	.popup-ok.col

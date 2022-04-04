@@ -55,7 +55,40 @@ var intViewportWidth = window.innerWidth;
 
 var prohodDone = false;
 
+// function checkValidnost(input) {
+//     if (input.name == "check") {
+//         if (document.forms["feedback"][input.name].checked) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     } else {
+//         if (document.forms["feedback"][input.name].value != "") {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
+// }
+// var verifyCallback = function(response) {
+//     if (response.length == 0) {
+//         console.log("reCaptcha not verified");
+//         console.log(response);
+//         return false;
+//     } else {
+//         var inputsR = document.querySelectorAll(".js-input-require");
 
+//         inputsR.forEach(input => {
+//             input.oninput = function() {
+//                 if (checkValidnost(inptName) && checkValidnost(inptEmail) && checkValidnost(inptCheck)) {
+//                     document.querySelector(".feedback-form-btn").classList.add("btn-active");
+//                 } else {
+//                     document.querySelector(".feedback-form-btn").classList.remove("btn-active");
+//                 }
+//             };
+//         })
+//     }
+// } 
 
 async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
     var videos = document.getElementsByTagName("video")
@@ -127,23 +160,6 @@ function anchorPhotoGallery() {
     document.getElementById("gallery").style.top = "-" + galleryConst + "px";
 }
 
-function checkValidnost(input) {
-    // document.forms["feedback"][input.name].value 
-    if (input.name == "check") {
-        if (document.forms["feedback"][input.name].checked) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        if (document.forms["feedback"][input.name].value != "") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-
 function positionArrowsCube() {
     var cubeWrapVideoHeight = document.querySelector(".js-sliderdemo-0").offsetHeight / 2;
     var cubeWrapVideoOffset = document.querySelector(".js-sliderdemo-0").offsetTop;
@@ -201,7 +217,6 @@ function smoothBulletsScrollLeft(activeBullet, bulletsWrap, intViewportWidth) {
     });
 }
 
-
 var isCookie = getCookie("firstVisit");
 
 function getCookie(name) {
@@ -243,6 +258,22 @@ function setCookie(name, value, options) {
 
 window.onload = function() {
 
+    var inputsR = document.querySelectorAll(".js-input-require");
+
+    var inptName = document.getElementById("js-input-name");
+    var inptEmail = document.getElementById("js-input-email");
+    var inptCheck = document.getElementById("js-input-check");
+
+    inputsR.forEach(input => {
+        input.oninput = function() {
+            if (checkValidnost(inptName) && checkValidnost(inptEmail) && checkValidnost(inptCheck)) {
+                verify1 = true;
+            } else {
+                verify1 = false;
+            }
+            checkValidAndCapcha(verify1, verify2);
+        };
+    });
     // let curr_lang = "ru";
     // let curr_lang = "en";
     // console.log(curr_lang);
@@ -287,12 +318,17 @@ window.onload = function() {
             .to(".init-loader", { top: "-1000%", duration: .5 })
     }
 
+    // склеиваем sg и en видео
+    let temp_lang = curr_lang;
+    if (curr_lang == "sg") {
+        temp_lang = "en";
+    }
     if (intViewportWidth < 480) {
-        InsertCorrectVideo(refactorProdMap, resolution_s, curr_lang);
+        InsertCorrectVideo(refactorProdMap, resolution_s, temp_lang);
     } else if (intViewportWidth > 480 && intViewportWidth < 2000) {
-        InsertCorrectVideo(refactorProdMap, resolution_lg, curr_lang);
+        InsertCorrectVideo(refactorProdMap, resolution_lg, temp_lang);
     } else if (intViewportWidth > 2000) {
-        InsertCorrectVideo(refactorProdMap, resolution_wide, curr_lang);
+        InsertCorrectVideo(refactorProdMap, resolution_wide, temp_lang);
     }
 
     AOS.init({
@@ -1291,15 +1327,12 @@ window.onload = function() {
 
     }
 
-
     document.querySelector('.feedback-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         const response = await fetch('/', {
             method: 'POST',
             body: new FormData(this)
         });
-        // console.log(response);
-        // console.log("-----");
         if (!response.ok) {
             console.error(`Ошибка отправки формы, статус ответа: ${response.status}`);
             return;
@@ -1367,10 +1400,6 @@ window.onload = function() {
     })
 
     $('.slider-cube .swiper-pagination').on("click", triggerSlidePrevEnable());
-    var inptPhone = document.getElementById("js-input-phone");
-    var inptName = document.getElementById("js-input-name");
-    var inptEmail = document.getElementById("js-input-email");
-    var inptCheck = document.getElementById("js-input-check");
 
     var inptPhoneMask = new Inputmask("8(999)999-9999");
     var inptPhoneMaskEn = new Inputmask("+9[9*{1,20}]");
@@ -1388,25 +1417,12 @@ window.onload = function() {
             }
         }
     });
-    inptPhoneMaskEn.mask(inptPhone);
-    inptEmaiMask.mask(inptEmail);
+    inptPhoneMaskEn.mask(document.getElementById("js-input-phone"));
+    inptEmaiMask.mask(document.getElementById("js-input-email"));
 
-    var inputsR = document.querySelectorAll(".js-input-require");
-    inputsR.forEach(input => {
-            input.oninput = function() {
-                if (checkValidnost(inptName) && checkValidnost(inptEmail) && checkValidnost(inptCheck)) {
-                    document.querySelector(".feedback-form-btn").classList.add("btn-active");
-                } else {
-                    document.querySelector(".feedback-form-btn").classList.remove("btn-active");
-                }
-
-            };
-        })
-        //   input.oninput = function() {
-        //     result.innerHTML = input.value;
-        //   };
-
-
+    //   input.oninput = function() {
+    //     result.innerHTML = input.value;
+    //   }; 
 
     // $('.play-button__link').on("click", function(e) {
     //     console.log(e.currentTarget.offsetParent.children[0].children[0].play());
@@ -1632,42 +1648,8 @@ window.addEventListener(`resize`, event => {
         sliderArrows.classList.remove('push-2', 'cell-8', 'post-2');
     }
 
-    // if (intViewportWidth < 640) {
-
-    //     InsertCorrectVideo(refactorProdMap, resolution_s);
-
-    //     // удаляем автовоспроизведение - добавить кнопку плей для мобильных видео
-    //     var vidsForMobile = document.getElementsByTagName("video");
-    //     for (var i = 0; i < vidsForMobile.length; i++) {
-    //         vidsForMobile[i].removeAttribute("autoplay");
-    //     }
-    // } else if (intViewportWidth > 640 && intViewportWidth < 1200) {
-    //     InsertCorrectVideo(refactorProdMap, resolution_lg);
-    // } else {
-    //     InsertCorrectVideo(refactorProdMap, resolution_wide);
-    // }
-
-
     // якорь по центру фотогалереи
     anchorPhotoGallery();
 
 
 }, false);
-
-
-
-// $(".btn-change").on("click", function(e) {
-//     $(".btn-change").toggleClass("active");
-//     $("#main").toggleClass("ver2");
-// });
-
-// $(".btn-change").on("click", function(e) {
-//     $(".btn-change").toggleClass("active");
-//     $("#main").toggleClass("ver2");
-// });
-
-
-// mixin list(id, ...items)
-//   ul(id=id)
-//     each item in items
-//       li= item

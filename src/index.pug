@@ -1,12 +1,28 @@
 extends pug/base
 
 prepend vars
-	- title = 'Скоростные проходы PERCo'
 	- curr_lang = 'en'
+	if (curr_lang == 'ru')
+		- title = 'Скоростные проходы PERCo'
+		- ogLocaleLang = 'ru_RU'
+		- description = 'Скоростные проходы PERCo обеспечивают комфортный бесконтактный проход и высокую пропускную способность. Исполнение из нержавеющей стали и стекладелает скоростные проходы оптимальным решением для проходных с высокими требованиями к дизайну. Гарантия - 5 лет.'
+	if (curr_lang == 'en')
+		- title = 'Speed gates PERCo'
+		- ogLocaleLang = 'en_EN'
+		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
+	if (curr_lang == 'sg')
+		- title = 'Speed gates PERCo'
+		- ogLocaleLang = 'en_SG'
+		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'
 
-append vars 
-	- meta.keywords = ['скоростные проходы', 'турникет скоростной проход', 'скоростной проход perco',  'скоростной проход perco st 01', 'турникет скоростной проход st 01', 'perco st 01 турникет скоростной проход', 'скоростной проход st 01 со встроенным картоприемником', 'скоростной проход st 11 +с распашными с распашными створками', 'турникеты с раздвижными створками', 'бесконтактный турникет', 'турникет', 'купить турникет' ]
-	- description = 'Скоростные проходы PERCo обеспечивают комфортный бесконтактный проход и высокую пропускную способность. Исполнение из нержавеющей стали и стекладелает скоростные проходы оптимальным решением для проходных с высокими требованиями к дизайну.  Гарантия - 5 лет.'
+append vars
+	if (curr_lang == 'ru')
+		- meta.keywords = ['скоростные проходы', 'турникет скоростной проход', 'скоростной проход perco',  'скоростной проход perco st 01', 'турникет скоростной проход st 01', 'perco st 01 турникет скоростной проход', 'скоростной проход st 01 со встроенным картоприемником', 'скоростной проход st 11 +с распашными с распашными створками', 'турникеты с раздвижными створками', 'бесконтактный турникет', 'турникет', 'купить турникет']
+	if (curr_lang == 'en')
+		- meta.keywords = ['Speed gates', 'Turnstiles', 'Access control', 'speed gate systems', 'speed gate access control', 'speed gate turnstiles', 'Swing gates', 'Sliding speed gates', 'Swinging speed gates', 'PERCo turnstile', 'PERCo turnstiles', 'Entrance control', 'turnstiles for sale', 'speed gates for sale', 'security turnstile', 'stainless steel turnstiles' ]
+	if (curr_lang == 'sg')
+		- meta.keywords = ['Access Control', 'Gates', 'Turnstiles', 'Tripods', 'Full Height Turnstiles', 'Card Readers', 'Biometric Readers', 'Speed Gates', 'Swing Gates', 'Apollo', 'Idemia' ]
+
 	- meta.viewport = 'width=device-width, initial-scale=1' 
 	- link.icon = 'images/favicon.ico'
 
@@ -14,41 +30,12 @@ block content
 	include pug/data
 
 	.site#page
-		include pug/components/header
+		include pug/components/header 
 
 		include pug/pages/home 
  
 		include pug/components/footer
-
-		script(async src="https://www.google.com/recaptcha/api.js?hl="+curr_lang) 
-		if (curr_lang = 'ru')
-			include pug/components/analytics
-
-
-
-			if en 
-
-			<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-  ym(87539534, "init", {
-        clickmap:true,
-       trackLinks:true,
-       accurateTrackBounce:true,
-       webvisor:true
-  });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/87539534" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-			<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-662209-28"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
-
- gtag('config', 'UA-662209-28');
-</script>
+		 
+		script(async src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl="+curr_lang)
+		
+		include pug/components/analytics

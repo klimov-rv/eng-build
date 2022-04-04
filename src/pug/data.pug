@@ -89,8 +89,7 @@
 					name: 'Контакты'
 				}
 			] 
-		}, 
-		
+		},
 		home: {
 			advanages: {
 				icons: [
@@ -352,11 +351,11 @@
 							bg: 'images/icons/soc-1-dribbble.svg',
 							link: 'https://www.perco.com/'
 						},
-						{
-							svg: 'icon-soc-2',
-							bg: 'images/icons/soc-2-insta.svg',
-							link: 'https://www.instagram.com/perco_com/'
-						},
+						//- {
+						//- 	svg: 'icon-soc-2',
+						//- 	bg: 'images/icons/soc-2-insta.svg',
+						//- 	link: 'https://www.instagram.com/perco_com/'
+						//- },
 						{
 							svg: 'icon-soc-3',
 							bg: 'images/icons/soc-3-yt.svg',
@@ -376,7 +375,7 @@
 						//- 	svg: 'icon-soc-6',
 						//- 	bg: 'images/icons/soc-6-fb.svg',
 						//- 	link: 'https://www.facebook.com/perco.systems'
-						//- },  
+						//- },
 						{
 							svg: 'icon-soc-7',
 							bg: 'images/icons/soc-7-linked.svg',
@@ -391,11 +390,11 @@
 							bg: 'images/icons/soc-1-dribbble.svg',
 							link: 'https://www.perco.ru/'
 						},
-						{
-							svg: 'icon-soc-2',
-							bg: 'images/icons/soc-2-insta.svg',
-							link: 'https://www.instagram.com/perco_com/'
-						},
+						//- {
+						//- 	svg: 'icon-soc-2',
+						//- 	bg: 'images/icons/soc-2-insta.svg',
+						//- 	link: 'https://www.instagram.com/perco_com/'
+						//- },
 						{
 							svg: 'icon-soc-3',
 							bg: 'images/icons/soc-3-yt.svg',
@@ -428,14 +427,62 @@
 					wmd06_bh06: 'https://www.youtube.com/watch?v=iOHLL3jilwA', 
 				}
 			}
-		}, 
+		},
 		modal: {
 			close: 'Закрыть',
 		},
 	};
 
 script.
-	window.data1 = {
+	window.data = {
 		home: !{JSON.stringify(data.home)},
 	};
-	let curr_lang   = "#{curr_lang}"; 
+	var verify1 = false;
+	var verify2 = false;
+	let curr_lang = "#{curr_lang}";
+	function checkValidnost(input) {
+		console.log(input);
+		if (input.name == "check") {
+			if (document.forms["feedback"][input.name].checked) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if (document.forms["feedback"][input.name].value != "") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+	function checkValidAndCapcha(verify1, verify2) { 
+		console.log("verify1, verify2");
+		console.log(verify1);
+		console.log(verify2);
+		if (verify1 && verify2) {
+			document.querySelector(".feedback-form-btn").classList.add("btn-active");
+		} else {
+			document.querySelector(".feedback-form-btn").classList.remove("btn-active");
+		}
+	} 
+	var verifyCallback = function(response) {
+		
+
+		if (response.length == 0) {  
+		console.log("verifyCallback false");
+			verify2 = false;
+		} else {
+		console.log("verifyCallback true");
+			verify2 = true; 
+			checkValidAndCapcha(verify1,verify2);
+		}
+	}
+	var widgetId1;
+	var onloadCallback = function() {
+		widgetId1 = grecaptcha.render('g-recaptcha', {
+			'sitekey' : '6LeckzodAAAAADM_3RRin9uIuHCwCqHsudWOUI3E',
+			'callback' : verifyCallback,
+		});
+	};
+
