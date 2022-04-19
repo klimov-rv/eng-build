@@ -1,19 +1,22 @@
 extends pug/base
 
 prepend vars
-	- curr_lang = 'en'
+	- curr_lang = 'sg'
 	if (curr_lang == 'ru')
 		- title = 'Скоростные проходы PERCo'
 		- ogLocaleLang = 'ru_RU'
 		- description = 'Скоростные проходы PERCo обеспечивают комфортный бесконтактный проход и высокую пропускную способность. Исполнение из нержавеющей стали и стекладелает скоростные проходы оптимальным решением для проходных с высокими требованиями к дизайну. Гарантия - 5 лет.'
+		- temp_lang = 'ru'
 	if (curr_lang == 'en')
 		- title = 'Speed gates PERCo'
 		- ogLocaleLang = 'en_EN'
 		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
+		- temp_lang = 'en'
 	if (curr_lang == 'sg')
 		- title = 'Speed gates PERCo'
 		- ogLocaleLang = 'en_SG'
-		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'
+		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
+		- temp_lang = 'en'
 
 append vars
 	if (curr_lang == 'ru')
@@ -36,6 +39,6 @@ block content
  
 		include pug/components/footer
 		 
-		script(async src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl="+curr_lang)
+		script(async src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl="+temp_lang)
 		
 		include pug/components/analytics

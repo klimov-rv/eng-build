@@ -303,56 +303,57 @@ main.home#main
 			.swiper-button-next 
 			#gallery
 
-	section.four#about
-		.container 
-			.row 
-				.cell-6.cell-12-elg
-					.about
-						.reserve-height__container
-							.reserve-height
-								span.lang(translate="about") Почему PERCo 
-								h2.header__text.header__text_white.text-center.text-pinned.lang#js-dynamic-text-6(translate="about")
-						.about__joint-photos.hide.show-elg.image-container.is-wide
-							.image-flex-center
-								+lazyImage({
-									src: `${baseDir}images/about_photos.png`, 
-									alt: '',
-									appear: false,
-								}).class(attrs) 
-						.about__text.hide-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
-							span.lang(translate="about1")
-								| PERCo - ведущий российский производитель систем и оборудования безопасности.
-								br
-								| PERCo разрабатывает и выпускает: шлагбаумы, турникеты, замки, контроллеры и считыватели, системы контроля доступа.
-								br
-							
-						.about__text.hide.show-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
-							span.lang(translate="about2")
-								| PERCo - ведущий российский производитель систем и оборудования безопасности
-								br
-								| PERCo разрабатывает и выпускает: 
-								br
-							ul
-								li.lang(translate="aboutli1") шлагбаумы
-								li.lang(translate="aboutli2") турникеты
-								li.lang(translate="aboutli3") замки
-								li.lang(translate="aboutli4") контроллеры и считыватели
-								li.lang(translate="aboutli5") системы контроля доступа 
-						.about__text_icons.row
-							each object, key in data.home.about.icons
-								.icon__item.cell-6.cell-12-sm( 
-										data-aos="fade-in"
-										data-aos-delay=object.delay
-										data-aos-anchor-placement="top-bottom"
-									)
-									figure.icon(
-										class=object.svg 
-									)
-									span.icon__signature.lang(translate=object.svg)
-										!= object.text
-				.cell-6.cell-0-elg
-		.about-title.about-title-1.lang(translate="headquarters") Главный офис PERCo
-		.about-title.about-title-2.lang(translate="manufacturing_plant") Завод PERCo
+	if (curr_lang != 'sg')
+		section.four#about
+			.container 
+				.row 
+					.cell-6.cell-12-elg
+						.about
+							.reserve-height__container
+								.reserve-height
+									span.lang(translate="about") Почему PERCo 
+									h2.header__text.header__text_white.text-center.text-pinned.lang#js-dynamic-text-6(translate="about")
+							.about__joint-photos.hide.show-elg.image-container.is-wide
+								.image-flex-center
+									+lazyImage({
+										src: `${baseDir}images/about_photos.png`, 
+										alt: '',
+										appear: false,
+									}).class(attrs) 
+							.about__text.hide-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
+								span.lang(translate="about1")
+									| PERCo - ведущий российский производитель систем и оборудования безопасности.
+									br
+									| PERCo разрабатывает и выпускает: шлагбаумы, турникеты, замки, контроллеры и считыватели, системы контроля доступа.
+									br
+								
+							.about__text.hide.show-xs(data-aos="fade-in" data-aos-anchor-placement="top-bottom") 
+								span.lang(translate="about2")
+									| PERCo - ведущий российский производитель систем и оборудования безопасности
+									br
+									| PERCo разрабатывает и выпускает: 
+									br
+								ul
+									li.lang(translate="aboutli1") шлагбаумы
+									li.lang(translate="aboutli2") турникеты
+									li.lang(translate="aboutli3") замки
+									li.lang(translate="aboutli4") контроллеры и считыватели
+									li.lang(translate="aboutli5") системы контроля доступа 
+							.about__text_icons.row
+								each object, key in data.home.about.icons
+									.icon__item.cell-6.cell-12-sm( 
+											data-aos="fade-in"
+											data-aos-delay=object.delay
+											data-aos-anchor-placement="top-bottom"
+										)
+										figure.icon(
+											class=object.svg 
+										)
+										span.icon__signature.lang(translate=object.svg)
+											!= object.text
+					.cell-6.cell-0-elg
+			.about-title.about-title-1.lang(translate="headquarters") Главный офис PERCo
+			.about-title.about-title-2.lang(translate="manufacturing_plant") Завод PERCo
 
 	section.five.white-bg#write-us 
 		.header__container.reserve-height__container.text-center
@@ -364,7 +365,7 @@ main.home#main
 				.cell-3.cell-2-md.cell-0-xs
 				.cell-6.cell-8-md.cell-12-xs
 					if (curr_lang == 'sg')
-						.row.dealer_r-tech.hide
+						.row.dealer_r-tech
 							.cell-3
 								+lazyPicture({
 									src: `${baseDir}images/icons/R-tech-logo.svg`,

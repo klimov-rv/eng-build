@@ -26,19 +26,6 @@ ieFix();
 vhFix();
 actualYear();
 
-let work_years = parseInt(document.getElementById("data-actual-year").textContent) - 1988;
-
-const para1 = document.createElement("p");
-para1.classList.add("work_years");
-const node1 = document.createTextNode(work_years);
-para1.appendChild(node1);
-const element = document.querySelector(".icon-about-1");
-element.appendChild(para1);
-
-
-console.log("Current language: " + curr_lang);
-
-
 header.init();
 lazyLoading.init();
 
@@ -263,6 +250,19 @@ window.onload = function() {
     var inptName = document.getElementById("js-input-name");
     var inptEmail = document.getElementById("js-input-email");
     var inptCheck = document.getElementById("js-input-check");
+
+
+    if (document.getElementById("data-actual-year").length > 0) {
+        let work_years = parseInt(document.getElementById("data-actual-year").textContent) - 1988;
+
+        const para1 = document.createElement("p");
+        para1.classList.add("work_years");
+        const node1 = document.createTextNode(work_years);
+        para1.appendChild(node1);
+        const element = document.querySelector(".icon-about-1");
+        element.appendChild(para1);
+    }
+
 
     inputsR.forEach(input => {
         input.oninput = function() {
