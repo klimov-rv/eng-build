@@ -318,11 +318,14 @@ window.onload = function() {
             .to(".init-loader", { top: "-1000%", duration: .5 })
     }
 
-    // склеиваем sg и en видео
     let temp_lang = curr_lang;
     if (curr_lang == "sg") {
+        // склеиваем sg и en видео/перевод
         temp_lang = "en";
-    }
+    } else if (curr_lang == "fr") {
+        // склеиваем fr и en видео/перевод
+        temp_lang = "fr";
+    };
     if (intViewportWidth < 480) {
         InsertCorrectVideo(refactorProdMap, resolution_s, temp_lang);
     } else if (intViewportWidth > 480 && intViewportWidth < 2000) {

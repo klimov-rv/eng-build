@@ -967,7 +967,7 @@
                         background: url("../images/icons/icon-about-1.svg") no-repeat center center transparent;
                         &__signature {
                             padding-top: 25px;
-                            flex: 1 0 100%;
+                            flex: 1 0 80%;
                         }
                     }
                     .icon-about-1 {
@@ -1658,7 +1658,8 @@ video.js-lazy+.loader-spin {
 }
 
 .lang-is-en,
-.lang-is-sg {
+.lang-is-sg,
+.lang-is-fr {
     .lang-ru-content {
         display: none!important;
     }

@@ -192,28 +192,44 @@
     &__pen {
         flex: 1 1 15%;
         position: relative;
+        // Добавить зависимость от класса .aos-animate
         &-img {
             position: absolute;
-            top: 3px;
+            top: 60px;
             right: 41.5px;
-            width: 81px;
-            height: 81px;
-            border-radius: 50%;
-            border: 1px solid #002754;
+            width: 91px;
+            height: 91px;
+            border-radius: 50% 50% 50% 0;
+            border: 0px solid #002754;
             background-color: #002754;
+            transition: 300ms all;
+            animation-name: small-pulse;
+            animation-duration: 10000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
             &:after {
                 content: "";
                 position: absolute;
                 top: 0;
-                left: 0;
+                left: -1px;
                 width: 100%;
                 height: 100%;
-                background: url(../images/menu_pen.svg) no-repeat center center/35px transparent;
-                transition: 300ms all;
+                background: url(../images/icons/write-us.svg) no-repeat center center/43px transparent;
+                // animation-name: small-spin;
+                // animation-duration: 5000ms;
+                // animation-iteration-count: infinite;
+                // animation-timing-function: linear;
             }
-            &:hover:after {
-                transform: scale(1.1);
-            }
+            // &:hover {
+            //     animation-name: none;
+            //     transform: scale(1.1);
+            // }
+            // &:not(:hover) {
+            //     animation-name: small-pulse;
+            //     animation-duration: 5000ms;
+            //     animation-iteration-count: infinite;
+            //     animation-timing-function: linear;
+            // }
         }
         &-ver {
             flex: 0 0 0;
@@ -322,7 +338,7 @@
         right: 0;
         height: 100%;
         width: 100%;
-        background: url("../images/header-plawka5.svg") bottom right no-repeat;
+        background: #002754;
     }
     // &:after {
     //     content: "";
@@ -408,4 +424,70 @@
 
 .hamburger {
     width: 25px;
+}
+
+@keyframes small-pulse {
+    0% {
+        transform: scale(1);
+    }
+    1% {
+        transform: scale(1.03);
+    }
+    2% {
+        transform: scale(1.09);
+    }
+    3% {
+        transform: scale(1.07);
+    }
+    4% {
+        transform: scale(1.01);
+    }
+    5% {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes small-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    1% {
+        transform: rotate(3deg);
+    }
+    2% {
+        transform: rotate(9deg);
+    }
+    3% {
+        transform: rotate(10deg);
+    }
+    4% {
+        transform: rotate(7deg);
+    }
+    5% {
+        transform: rotate(1deg);
+    }
+    4% {
+        transform: rotate(-3deg);
+    }
+    5% {
+        transform: rotate(-9deg);
+    }
+    6% {
+        transform: rotate(-10deg);
+    }
+    7% {
+        transform: rotate(-7deg);
+    }
+    8% {
+        transform: rotate(-1deg);
+    }
+    9% {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
 }

@@ -1,7 +1,7 @@
 extends pug/base
 
 prepend vars
-	- curr_lang = 'sg'
+	- curr_lang = 'fr'
 	if (curr_lang == 'ru')
 		- title = 'Скоростные проходы PERCo'
 		- ogLocaleLang = 'ru_RU'
@@ -17,6 +17,11 @@ prepend vars
 		- ogLocaleLang = 'en_SG'
 		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
 		- temp_lang = 'en'
+	if (curr_lang == 'fr')
+		- title = 'Couloirs de contrôle d’accès | PERCo'
+		- ogLocaleLang = 'fr_FR'
+		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
+		- temp_lang = 'fr'
 
 append vars
 	if (curr_lang == 'ru')
@@ -25,6 +30,8 @@ append vars
 		- meta.keywords = ['Speed gates', 'Turnstiles', 'Access control', 'speed gate systems', 'speed gate access control', 'speed gate turnstiles', 'Swing gates', 'Sliding speed gates', 'Swinging speed gates', 'PERCo turnstile', 'PERCo turnstiles', 'Entrance control', 'turnstiles for sale', 'speed gates for sale', 'security turnstile', 'stainless steel turnstiles' ]
 	if (curr_lang == 'sg')
 		- meta.keywords = ['Access Control', 'Gates', 'Turnstiles', 'Tripods', 'Full Height Turnstiles', 'Card Readers', 'Biometric Readers', 'Speed Gates', 'Swing Gates', 'Apollo', 'Idemia' ]
+	if (curr_lang == 'fr')
+		- meta.keywords = ['systèmes des tourniquets  d&quot;entrée', 'accès au tourniquet', 'couloir de contrôle d’accès', 'porte de tourniquet', 'barrière de trépied', 'récepteur de cartes', 'lecteur de carte prox', 'lecteur de carte de proximité' ]
 
 	- meta.viewport = 'width=device-width, initial-scale=1' 
 	- link.icon = 'images/favicon.ico'

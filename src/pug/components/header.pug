@@ -32,7 +32,7 @@ header.header(data-aos="fade-in" data-aos-anchor-placement="top-center")
 
 			ul.header__list 
 				if (curr_lang == 'sg')
-					each object, key in data.header.mmenu
+					each object, key in data.header_sg.mmenu
 						li
 							a.header__mmlink.lang.js-mmenu-close(
 								href=object.url
@@ -41,7 +41,7 @@ header.header(data-aos="fade-in" data-aos-anchor-placement="top-center")
 							)
 								!= object.name
 				else 
-					each object, key in data.header_sg.mmenu
+					each object, key in data.header.mmenu
 						li
 							a.header__mmlink.lang.js-mmenu-close(
 								href=object.url
@@ -113,5 +113,6 @@ header.header(data-aos="fade-in" data-aos-anchor-placement="top-center")
 					li
 						a(href="#").select-lang__item#en English
 
-		a.header__pen(href=data.header.links.writeus data-aos="fade-in" data-aos-easing="ease-in-out" data-aos-anchor-placement="top-center" data-aos-delay="700" data-aos-duration="1000")
+		//- a.header__pen(href=data.header.links.writeus data-aos="fade-in" data-aos-easing="ease-in-out" data-aos-anchor-placement="top-center" data-aos-delay="700" data-aos-duration="1000")
+		a.header__pen(href=data.header.links.writeus data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-anchor-placement="top-center" data-aos-delay="700" data-aos-duration="1000")
 			.header__pen-img
