@@ -343,8 +343,10 @@
         vertical-align: top;
         max-width: 100%;
         user-select: none;
+        height: auto;
+        text-align: center;
         &>img {
-            width: 100%;
+            width: auto;
         }
     }
     .btn {
@@ -859,8 +861,11 @@
         .icon-section2-6 {
             background: url("../images/icon-section2-6.svg") no-repeat center center transparent;
         }
-        .icon-section2-6-eng {
+        .eng-icon .icon-section2-6 {
             background: url("../images/icon-section2-6-eng.svg") no-repeat center center transparent;
+        }
+        .fr-icon .icon-section2-6 {
+            background: url("../images/icon-section2-6-fr.svg") no-repeat center center transparent;
         }
     }
     .characteristics {
@@ -1223,6 +1228,10 @@
                 }
                 &.btn-block {
                     cursor: initial;
+                    pointer-events: none;
+                    background-color: transparent;
+                    color: #B3B3B3;
+                    border: 1px solid #B3B3B3;
                 }
             }
             .recaptcha {
@@ -1320,13 +1329,27 @@
     height: auto;
     &__wrap {
         height: 0px;
-        padding-bottom: 56%;
+        padding-bottom: 75%;
         width: 100%;
         overflow: hidden;
         top: 0;
         right: 0;
         z-index: -100;
     }
+}
+
+.aTitlesToVideo5 {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: white;
+    font-size: 35px;
+    border-top: 3px solid;
+}
+
+.showTitlesToVideo5 .aTitlesToVideo5 {
+    display: flex;
 }
 
 video.js-lazy+.loader-spin {
@@ -1659,7 +1682,8 @@ video.js-lazy+.loader-spin {
 
 .lang-is-en,
 .lang-is-sg,
-.lang-is-fr {
+.lang-is-fr,
+.lang-is-ng {
     .lang-ru-content {
         display: none!important;
     }

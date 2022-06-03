@@ -381,6 +381,9 @@
 }
 
 @media screen and (max-width: 920px) {
+    .aTitlesToVideo5 {
+        font-size: 33px;
+    }
     .home .five .header__container {
         padding-top: 50px;
     }
@@ -555,10 +558,13 @@
         line-height: 34px;
     }
     .header__pen-img {
-        width: 75px;
-        height: 75px;
-        right: 50.5px;
-        top: 29px;
+        width: 67px;
+        height: 67px;
+        height: 67px;
+        right: 26.5px;
+    }
+    .header__pen-img:after {
+        background-size: 31px;
     }
     .header__pen {
         position: relative;
@@ -575,15 +581,8 @@
         right: 103px;
         width: 150px;
     }
-    .header:after {
-        content: none;
-    }
-    .header:before {
-        content: none;
-    }
     .header__wrap {
         height: 46px;
-        background: url("../images/header-plawka-sm.svg") no-repeat bottom right/cover transparent;
     }
     .header__logo svg {
         margin-left: 20px;
@@ -737,6 +736,9 @@
 }
 
 @media screen and (max-width: 480px) {
+    .aTitlesToVideo5 {
+        font-size: 27px;
+    }
     .home .about__text_icons .icon__item .icon-about-1 .work_years {
         top: 23px;
         left: 10px;
@@ -1017,8 +1019,8 @@
         top: -7px;
     }
     .header__pen-img {
-        top: 21px;
-        right: 21.1px;
+        top: 55px;
+        right: 9px;
         width: 54px;
         height: 54px;
     }
@@ -1222,6 +1224,7 @@
     }
     .home section.hero .reserve-height {
         font-size: 48px;
+        margin-top: 41px;
     }
     .home section.hero h1.header__text {
         font-size: 48px;

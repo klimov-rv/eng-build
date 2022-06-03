@@ -1,7 +1,7 @@
 extends pug/base
 
 prepend vars
-	- curr_lang = 'fr'
+	- curr_lang = 'ng'
 	if (curr_lang == 'ru')
 		- title = 'Скоростные проходы PERCo'
 		- ogLocaleLang = 'ru_RU'
@@ -20,8 +20,13 @@ prepend vars
 	if (curr_lang == 'fr')
 		- title = 'Couloirs de contrôle d’accès | PERCo'
 		- ogLocaleLang = 'fr_FR'
-		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
+		- description = 'Les couloirs de contrôle d’accès (avec vantaux battants et coulissants) sont destinés à organiser les entrées VIP dans les locaux prestigieux où le design luxueux et le confort de passage sont les conditions prioritaires. Les poteaux du couloir sont fabriqués en acier inoxydable.  La période de garantie est de cinq ans à compter de la date de vente du produit.'	
 		- temp_lang = 'fr'
+	if (curr_lang == 'ng')
+		- title = 'Speed gates PERCo'
+		- ogLocaleLang = 'en_EN'
+		- description = 'Speed gates (turnstiles with swing or sliding panels) are designed to organize passageways with increased requirements for design and comfort of passage. The turnstile posts are made of glass and stainless steel. The warranty period is five years from the date of sale of the product.'	
+		- temp_lang = 'en'
 
 append vars
 	if (curr_lang == 'ru')
@@ -32,6 +37,8 @@ append vars
 		- meta.keywords = ['Access Control', 'Gates', 'Turnstiles', 'Tripods', 'Full Height Turnstiles', 'Card Readers', 'Biometric Readers', 'Speed Gates', 'Swing Gates', 'Apollo', 'Idemia' ]
 	if (curr_lang == 'fr')
 		- meta.keywords = ['systèmes des tourniquets  d&quot;entrée', 'accès au tourniquet', 'couloir de contrôle d’accès', 'porte de tourniquet', 'barrière de trépied', 'récepteur de cartes', 'lecteur de carte prox', 'lecteur de carte de proximité' ]
+	if (curr_lang == 'ng')
+		- meta.keywords = ['Speedgates', 'Access Control', 'Digital security', 'Digital locks', 'Automatic Barriers', 'flap barrier turnstile', 'full height turnstile', 'full height turnstile gate', 'full height turnstile price', 'glass turnstile', 'office turnstiles', 'optical turnstile', 'speed gate', 'speed gate turnstile', 'swing turnstile', 'tripod gate', 'tripod turnstile', 'tripod turnstile gate', 'tripod turnstiles', 'turnstile access control system', 'turnstile door', 'turnstile entrance', 'turnstile gate price', 'turnstile gate with card reader', 'turnstile system', 'turnstiles', 'turnstiles gates']
 
 	- meta.viewport = 'width=device-width, initial-scale=1' 
 	- link.icon = 'images/favicon.ico'

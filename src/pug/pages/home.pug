@@ -78,18 +78,19 @@ main.home#main
 				.icons_wrap
 					.icons_list.advan.row
 						each object, key in data.home.advanages.icons
-							- langclass = ""
-							if(object.translate == "5_years_of_warranty")
-								if(object.svg == "icon-section2-6-eng")
-									- langclass = "lang-eng-content"
-								else
-									- langclass = "lang-ru-content"
+							- langclass = "" 
+							if (temp_lang == 'en')
+								- langclass = "eng-icon"
+							if (temp_lang == 'sg')
+								- langclass = "eng-icon"
+							if (temp_lang == 'fr')
+								- langclass = "fr-icon"
 							.icon__item.cell-2.cell-4-xs(class='advantages__icon-' + key + ' '+langclass)
 								.col.flex-middle(data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom")
 									figure.icon(
-										class=object.svg 
+										class=object.svg
 									)
-									span.icon__signature.lang(translate=object.translate) 
+									span.icon__signature.lang(translate=object.translate)
 										!= object.text
 	section.two.white-bg#products
 		.header__container.reserve-height__container.text-center
@@ -377,6 +378,20 @@ main.home#main
 								]).dealer_r-tech__logo
 							.cell-9
 								span.dealer_r-tech__text Since 2011, Reddot Engineering Pte Ltd has been dedicated to providing systems that dealers and installers need to effectively compete in a global market place with carefully selected products. Reddot is an official PERCo represantive in Singapore with dozens of succefull projects across the country.
+					if (curr_lang == 'ng')
+						.row.dealer_r-tech
+							.cell-3
+								+lazyPicture({
+									src: `${baseDir}images/NEAT-logo.jpg`,
+									alt: 'NEAT',
+								}, [
+									{
+										srcset: `${baseDir}images/NEAT-logo.jpg`,
+									}
+								]).dealer_r-tech__logo
+							.cell-9
+								span.dealer_r-tech__text NEAT is an engineering company focused on E.L.V. (Extra Low Voltage) and Automation. NEAT strives for unusual works that demand extra craftsmanship, knowledge, and skills. The team of engineers, market specialists and researchers fully commits to any works, projects, sales, deliveries, consultancy, installations, support and repairs required of us. NEAT integrates the entire range of ELV works with great engineers and gives an outstanding after-sales support.
+
 
 					form.feedback-form(action="", name="feedback")
 						label.feedback-form-label 

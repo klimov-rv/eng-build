@@ -116,10 +116,10 @@ async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
         });
     });
     responsePromises = await Promise.all(promises).then(() => {
-        console.log('The Promise.all fulfilled for videos');
-        for (let index = 0; index < promises.length; index++) {
-            console.log(promises[index].id)
-        }
+        // console.log('The Promise.all fulfilled for videos');
+        // for (let index = 0; index < promises.length; index++) {
+        //     console.log(promises[index].id)
+        // }
     }).catch(error => {
         console.log('The Promise.all rejected');
         console.log(error);
@@ -303,27 +303,27 @@ window.onload = function() {
         ['3_3', ['wmd06_bh06', '4']],
     ];
 
-    let tl = gsap.timeline();
-    if (document.querySelector(".hero").offsetHeight > intViewportHeight) {
-        tl.from(".hero", { height: "100vh" })
-            .to(".init-loader", { opacity: 0, duration: .7 })
-            .from(".nav-container__link", { opacity: 0, stagger: .2 })
-            .from(".slider-hero .swiper-pagination", { opacity: 0 })
-            .to(".init-loader", { top: "-1000%", duration: .5 })
-            .to(".hero", { height: "auto" })
-    } else {
-        tl.to(".init-loader", { opacity: 0, duration: .7 })
-            .from(".nav-container__link", { opacity: 0, stagger: .2 })
-            .from(".slider-hero .swiper-pagination", { opacity: 0 })
-            .to(".init-loader", { top: "-1000%", duration: .5 })
-    }
+    $(".init-loader").hide()
+        // let tl = gsap.timeline();
+        // if (document.querySelector(".hero").offsetHeight > intViewportHeight) {
+        //     tl.from(".hero", { height: "100vh" })
+        //         .to(".init-loader", { opacity: 0, duration: .7 })
+        //         .from(".nav-container__link", { opacity: 0, stagger: .2 })
+        //         .from(".slider-hero .swiper-pagination", { opacity: 0 })
+        //         .to(".init-loader", { top: "-1000%", duration: .5 })
+        //         .to(".hero", { height: "auto" })
+        // } else {
+        //     tl.to(".init-loader", { opacity: 0, duration: .7 })
+        //         .from(".nav-container__link", { opacity: 0, stagger: .2 })
+        //         .from(".slider-hero .swiper-pagination", { opacity: 0 })
+        //         .to(".init-loader", { top: "-1000%", duration: .5 })
+        // }
 
     let temp_lang = curr_lang;
-    if (curr_lang == "sg") {
-        // склеиваем sg и en видео/перевод
+    if (curr_lang == "sg" || curr_lang == "ng") {
+        // склеиваем sg/ng и en видео
         temp_lang = "en";
     } else if (curr_lang == "fr") {
-        // склеиваем fr и en видео/перевод
         temp_lang = "fr";
     };
     if (intViewportWidth < 480) {
@@ -530,7 +530,7 @@ window.onload = function() {
                 onComplete: function(self) {
                     swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
 
-                    console.log("#index-" + swiperCube.activeIndex + "_0");
+                    // console.log("#index-" + swiperCube.activeIndex + "_0");
                     inView("#index-" + swiperCube.activeIndex + "_0")
                         .once('enter', el => {
                             asyncPlay(document.getElementById("index-" + swiperCube.activeIndex + "_0"));
@@ -737,6 +737,41 @@ window.onload = function() {
 
     var $sliderVideos0 = $(".js-sliderdemo-0 .swiper-slide video");
     $sliderVideos0.each(function(index) {
+        const elToInsertBefore = document.querySelector("#prod-section-0 .slider-demonstration");
+        if (index == 5) {
+            console.log(index);
+            const text_row = document.createElement('div');
+            text_row.className = "aTitlesToVideo" + index;
+            elToInsertBefore.appendChild(text_row);
+            text_row
+
+            const timeframes = [
+                { time: 0, triggered: false, textContent: "Poteaux et supports pour l'installation <br /> d'equipments complementaires" },
+                { time: 2.7, triggered: false, textContent: "lecteur de codes a barres" },
+                { time: 4, triggered: false, textContent: "recepteur de cartes" },
+                { time: 6, triggered: false, textContent: "terminal de reconnaissance facial " }
+            ]
+            this.addEventListener('timeupdate', () => {
+                // Find the time to be triggered 
+                // console.log(Math.floor(Math.round(this.currentTime * 10)));
+                let time = timeframes.find(i => (i.time * 10) <= Math.floor(Math.round(this.currentTime * 10)) && !i.triggered);
+                if (time) {
+                    // A time was found that hasn't been triggered
+                    time.triggered = true;
+                    window.dispatchEvent(new CustomEvent('VideoTimelapse', { detail: time }));
+
+                }
+            })
+
+            // Listen for the event
+            window.addEventListener('VideoTimelapse', (e) => {
+                console.log(`${e.detail.time} seconds have passed: ${e.detail.textContent}`);
+                text_row.innerHTML = e.detail.textContent;
+            })
+
+            // The user moved the slider, reset the 'triggered' property back to false
+            this.addEventListener('seeked', () => timeframes.forEach(i => { i.triggered = false }))
+        }
         this.addEventListener('ended', () => {
             // if slider-cube .swiper-wrapper .swiper-slide-active have video0 { 
             if (swiper3prod0.activeIndex == swiper3prod0.slides.length - 1) {
@@ -769,6 +804,14 @@ window.onload = function() {
             $("#products-cube").addClass("playback-started");
             prevVideo.pause();
         }
+
+        if (currentVideo.id == "index-0_5") {
+            document.querySelector("#prod-section-0").classList.add("showTitlesToVideo5");
+        } else {
+            document.querySelector("#prod-section-0").classList.remove("showTitlesToVideo5");
+            document.querySelector(".aTitlesToVideo5").innerHTML = "Poteaux et supports pour l'installation <br /> d'equipments complementaires";
+        }
+
         if (intViewportWidth < 640) {
             var activeBullet = this.el.nextElementSibling.querySelector('.swiper-pagination-bullet-active')
             var bulletsWrap = this.el.nextElementSibling;
@@ -1222,7 +1265,7 @@ window.onload = function() {
     var $sliderVideosAll = $("#products-cube .swiper-slide video");
     $sliderVideosAll.each(function(index) {
         this.addEventListener('play', (event) => {
-            // console.log(event);
+            console.log(event);
         });
     });
 
@@ -1327,7 +1370,6 @@ window.onload = function() {
         for (var i = 0; i < vidsForMobile.length; i++) {
             vidsForMobile[i].removeAttribute("autoplay");
         }
-
     }
 
     document.querySelector('.feedback-form').addEventListener('submit', async function(e) {
@@ -1346,6 +1388,7 @@ window.onload = function() {
             }], {
                 on: {
                     done: (fancybox, slide) => {
+                        document.querySelector(".feedback-form-btn").classList.remove("btn-active");
                         document.querySelector(".feedback-form-btn").classList.add("btn-block");
                         setTimeout(function() {
                             fancybox.close();
