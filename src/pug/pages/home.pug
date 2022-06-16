@@ -92,7 +92,7 @@ main.home#main
 									)
 									span.icon__signature.lang(translate=object.translate)
 										!= object.text
-	section.two.white-bg#products
+	section.two.gray-bg#products
 		.header__container.reserve-height__container.text-center
 			.reserve-height 
 				span#js-dynamic-reserve.lang(translate="st-01_speed_gate") Скоростной проход ST‑01
@@ -100,10 +100,14 @@ main.home#main
 				h2.header__text.text-pinned.hide.lang#js-dynamic-text-3-double(translate="st-01_speed_gate")
 			span.header__text.header__text_subtext
 				.header__text_subline(data-aos="fade-right" data-aos-delay="1000" data-aos-anchor-placement="top-bottom")
-				.lang#js-dynamic-subtext-3(data-aos="flip-right" data-aos-delay="1300" data-aos-anchor-placement="top-bottom" translate="st-01_speed_gate") Универсальный скоростной проход с распашными створками   
-
-			.advantages__icons.container
-		.container#aos_anchor1(data-aos="fade-in" data-aos-delay="1500" data-aos-anchor-placement="top-bottom")
+					.video-btn__wrap#js-video-btn.hide-md
+						a.btn.header-demo__video-btn.lang.lang-ru-content(data-fancybox-plyr data-src=data.home.ytLink.ru.st01 mainClass="full-vid" translate="watch_video") смотреть видео 
+						a.btn.header-demo__video-btn.lang.lang-eng-content(data-fancybox-plyr data-src=data.home.ytLink.en.st01 mainClass="full-vid" translate="watch_video") VIDEO
+				.lang#js-dynamic-subtext-3(data-aos="flip-right" data-aos-delay="1300" data-aos-anchor-placement="top-bottom" translate="st-01_speed_gate") Универсальный скоростной проход с распашными створками    
+		.slider-prod__main-arrows(data-aos="fade-in" data-aos-delay="2100" data-aos-anchor-placement="top-bottom")
+			.swiper-button-prev
+			.swiper-button-next
+		.container.slider-prod__container(data-aos="fade-in" data-aos-delay="2100" data-aos-anchor-placement="top-bottom")
 			.row
 				.cell-2.cell-1-md.cell-0-xs
 				.cell-8.cell-10-md.cell-12-xs
@@ -116,14 +120,10 @@ main.home#main
 										!= object.text
 									.subtext.lang.hide(translate=object.translate_sub) 
 										!= object.subtext
-						.swiper-button-prev
-						.swiper-button-next
-						.swiper-pagination
-				.cell-2.cell-1-md.cell-0-xs
-		.container
+				.cell-2.cell-1-md.cell-0-xs 
 			.row
 				.cell-3.cell-0-md
-				.cell-6.cell-12-md
+				.cell-6.cell-12-md.swiper-container-horizontal.slider-prod__footer
 					.icons_list.characteristics.row
 						.icon__item.char-buffer
 							figure.icon.icon-char-0
@@ -132,10 +132,11 @@ main.home#main
 							.icon__item.cell-2(class=object.tag data-aos-delay=object.delay data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-anchor="#aos_anchor1") 
 								+lazyBackground2(object.bg).icon(class=object.tag)
 								span.icon__signature.lang(translate=object.translate)
-									!= object.text 		
+									!= object.text		
+					#slider-prod__pagination.swiper-pagination
 				.cell-3.cell-0-md 
-		#products-cube
-			.swiper-container.slider-cube
+		#products-cube(data-aos="fade-in" data-aos-delay="300" data-aos-anchor-placement="top-bottom")
+			.container.swiper-container.slider-cube
 				.swiper-wrapper 
 					.swiper-slide
 						include products/st01
@@ -150,9 +151,9 @@ main.home#main
 						.row
 							.push-1.cell-10.post-1.push-1-sm.cell-10-sm.post-1-sm.push-0-xs.cell-12-xs.post-0-xs.slider-cube-relative
 								.swiper-button-prev
-								.swiper-button-next 
-						.row.hide.show-md
-							.swiper-pagination
+								.swiper-button-next
+						//- .row.hide.show-md
+						//- 	.swiper-pagination
 	section.dop-prod.white-bg#dop-prod
 		.header__container.reserve-height__container.text-center
 			.reserve-height
@@ -175,6 +176,9 @@ main.home#main
 											!= object.name
 					.swiper-pagination-container.cell-4.push-2.push-2-lg.cell-8-lg.post-2-lg.push-1-xs.cell-10-xs.post-1-xs
 						.row.swiper-pagination
+					.swiper-dop-arrows-container
+						.swiper-button-prev
+						.swiper-button-next
 
 	section.three
 		.header__container.reserve-height__container.text-center
@@ -347,9 +351,9 @@ main.home#main
 											data-aos-delay=object.delay
 											data-aos-anchor-placement="top-bottom"
 										)
-										figure.icon(
-											class=object.svg 
-										)
+										figure.icon(class=object.svg )
+											if (object.svg == 'icon-about-1')
+												span.work_years 34
 										span.icon__signature.lang(translate=object.svg)
 											!= object.text
 					.cell-6.cell-0-elg
@@ -366,7 +370,7 @@ main.home#main
 				.cell-3.cell-2-md.cell-0-xs
 				.cell-6.cell-8-md.cell-12-xs
 					if (curr_lang == 'sg')
-						.row.dealer_r-tech
+						.row.dealer.dealer_r-tech
 							.cell-3
 								+lazyPicture({
 									src: `${baseDir}images/icons/R-tech-logo.svg`,
@@ -415,14 +419,15 @@ main.home#main
 								span.lang(translate="contact_us_privacy_policy1") Я прочитал(а) 
 								a.feedback-form-policy-link.lang(translate="contact_us_privacy_policy2" href="", data-fancybox="" data-src="#policy-content") политику конфиденциальности 
 								span.lang(translate="contact_us_privacy_policy3") и соглас(на)ен на обработку данных 	 
-						input(value="feedback" name="form" hidden="") 
+						input(hidden="" value="feedback" name="form" ) 
+						input(hidden="" id="g-recaptcha-response" name="g-recaptcha-response")
 						.col.flex-middle
-							.recaptcha
-								#g-recaptcha
-								//- .g-recaptcha(data-sitekey="6LeckzodAAAAADM_3RRin9uIuHCwCqHsudWOUI3E" data-callback="onReturnCallback")
-								#g-recaptcha-error
-							//- button.feedback-form-btn.lang(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content" translate="contact_us_send") Отправить 
-							button.feedback-form-btn.lang(type="submit" name="submit" aria-label="Отправить" translate="contact_us_send") Отправить  
+							//- .recaptcha
+							//- 	#g-recaptcha
+							//- 	//- .g-recaptcha(data-sitekey="6Ld8k3AgAAAAALoYjXaklTznBBd4BnGJ8Jl8XeX2" data-callback="onReturnCallback")
+							//- 	#g-recaptcha-error
+							//- button.feedback-form-btn.lang(type="submit", aria-label="Отправить", data-fancybox="" data-src="#form-result-content" translate="contact_us_send") Отправить  
+							button.feedback-form-btn.lang.g-recaptcha(type="submit" name="submit" aria-label="Отправить" translate="contact_us_send" data-action="submit") Отправить  
 				.cell-3.cell-2-md.cell-0-xs
 			.row 
 				.push-4.cell-4.post-4.icons_list.social.push-2-md.cell-8-md.post-2-md.push-1-sm.cell-10-sm.post-1-sm

@@ -214,7 +214,7 @@
 			prod_slider: {
 				slide: [
 					{
-						img_src: 'images/gallery-prod/prod-slide__slide1.ver3-min.jpg',
+						img_src: 'images/gallery-prod/prod-slide__slide1.ver3-min.png',
 						prod_section: "0",
 						text: 'Скоростной проход ST‑01', 
 						subtext: 'Универсальный скоростной проход с распашными створками', 
@@ -223,7 +223,7 @@
 					}, 
 					
 					{
-						img_src: 'images/gallery-prod/prod-slide__slide2.ver3-min.jpg',
+						img_src: 'images/gallery-prod/prod-slide__slide2.ver3-min.png',
 						prod_section: "1",
 						text: 'Скоростной проход ST‑11', 
 						subtext: 'Компактный скоростной проход с распашными створками', 
@@ -232,7 +232,7 @@
 					}, 
 					
 					{
-						img_src: 'images/gallery-prod/prod-slide__slide3.ver3-min.jpg',
+						img_src: 'images/gallery-prod/prod-slide__slide3.ver3-min.png',
 						prod_section: "2",
 						text: 'Скоростной проход ST‑02', 
 						subtext: 'Скоростной проход с раздвижными створками', 
@@ -241,7 +241,7 @@
 					}, 
 					
 					{
-						img_src: 'images/gallery-prod/prod-slide__slide4.ver3-min.jpg',
+						img_src: 'images/gallery-prod/prod-slide__slide4.ver3-min.png',
 						prod_section: "3",
 						text: 'Калитка WMD‑06', 
 						subtext: 'Автоматическая калитка со створкой из закаленного стекла', 
@@ -250,7 +250,7 @@
 					}, 
 					
 					{
-						img_src: 'images/gallery-prod/prod-slide__slide5.ver3-min.jpg',
+						img_src: 'images/gallery-prod/prod-slide__slide5.ver3-min.png',
 						prod_section: "3",
 						text: 'Ограждение ВН06', 
 						subtext: 'Ограждение из закаленного стекла', 
@@ -517,9 +517,17 @@ script.
 	window.data = {
 		home: !{JSON.stringify(data.home)},
 	};
-	var verify1 = false;
-	var verify2 = false;
 	let curr_lang = "#{curr_lang}";
+	let pubKeyCapcha = "#{grecapchaPubKey}";
+	var verifyInputs = false;
+	var workCapcha = false;
+	if (typeof(grecaptcha) == 'undefined') {
+		var grecaptcha_s = document.createElement('script');
+		grecaptcha_s.src = pubKeyCapcha;
+		var grecaptcha_h = document.getElementsByTagName('script')[0];
+		grecaptcha_h.parentNode.insertBefore(grecaptcha_s, grecaptcha_h);
+		console.log(grecaptcha_h);
+	} 
 	function checkValidnost(input) {
 		console.log(input);
 		if (input.name == "check") {
@@ -536,31 +544,43 @@ script.
 			}
 		}
 	}
-	function checkValidAndCapcha(verify1, verify2) { 
-		console.log("verify1, verify2");
-		console.log(verify1);
-		console.log(verify2);
-		if (verify1 && verify2) {
-			document.querySelector(".feedback-form-btn").classList.add("btn-active");
-		} else {
-			document.querySelector(".feedback-form-btn").classList.remove("btn-active");
-		}
+
+	function checkValidAndCapcha(verifyInputs, workCapcha) { 
+		grecaptcha.ready(function() {
+			grecaptcha.execute('6Ld8k3AgAAAAALoYjXaklTznBBd4BnGJ8Jl8XeX2',{action: 'feedback'}).then(
+				function(token) { 
+					document.getElementById('g-recaptcha-response').value = token; 
+				}
+			); 
+			console.log("verifyInputs, workCapcha");
+			if(document.getElementById('g-recaptcha-response').value.length != 0) {
+				workCapcha = true;
+			}
+			console.log(verifyInputs);
+			console.log(workCapcha); 
+			if (verifyInputs && workCapcha) {
+				document.querySelector(".feedback-form-btn").classList.add("btn-active");
+			} else {
+				document.querySelector(".feedback-form-btn").classList.remove("btn-active");
+			}
+		});
 	} 
 	var verifyCallback = function(response) {
 		if (response.length == 0) {  
 		console.log("verifyCallback false");
-			verify2 = false;
+			workCapcha = false;
 		} else {
 		console.log("verifyCallback true");
-			verify2 = true; 
-			checkValidAndCapcha(verify1,verify2);
+			workCapcha = true; 
+			checkValidAndCapcha(verifyInputs,workCapcha);
 		}
 	}
-	var widgetId1;
-	var onloadCallback = function() {
-		widgetId1 = grecaptcha.render('g-recaptcha', {
-			'sitekey' : '6LeckzodAAAAADM_3RRin9uIuHCwCqHsudWOUI3E',
-			'callback' : verifyCallback,
-		});
-	};
+	//- var widgetId1;
+	//- function onFormSendCallback(token) {
+	//- 	console.log(token);
+	//- 	widgetId1 = grecaptcha.render('g-recaptcha', {
+	//- 		'sitekey' : '6Ld8k3AgAAAAALoYjXaklTznBBd4BnGJ8Jl8XeX2',
+	//- 		'callback' : verifyCallback,
+	//- 	});
+	//- };
 

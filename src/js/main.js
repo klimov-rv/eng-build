@@ -40,43 +40,6 @@ let resolution_wide = "990x560";
 var intViewportHeight = window.innerHeight;
 var intViewportWidth = window.innerWidth;
 
-var prohodDone = false;
-
-// function checkValidnost(input) {
-//     if (input.name == "check") {
-//         if (document.forms["feedback"][input.name].checked) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     } else {
-//         if (document.forms["feedback"][input.name].value != "") {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }
-// }
-// var verifyCallback = function(response) {
-//     if (response.length == 0) {
-//         console.log("reCaptcha not verified");
-//         console.log(response);
-//         return false;
-//     } else {
-//         var inputsR = document.querySelectorAll(".js-input-require");
-
-//         inputsR.forEach(input => {
-//             input.oninput = function() {
-//                 if (checkValidnost(inptName) && checkValidnost(inptEmail) && checkValidnost(inptCheck)) {
-//                     document.querySelector(".feedback-form-btn").classList.add("btn-active");
-//                 } else {
-//                     document.querySelector(".feedback-form-btn").classList.remove("btn-active");
-//                 }
-//             };
-//         })
-//     }
-// } 
-
 async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
     var videos = document.getElementsByTagName("video")
     var videosList = Array.prototype.slice.call(videos);
@@ -128,17 +91,73 @@ async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
     });
 }
 
+var resetPlayer = function doResetPlayer(videoRecover) {
+    // reloading = true;
+    try {
+        console.info('[info] > Reseting media ...' + videoRecover.id);
+        console.info(videoRecover);
+        videoRecover.load();
+    } catch (err) {
+        console.error(err);
+    } finally {
+        //  reloading = false; 
+    }
+};
+
+function doRecoverOnError(videoRecover, ms) {
+    // if (!reloading) {
+    // reloading = true;
+    setTimeout(resetPlayer(videoRecover), ms);
+    // }
+}
+
 async function asyncPlay(video) {
     video.currentTime = 0;
-    const play = await video.play().catch((e) => {
+    const tryToPlay = await video.play().catch((e) => {
         return new Error("video not play")
     });
-    if (play instanceof Error) {
-        console.log `Error play video`;
-        setTimeout(function() {
-            asyncPlay(video);
-        }, 1000);
+    if (tryToPlay instanceof Error) {
+        console.log(`Error play video`);
+        console.log(video);
+        var mediaError = tryToPlay;
+        switch (mediaError.code) {
+            case mediaError.MEDIA_ERR_NETWORK:
+                doRecoverOnError(video, 3000);
+                break;
+        }
+    } else {
+
+        $('.poster-custom-resize').css("height", $(".slider-cube video").height());
+        console.log($(".slider-cube video").height());
     }
+}
+
+
+function InsertTitlesInTime(sectioncube, currVid, timeframes) {
+    currVid.addEventListener('timeupdate', () => {
+        let time = timeframes.find(i => (i.time * 10) <= Math.floor(Math.round(currVid.currentTime * 10)) && !i.triggered);
+        if (time) {
+            time.triggered = true;
+            // console.log(currVid.id);
+            // console.log("index-" + sectioncube + "_" + time.slisevid);
+            if (currVid.id == "index-" + sectioncube + "_" + time.slisevid) {
+                window.dispatchEvent(new CustomEvent('VideoTimelapse', { detail: time }));
+            }
+        }
+    })
+    window.addEventListener('VideoTimelapse', (e) => {
+        // console.log(e);
+        // console.log(currVid.id);
+        if (document.querySelector(".titles-index-" + sectioncube + "_" + e.detail.slisevid)) {
+            // console.log(e.detail.textContent);
+            // console.log(".titles-index-" + sectioncube + "_" + e.detail.slisevid);
+            document.querySelector(".titles-index-" + sectioncube + "_" + e.detail.slisevid).innerHTML = e.detail.textContent;
+        }
+    })
+
+
+    currVid.addEventListener('seeked', () => timeframes.forEach(i => { i.triggered = false }));
+
 }
 
 function anchorPhotoGallery() {
@@ -148,25 +167,10 @@ function anchorPhotoGallery() {
 }
 
 function positionArrowsCube() {
-    var cubeWrapVideoHeight = document.querySelector(".js-sliderdemo-0").offsetHeight / 2;
-    var cubeWrapVideoOffset = document.querySelector(".js-sliderdemo-0").offsetTop;
-    // var cubeBtnHeight = document.querySelector(".header-demo__video-btn").offsetHeight / 2;
-    // var cubeBtnOffset = document.querySelector(".header-demo__video-btn").offsetTop;
-    var cubeProdSection = document.getElementById("prod-section-0");
-    var styleProdSection = cubeProdSection.currentStyle || window.getComputedStyle(cubeProdSection);
-    styleProdSection = styleProdSection.paddingTop;
-    styleProdSection = parseInt(styleProdSection.replace('px', ''), 10);
-    if (intViewportWidth > 1024) {
-        // для десктопа 
-        document.querySelector(".slider-cube-nav").style.top = (cubeWrapVideoHeight + cubeWrapVideoOffset + styleProdSection) + "px";
-    } else {
-        // для планшета
-
-        // document.querySelector(".slider-cube-nav").style.top = (cubeWrapVideoHeight + cubeWrapVideoOffset + styleProdSection) + "21px";
-
-        // console.log("cubeBtnHeight: " + cubeBtnHeight + " cubeBtnOffset: " + cubeBtnOffset + " styleProdSection: " + styleProdSection);
-        // document.querySelector(".slider-cube-nav").style.top = (cubeBtnHeight + cubeBtnOffset + styleProdSection) + "px";
-    }
+    var peremen1 = document.getElementById("products").getBoundingClientRect().top;
+    var peremen2 = document.getElementById("slider-prod__pagination").getBoundingClientRect().top;
+    var peremen3 = peremen2 - peremen1;
+    document.querySelector(".slider-prod__main-arrows").style.top = peremen3 + "px";
 }
 
 function positionArrowsGallery() {
@@ -179,22 +183,22 @@ function positionArrowsGallery() {
     }
 }
 
-function showHidedSections() {
-    if (!$(".site").hasClass("add-sections")) {
-        $(".site").addClass("add-sections");
-        prohodDone = true;
-        anchorPhotoGallery();
-        AOS.refresh();
-    }
-}
+// function showHidedSections() {
+//     if (!$(".site").hasClass("add-sections")) {
+//         $(".site").addClass("add-sections");
+//         prohodDone = true;
+//         anchorPhotoGallery();
+//         AOS.refresh();
+//     }
+// }
 
-function hideHidedSections() {
-    if ($(".site").hasClass("add-sections")) {
-        $(".site").removeClass("add-sections");
-        anchorPhotoGallery();
-        AOS.refresh();
-    }
-}
+// function hideHidedSections() {
+//     if ($(".site").hasClass("add-sections")) {
+//         $(".site").removeClass("add-sections");
+//         anchorPhotoGallery();
+//         AOS.refresh();
+//     }
+// }
 
 function smoothBulletsScrollLeft(activeBullet, bulletsWrap, intViewportWidth) {
     var posX = (activeBullet.offsetWidth / 2) + activeBullet.offsetLeft - (intViewportWidth / 2);
@@ -267,11 +271,11 @@ window.onload = function() {
     inputsR.forEach(input => {
         input.oninput = function() {
             if (checkValidnost(inptName) && checkValidnost(inptEmail) && checkValidnost(inptCheck)) {
-                verify1 = true;
+                verifyInputs = true;
             } else {
-                verify1 = false;
+                verifyInputs = false;
             }
-            checkValidAndCapcha(verify1, verify2);
+            checkValidAndCapcha(verifyInputs, workCapcha);
         };
     });
     // let curr_lang = "ru";
@@ -388,20 +392,6 @@ window.onload = function() {
     });
     const type_speed = 35;
 
-    var tOptions8 = {
-        strings: ['Скоростной проход ST‑01'],
-        typeSpeed: type_speed,
-        showCursor: false,
-        onComplete: function(self) {
-            swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
-
-            inView("#index-" + swiperCube.activeIndex + "_0")
-                .once('enter', el => {
-                    asyncPlay(document.getElementById("index-" + swiperCube.activeIndex + "_0"));
-                })
-        }
-    };
-
     inView('#js-dynamic-text-1')
         .once('enter', el => {
             el.innerHTML = "";
@@ -416,6 +406,7 @@ window.onload = function() {
                     el.classList.add("lang");
                 }
             });
+            positionArrowsCube();
         })
 
     inView('#js-dynamic-text-2')
@@ -487,7 +478,6 @@ window.onload = function() {
                 // якорь по центру фотогалереи
                 anchorPhotoGallery();
             });
-            swiper4.autoplay.stop();
         })
 
     inView('#js-dynamic-text-6')
@@ -528,7 +518,6 @@ window.onload = function() {
                     el.parentNode.classList.add("visible");
                 },
                 onComplete: function(self) {
-                    swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
 
                     // console.log("#index-" + swiperCube.activeIndex + "_0");
                     inView("#index-" + swiperCube.activeIndex + "_0")
@@ -591,18 +580,19 @@ window.onload = function() {
 
     var swiper2 = new Swiper(".slider-prod", {
         init: false,
+        speed: 300,
         preloadImages: false,
         lazy: {
             loadPrevNext: true,
         },
         loop: true,
         pagination: {
-            el: ".slider-prod .swiper-pagination",
+            el: "#slider-prod__pagination.swiper-pagination",
             clickable: true,
         },
         navigation: {
-            nextEl: '.slider-prod .swiper-button-next',
-            prevEl: '.slider-prod .swiper-button-prev',
+            nextEl: '#products .swiper-button-next',
+            prevEl: '#products .swiper-button-prev',
         },
     });
 
@@ -610,6 +600,8 @@ window.onload = function() {
         let dynamicTextDouble = document.getElementById("js-dynamic-text-3-double");
         let dynamicTextReserve = document.getElementById("js-dynamic-reserve");
         let dynamicSubtext = document.getElementById("js-dynamic-subtext-3");
+        let jsVideoBtnRu = document.querySelector("#js-video-btn .lang-ru-content");
+        let jsVideoBtnEng = document.querySelector("#js-video-btn .lang-eng-content");
 
         let $sliderCharsRefactor = $(".characteristics");
 
@@ -619,6 +611,21 @@ window.onload = function() {
         dynamicTextReserve.setAttribute("translate", this.slides[this.activeIndex].querySelector(".text").attributes["translate"].value);
         dynamicSubtext.innerHTML = this.slides[this.activeIndex].querySelector(".subtext").innerHTML;
         dynamicSubtext.setAttribute("translate", this.slides[this.activeIndex].querySelector(".subtext").attributes["translate"].value);
+
+
+        if (this.activeIndex == 1) {
+            jsVideoBtnRu.setAttribute("data-src", data.home.ytLink.ru.st01);
+            jsVideoBtnEng.setAttribute("data-src", data.home.ytLink.en.st01);
+        } else if (this.activeIndex == 2) {
+            jsVideoBtnRu.setAttribute("data-src", data.home.ytLink.ru.st11);
+            jsVideoBtnEng.setAttribute("data-src", data.home.ytLink.en.st11);
+        } else if (this.activeIndex == 3) {
+            jsVideoBtnRu.setAttribute("data-src", data.home.ytLink.ru.st02);
+            jsVideoBtnEng.setAttribute("data-src", data.home.ytLink.en.st02);
+        } else if (this.activeIndex == 4 || this.activeIndex == 5) {
+            jsVideoBtnRu.setAttribute("data-src", data.home.ytLink.ru.wmd06_bh06);
+            jsVideoBtnEng.setAttribute("data-src", data.home.ytLink.en.wmd06_bh06);
+        }
 
         $sliderCharsRefactor.removeClass("prodIcons-index-0");
         $sliderCharsRefactor.removeClass("prodIcons-index-1");
@@ -632,9 +639,6 @@ window.onload = function() {
     });
 
     swiper2.on('slideChangeTransitionStart', function() {
-        if (prohodDone) {
-            triggerSlidePrevEnable();
-        }
         if (this.activeIndex == 1 || this.activeIndex == 6) {
             swiperCube.slideTo(0);
         } else if (this.activeIndex == 2) {
@@ -654,6 +658,10 @@ window.onload = function() {
             loadPrevNext: true,
         },
         effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
+        autoplay: false,
         loop: true,
         slidesPerView: 1,
         speed: 500,
@@ -670,13 +678,18 @@ window.onload = function() {
                 for (let i = 1; i <= total; i++) {
                     let j = i;
                     if (current == i) {
-                        text += "<span class='cell-6 cell-4-lg cell-2-xs swiper-pagination-btn swiper-pagination-bullet swiper-pagination-btn-active'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
+                        text += "<span class='cell-6 cell-4-lg cell-1-xs swiper-pagination-btn swiper-pagination-bullet swiper-pagination-btn-active'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
                     } else {
-                        text += "<span class='cell-6 cell-4-lg cell-2-xs swiper-pagination-btn swiper-pagination-bullet'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
+                        text += "<span class='cell-6 cell-4-lg cell-1-xs swiper-pagination-btn swiper-pagination-bullet'><div class='centered-btn'>" + namesDop[j] + "</div></span>";
                     }
                 }
                 return text;
             },
+        },
+
+        navigation: {
+            nextEl: '.swiper-dop-arrows-container .swiper-button-next',
+            prevEl: '.swiper-dop-arrows-container .swiper-button-prev',
         },
     });
 
@@ -688,6 +701,9 @@ window.onload = function() {
             loadPrevNext: true,
         },
         effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
         loop: true,
         autoplay: {
             delay: 3500,
@@ -708,8 +724,11 @@ window.onload = function() {
     });
     var swiper3prod0 = new Swiper('.js-sliderdemo-0', {
         effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
         loop: false,
-        speed: 700,
+        speed: 500,
         pagination: {
             el: '.js-sliderdemo-0 + .swiper-pagination',
             type: 'custom',
@@ -737,40 +756,63 @@ window.onload = function() {
 
     var $sliderVideos0 = $(".js-sliderdemo-0 .swiper-slide video");
     $sliderVideos0.each(function(index) {
-        const elToInsertBefore = document.querySelector("#prod-section-0 .slider-demonstration");
-        if (index == 5) {
-            console.log(index);
-            const text_row = document.createElement('div');
-            text_row.className = "aTitlesToVideo" + index;
-            elToInsertBefore.appendChild(text_row);
-            text_row
+        const elToInsertTitles = document.querySelector("#prod-section-0 .slider-demonstration .aTitlesToVideo");
+        const text_row = document.createElement('div');
+        const sectioncube = 0;
+
+        if (index == 0) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
 
             const timeframes = [
-                { time: 0, triggered: false, textContent: "Poteaux et supports pour l'installation <br /> d'equipments complementaires" },
-                { time: 2.7, triggered: false, textContent: "lecteur de codes a barres" },
-                { time: 4, triggered: false, textContent: "recepteur de cartes" },
-                { time: 6, triggered: false, textContent: "terminal de reconnaissance facial " }
+                { slisevid: index, time: 0, triggered: false, textContent: "Il est concu pour une installation interieure" },
             ]
-            this.addEventListener('timeupdate', () => {
-                // Find the time to be triggered 
-                // console.log(Math.floor(Math.round(this.currentTime * 10)));
-                let time = timeframes.find(i => (i.time * 10) <= Math.floor(Math.round(this.currentTime * 10)) && !i.triggered);
-                if (time) {
-                    // A time was found that hasn't been triggered
-                    time.triggered = true;
-                    window.dispatchEvent(new CustomEvent('VideoTimelapse', { detail: time }));
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+        if (index == 1) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
 
-                }
-            })
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "2 directions de passage" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+        if (index == 3) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
 
-            // Listen for the event
-            window.addEventListener('VideoTimelapse', (e) => {
-                console.log(`${e.detail.time} seconds have passed: ${e.detail.textContent}`);
-                text_row.innerHTML = e.detail.textContent;
-            })
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Détecteurs infrarouges <br /> 28 detecteurs du niveau infrieur" },
+                { slisevid: index, time: 5, triggered: false, textContent: "Détecteurs infrarouges <br /> 14 detecteus du niveau superiur" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+        if (index == 4) {
 
-            // The user moved the slider, reset the 'triggered' property back to false
-            this.addEventListener('seeked', () => timeframes.forEach(i => { i.triggered = false }))
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Poteaux: <br /> acier inoxydable" },
+                { slisevid: index, time: 3, triggered: false, textContent: "Vantaux: <br /> verre trempé" },
+                { slisevid: index, time: 9, triggered: false, textContent: "Plaques de recouvrement: <br /> verre trempé" },
+                { slisevid: index, time: 11, triggered: false, textContent: "Plaques de recouvrement: <br /> acier inoxydable" },
+                { slisevid: index, time: 14, triggered: false, textContent: "Plaques de recouvrement: <br /> verre trempé avec inserts en acier inoxydable" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+        if (index == 5) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Poteaux et supports pour l’installation <br /> d’équipements complémentaires" },
+                { slisevid: index, time: 2.7, triggered: false, textContent: "lecteur de codes à barres" },
+                { slisevid: index, time: 4, triggered: false, textContent: "récepteur de cartes" },
+                { slisevid: index, time: 6.7, triggered: false, textContent: "terminal de reconnaissance facial" }
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
         }
         this.addEventListener('ended', () => {
             // if slider-cube .swiper-wrapper .swiper-slide-active have video0 { 
@@ -805,13 +847,6 @@ window.onload = function() {
             prevVideo.pause();
         }
 
-        if (currentVideo.id == "index-0_5") {
-            document.querySelector("#prod-section-0").classList.add("showTitlesToVideo5");
-        } else {
-            document.querySelector("#prod-section-0").classList.remove("showTitlesToVideo5");
-            document.querySelector(".aTitlesToVideo5").innerHTML = "Poteaux et supports pour l'installation <br /> d'equipments complementaires";
-        }
-
         if (intViewportWidth < 640) {
             var activeBullet = this.el.nextElementSibling.querySelector('.swiper-pagination-bullet-active')
             var bulletsWrap = this.el.nextElementSibling;
@@ -826,8 +861,11 @@ window.onload = function() {
     });
     var swiper3prod1 = new Swiper('.js-sliderdemo-1', {
         effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
         loop: false,
-        speed: 700,
+        speed: 500,
         pagination: {
             el: '.js-sliderdemo-1 + .swiper-pagination',
             type: 'custom',
@@ -855,6 +893,29 @@ window.onload = function() {
 
     var $sliderVideos1 = $(".js-sliderdemo-1 .swiper-slide video");
     $sliderVideos1.each(function(index) {
+        const elToInsertTitles = document.querySelector("#prod-section-1 .slider-demonstration .aTitlesToVideo");
+        const text_row = document.createElement('div');
+        const sectioncube = 1;
+        if (index == 3) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Détecteurs infrarouges <br /> 30 détecteurs du niveau inférieur" },
+                { slisevid: index, time: 5.5, triggered: false, textContent: "Détecteurs infrarouges <br /> 30 détecteurs du niveau supérieur" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+        if (index == 4) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Plaques de recouvrement et vantaux: <br /> verre trempé" },
+                { slisevid: index, time: 6, triggered: false, textContent: "Poteaux: <br /> acier inoxydable" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
         this.addEventListener('ended', () => {
             if (swiper3prod1.activeIndex == swiper3prod1.slides.length - 1) {
                 swiper3prod1.slideTo(0)
@@ -900,8 +961,11 @@ window.onload = function() {
     });
     var swiper3prod2 = new Swiper('.js-sliderdemo-2', {
         effect: "fade",
+        fadeEffect: {
+            crossFade: true
+        },
         loop: false,
-        speed: 700,
+        speed: 500,
         pagination: {
             el: '.js-sliderdemo-2 + .swiper-pagination',
             type: 'custom',
@@ -928,6 +992,34 @@ window.onload = function() {
 
     var $sliderVideos2 = $(".js-sliderdemo-2 .swiper-slide video");
     $sliderVideos2.each(function(index) {
+
+        const elToInsertTitles = document.querySelector("#prod-section-2 .slider-demonstration .aTitlesToVideo");
+        const text_row = document.createElement('div');
+        const sectioncube = 2;
+
+        if (index == 3) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Détecteurs infrarouges <br /> 24 detecteurs du niveau infrieur" },
+                { slisevid: index, time: 5, triggered: false, textContent: "Détecteurs infrarouges <br /> 24 détecteurs du niveau supérieur" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+        if (index == 4) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Poteaux: <br /> acier inoxydable" },
+                { slisevid: index, time: 3.8, triggered: false, textContent: "Vantaux: <br /> verre trempé" },
+                { slisevid: index, time: 8.7, triggered: false, textContent: "Plaques de recouvrement: <br /> supérieure faite en pierre de quartz artificiel" },
+                { slisevid: index, time: 12.9, triggered: false, textContent: "Plaques de recouvrement: <br /> acier inoxydable" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+
         this.addEventListener('ended', () => {
             if (swiper3prod2.activeIndex == swiper3prod2.slides.length - 1) {
                 swiper3prod2.slideTo(0)
@@ -975,7 +1067,7 @@ window.onload = function() {
     var swiper3prod3 = new Swiper('.js-sliderdemo-3', {
         effect: "fade",
         loop: false,
-        speed: 700,
+        speed: 500,
         pagination: {
             el: '.js-sliderdemo-3 + .swiper-pagination',
             type: 'custom',
@@ -1000,8 +1092,25 @@ window.onload = function() {
         },
     });
 
-    var sliderVideos3 = $(".js-sliderdemo-3 .swiper-slide video");
-    sliderVideos3.each(function(index) {
+    var $sliderVideos3 = $(".js-sliderdemo-3 .swiper-slide video");
+    $sliderVideos3.each(function(index) {
+
+        const elToInsertTitles = document.querySelector("#prod-section-3 .slider-demonstration .aTitlesToVideo");
+        const text_row = document.createElement('div');
+        const sectioncube = 3;
+
+        if (index == 3) {
+            text_row.className = "currTitles titles-index-" + sectioncube + "_" + index;
+            elToInsertTitles.appendChild(text_row);
+
+            const timeframes = [
+                { slisevid: index, time: 0, triggered: false, textContent: "Bâti du portillon pivotant <br /> acier inoxydable" },
+                { slisevid: index, time: 5, triggered: false, textContent: "Vantail du portillon <br /> verre trempé" },
+            ]
+            InsertTitlesInTime(sectioncube, this, timeframes);
+        }
+
+
         this.addEventListener('ended', () => {
             if (swiper3prod3.activeIndex == swiper3prod3.slides.length - 1) {
                 swiper3prod3.slideTo(0)
@@ -1018,7 +1127,7 @@ window.onload = function() {
     swiper3prod3.on('slideChange', function() {
         let currentVideo = swiper3prod3.slides[swiper3prod3.activeIndex].children[0].children[0];
         let prevVideo = swiper3prod3.slides[swiper3prod3.previousIndex].children[0].children[0];
-        sliderVideos3.each(function(index) {
+        $sliderVideos3.each(function(index) {
             if (!this.paused) {
                 this.pause();
             }
@@ -1042,19 +1151,8 @@ window.onload = function() {
 
     var swiperCubeOptions = {
         loop: false,
-        effect: "cube",
         slidesPerView: 1,
-        allowSlidePrev: false,
-        allowTouchMove: false,
-        speed: 1300,
-        cubeEffect: {
-            shadow: false,
-            slideShadows: false,
-        },
-        mousewheel: {
-            eventsTarget: ".slider-cube",
-            releaseOnEdges: false,
-        },
+        speed: 300,
         navigation: {
             nextEl: '.slider-cube-nav .swiper-button-next',
             prevEl: '.slider-cube-nav .swiper-button-prev',
@@ -1067,11 +1165,8 @@ window.onload = function() {
             init: function() {
                 $('.poster-custom').addClass("poster-custom-resize");
             },
-            afterInit: function() {
-                if (this.device.ios) {
-                    this.params.cubeEffect = false
-                }
-            },
+            // afterInit: function() {
+            // },
             slideChangeTransitionStart: function() {
 
                 if (this.activeIndex == 0) {
@@ -1101,11 +1196,6 @@ window.onload = function() {
 
             },
             slideChangeTransitionEnd: function() {
-                if (this.isEnd) {
-                    swiperCube.params.mousewheel.releaseOnEdges = true;
-                } else {
-                    swiperCube.params.mousewheel.releaseOnEdges = false;
-                }
 
                 if (this.activeIndex == 0) {
                     swiper3prod0.slideTo(0);
@@ -1139,199 +1229,51 @@ window.onload = function() {
                     $(".slider-cube > .swiper-wrapper > .swiper-slide.swiper-slide-active .poster-custom-resize").addClass("poster-z");
                 }
                 setTimeout(addZ, 500);
-                // ---      
-                // Для фикса глюка с появляющейся стрелкой
-                let sliderCubeNav = $(".slider-cube-nav");
-                sliderCubeNav.removeClass("sliderCube-index-" + this.previousIndex);
-                sliderCubeNav.addClass("sliderCube-index-" + this.activeIndex);
-                if (!(this.activeIndex == 3)) {
-                    if (sliderCubeNav.hasClass("sliderCube-index-3")) {
-                        sliderCubeNav.removeClass("sliderCube-index-3");
-                    }
-                }
-            }
-        }
-    };
-
-    var swiperCubeOptions2 = {
-        loop: false,
-        slidesPerView: 1,
-        navigation: {
-            nextEl: '.slider-cube-nav .swiper-button-next',
-            prevEl: '.slider-cube-nav .swiper-button-prev',
-        },
-        pagination: {
-            el: ".slider-cube-nav .swiper-pagination",
-            clickable: true,
-        },
-        on: {
-            init: function() {
-                $('.poster-custom').addClass("poster-custom-resize");
-            },
-            afterInit: function() {
-                if (this.device.ios) {
-                    this.params.cubeEffect = false
-                }
-            },
-            slideChangeTransitionStart: function() {
-
-                if (this.activeIndex == 0) {
-                    swiper2.slideTo(1);
-                } else if (this.activeIndex == 1) {
-                    swiper2.slideTo(2);
-                } else if (this.activeIndex == 2) {
-                    swiper2.slideTo(3);
-                } else if (this.activeIndex == 3) {
-                    swiper2.slideTo(4);
-                }
-
-                if (this.activeIndex == 0) {
-                    swiper3prod0.slideTo(0);
-                    var prevVid = document.getElementById("prod-section-0").getElementsByTagName("video")[swiper3prod0.activeIndex];
-                } else if (this.activeIndex == 1) {
-                    swiper3prod1.slideTo(0);
-                    var prevVid = document.getElementById("prod-section-1").getElementsByTagName("video")[swiper3prod1.activeIndex];
-                } else if (this.activeIndex == 2) {
-                    swiper3prod2.slideTo(0);
-                    var prevVid = document.getElementById("prod-section-2").getElementsByTagName("video")[swiper3prod2.activeIndex];
-                } else if (this.activeIndex == 3) {
-                    swiper3prod3.slideTo(0);
-                    var prevVid = document.getElementById("prod-section-3").getElementsByTagName("video")[swiper3prod3.activeIndex];
-                }
-                prevVid.pause();
-
-            },
-            slideChangeTransitionEnd: function() {
-                if (this.isEnd) {
-                    swiperCube.params.mousewheel.releaseOnEdges = true;
-                } else {
-                    swiperCube.params.mousewheel.releaseOnEdges = false;
-                }
-
-                if (this.activeIndex == 0) {
-                    swiper3prod0.slideTo(0);
-                    var targetVid = document.getElementById("prod-section-0").getElementsByTagName("video")[swiper3prod0.activeIndex];
-                } else if (this.activeIndex == 1) {
-                    swiper3prod1.slideTo(0);
-                    var targetVid = document.getElementById("prod-section-1").getElementsByTagName("video")[swiper3prod1.activeIndex];
-                } else if (this.activeIndex == 2) {
-                    swiper3prod2.slideTo(0);
-                    var targetVid = document.getElementById("prod-section-2").getElementsByTagName("video")[swiper3prod2.activeIndex];
-                } else if (this.activeIndex == 3) {
-                    swiper3prod3.slideTo(0);
-                    var targetVid = document.getElementById("prod-section-3").getElementsByTagName("video")[swiper3prod3.activeIndex];
-                }
-
-                // if (intViewportWidth > 640) {
-                asyncPlay(targetVid);
+                // // ---      
+                // // Для фикса глюка с появляющейся стрелкой
+                // let sliderCubeNav = $(".slider-cube-nav");
+                // sliderCubeNav.removeClass("sliderCube-index-" + this.previousIndex);
+                // sliderCubeNav.addClass("sliderCube-index-" + this.activeIndex);
+                // if (!(this.activeIndex == 3)) {
+                //     if (sliderCubeNav.hasClass("sliderCube-index-3")) {
+                //         sliderCubeNav.removeClass("sliderCube-index-3");
+                //     }
                 // }
-
-                $("#products-cube").removeClass("playback-started");
-                // ---
-                function removeZ() {
-                    $(".poster-custom-resize").removeClass("poster-z");
-                }
-                setTimeout(removeZ, 500);
-                // проходимся по всем слайдам и добавляем класс для удаления постера именно в конце анимации
-                $(".remove-poster").removeClass("remove-poster");
-                $(".slider-cube > .swiper-wrapper > .swiper-slide.swiper-slide-active").addClass("remove-poster");
-
-                function addZ() {
-                    $(".slider-cube > .swiper-wrapper > .swiper-slide.swiper-slide-active .poster-custom-resize").addClass("poster-z");
-                }
-                setTimeout(addZ, 500);
-                // ---      
-                // Для фикса глюка с появляющейся стрелкой
-                let sliderCubeNav = $(".slider-cube-nav");
-                sliderCubeNav.removeClass("sliderCube-index-" + this.previousIndex);
-                sliderCubeNav.addClass("sliderCube-index-" + this.activeIndex);
-                if (!(this.activeIndex == 3)) {
-                    if (sliderCubeNav.hasClass("sliderCube-index-3")) {
-                        sliderCubeNav.removeClass("sliderCube-index-3");
-                    }
-                }
             }
         }
     };
-
     var swiperCube = new Swiper(".slider-cube", swiperCubeOptions);
+
     // пересоздаём слайдер для устройств, которые плохо переваривают 3д-эффект Cube 
-    if (document.querySelector("html").classList.contains("is-os-mac-os") || document.querySelector("html").classList.contains("is-os-ios")) {
-        swiperCube.destroy();
-        var swiperCube = new Swiper(".slider-cube", swiperCubeOptions2);
-    }
+    // if (document.querySelector("html").classList.contains("is-os-mac-os") || document.querySelector("html").classList.contains("is-os-ios")) {
+    //     swiperCube.destroy();
+    //     var swiperCube = new Swiper(".slider-cube", swiperCubeOptions2);
+    // }
     swiperCube.mousewheel.disable();
 
     var $sliderVideosAll = $("#products-cube .swiper-slide video");
     $sliderVideosAll.each(function(index) {
         this.addEventListener('play', (event) => {
-            console.log(event);
+            var elActiveTitlesSide = document.querySelector("#prod-section-" + swiperCube.activeIndex + " > div");
+            elActiveTitlesSide.setAttribute("id", "showTitlesTo_" + event.target.id);
+            setTimeout(function() {
+                event.target.pause();
+            }, 3000);
         });
     });
 
-    const triggerSlidePrevEnable = function(event) {
-        if (swiperCube.mousewheel.enabled) {
-            swiperCube.mousewheel.disable();
-        }
-        if (!swiperCube.allowSlidePrev) {
-            swiperCube.allowSlidePrev = true;
-        }
-    };
-
-    var firstEnterDone = false;
+    var firstEnter = true;
     var easeTime = .3;
 
-    var controlScene = function(event) {
-        swiperCube.allowSlidePrev = false;
-        if (!prohodDone) {
-            if (!firstEnterDone && event.deltaY > 0) {
-                setTimeout(() => swiperCube.mousewheel.enable(), 2000);
-                firstEnterDone = true;
-                // gsap.to(window, {
-                //     delay: 0,
-                //     duration: easeTime,
-                //     scrollTo: "#products-cube",
-                //     onComplete: function() {
-                //         swiperCube.mousewheel.enable();
-                //     }
-                // });
-            } else if ((swiperCube.activeIndex == 3 && swiperCube.params.mousewheel.releaseOnEdges && event.wheelDeltaY < 0) || (event.deltaY < 0)) { // move down only on last slide or if wheel "up"
-                prohodDone = true;
-                triggerSlidePrevEnable();
-                showHidedSections();
-            }
-        }
-    };
     inView.threshold(.5);
-    var alreadyExitOnce = false;
-    var alreadyEnteredOnce = false;
     inView('#products-cube')
         .on('enter', el => {
-            if (alreadyExitOnce) {
-                if (swiperCube.activeIndex == 0) {
-                    var currentVideo = swiper3prod0.slides[swiper3prod0.activeIndex].children[0].children[0];
-                } else if (swiperCube.activeIndex == 1) {
-                    var currentVideo = swiper3prod1.slides[swiper3prod1.activeIndex].children[0].children[0];
-                } else if (swiperCube.activeIndex == 2) {
-                    var currentVideo = swiper3prod2.slides[swiper3prod2.activeIndex].children[0].children[0];
-                } else if (swiperCube.activeIndex == 3) {
-                    var currentVideo = swiper3prod3.slides[swiper3prod3.activeIndex].children[0].children[0];
-                } else {}
-                // if (intViewportWidth > 640) {
-                asyncPlay(currentVideo);
-                // }
-            } else if (alreadyEnteredOnce) {
-                swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
-            }
-            alreadyEnteredOnce = true;
-            document.addEventListener('wheel', controlScene);
 
-            el.addEventListener('touchstart', triggerSlidePrevEnable, false);
-            el.addEventListener('touchmove', triggerSlidePrevEnable, false);
-        })
-        .on('exit', el => {
-            alreadyExitOnce = true;
-            document.removeEventListener('wheel', controlScene);
+            if (firstEnter) {
+                swiperCube.slides[swiperCube.activeIndex].classList.add("remove-poster");
+                firstEnter = false;
+            }
+
             if (swiperCube.activeIndex == 0) {
                 var currentVideo = swiper3prod0.slides[swiper3prod0.activeIndex].children[0].children[0];
             } else if (swiperCube.activeIndex == 1) {
@@ -1340,7 +1282,26 @@ window.onload = function() {
                 var currentVideo = swiper3prod2.slides[swiper3prod2.activeIndex].children[0].children[0];
             } else if (swiperCube.activeIndex == 3) {
                 var currentVideo = swiper3prod3.slides[swiper3prod3.activeIndex].children[0].children[0];
-            } else {}
+            } else {
+
+                var currentVideo = swiper3prod0.slides[swiper3prod0.activeIndex].children[0].children[0];
+            }
+            // if (intViewportWidth > 640) {
+            asyncPlay(currentVideo);
+            // }  
+        })
+        .on('exit', el => {
+            if (swiperCube.activeIndex == 0) {
+                var currentVideo = swiper3prod0.slides[swiper3prod0.activeIndex].children[0].children[0];
+            } else if (swiperCube.activeIndex == 1) {
+                var currentVideo = swiper3prod1.slides[swiper3prod1.activeIndex].children[0].children[0];
+            } else if (swiperCube.activeIndex == 2) {
+                var currentVideo = swiper3prod2.slides[swiper3prod2.activeIndex].children[0].children[0];
+            } else if (swiperCube.activeIndex == 3) {
+                var currentVideo = swiper3prod3.slides[swiper3prod3.activeIndex].children[0].children[0];
+            } else {
+                var currentVideo = swiper3prod0.slides[swiper3prod0.activeIndex].children[0].children[0];
+            }
             currentVideo.pause();
         })
 
@@ -1372,6 +1333,16 @@ window.onload = function() {
         }
     }
 
+
+    // grecaptcha.ready(function() { 
+    // 	grecaptcha.execute('__PUBKEY__', {action: 'homepage'}).then(function(token) { 
+    // 	}); 
+    // });
+    document.querySelector('.feedback-form').addEventListener('input', function() {
+        checkValidAndCapcha(verifyInputs, workCapcha);
+    });
+
+
     document.querySelector('.feedback-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         const response = await fetch('/', {
@@ -1380,6 +1351,7 @@ window.onload = function() {
         });
         if (!response.ok) {
             console.error(`Ошибка отправки формы, статус ответа: ${response.status}`);
+            console.error(response);
             return;
         }
         if (await response.text() != '0') {
@@ -1410,42 +1382,18 @@ window.onload = function() {
     $("[data-prod-section]").on("click", function(e) {
         e.preventDefault;
         gsap.to(window, { delay: 0, duration: easeTime, scrollTo: "#products-cube" });
-        swiperCube.allowSlidePrev = true;
         swiperCube.slideTo($(this).data("prod-section"));
-        swiperCube.allowSlidePrev = false;
     });
-
-    $("#products-cube .swiper-button-prev").on("click", function(e) {
-        if (!swiperCube.allowSlidePrev) {
-            triggerSlidePrevEnable();
-            swiperCube.slidePrev();
-        }
-    });
-
-
-    $("#products-cube .slider-cube-nav .swiper-pagination").on("click", function(e) {
-        if (!swiperCube.allowSlidePrev) {
-            triggerSlidePrevEnable();
-            console.log(e.originalEvent.explicitOriginalTarget.click());
-        }
-    });
-
-    $('[href="#advantages"], [href="#products"]').on("click", function() {
-        showHidedSections();
-        // hideHidedSections();
-    })
 
     $('[href="#gallery"], [href="#about"], [href="#write-us"]').on("click", function() {
-        showHidedSections();
+        // showHidedSections();
         swiper4.init();
         swiper4.on('afterInit', function() {
             // якорь по центру фотогалереи
             anchorPhotoGallery();
             positionArrowsGallery();
         });
-    })
-
-    $('.slider-cube .swiper-pagination').on("click", triggerSlidePrevEnable());
+    });
 
     var inptPhoneMask = new Inputmask("8(999)999-9999");
     var inptPhoneMaskEn = new Inputmask("+9[9*{1,20}]");
@@ -1499,11 +1447,11 @@ window.onload = function() {
             loadPrevNext: true,
         },
         effect: "fade",
-        loop: true,
-        speed: 1300,
         fadeEffect: {
-            crossFade: false
+            crossFade: true
         },
+        loop: true,
+        speed: 500,
         autoplay: {
             delay: 5000,
             disableOnInteraction: false,
