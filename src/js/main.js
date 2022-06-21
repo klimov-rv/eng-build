@@ -94,8 +94,7 @@ async function InsertCorrectVideo(videoOptions, resolution, curr_lang) {
 var resetPlayer = function doResetPlayer(videoRecover) {
     // reloading = true;
     try {
-        console.info('[info] > Reseting media ...' + videoRecover.id);
-        console.info(videoRecover);
+        console.info('[info] > Reseting media - ' + videoRecover.id);
         videoRecover.load();
     } catch (err) {
         console.error(err);
@@ -126,9 +125,7 @@ async function asyncPlay(video) {
                 break;
         }
     } else {
-
         $('.poster-custom-resize').css("height", $(".slider-cube video").height());
-        console.log($(".slider-cube video").height());
     }
 }
 
@@ -146,11 +143,7 @@ function InsertTitlesInTime(sectioncube, currVid, timeframes) {
         }
     })
     window.addEventListener('VideoTimelapse', (e) => {
-        // console.log(e);
-        // console.log(currVid.id);
         if (document.querySelector(".titles-index-" + sectioncube + "_" + e.detail.slisevid)) {
-            // console.log(e.detail.textContent);
-            // console.log(".titles-index-" + sectioncube + "_" + e.detail.slisevid);
             document.querySelector(".titles-index-" + sectioncube + "_" + e.detail.slisevid).innerHTML = e.detail.textContent;
         }
     })
@@ -1396,7 +1389,7 @@ window.onload = function() {
     });
 
     var inptPhoneMask = new Inputmask("8(999)999-9999");
-    var inptPhoneMaskEn = new Inputmask("+9[9*{1,20}]");
+    var inptPhoneMaskEn = new Inputmask("+9[9-a{1,3}9{1,3}]");
     var inptEmaiMask = new Inputmask({
         mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
         greedy: false,

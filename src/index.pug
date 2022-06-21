@@ -43,7 +43,7 @@ append vars
 	- meta.viewport = 'width=device-width, initial-scale=1' 
 	- link.icon = 'images/favicon.ico'
 	
-	- grecapchaPubKey = "https://www.google.com/recaptcha/api.js?render=6Ld8k3AgAAAAALoYjXaklTznBBd4BnGJ8Jl8XeX2&hl="+temp_lang
+	//- - grecapchaPubKey = "https://www.google.com/recaptcha/api.js?render=6Ld8k3AgAAAAALoYjXaklTznBBd4BnGJ8Jl8XeX2&hl="+temp_lang
 
 block content
 	include pug/data
@@ -55,4 +55,7 @@ block content
  
 		include pug/components/footer
 		
+		//- script(async src="https://www.google.com/recaptcha/api.js?hl="+temp_lang)
+		script(async src="https://www.google.com/recaptcha/api.js") 
+
 		include pug/components/analytics
