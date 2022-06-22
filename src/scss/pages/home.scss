@@ -419,23 +419,22 @@
         color: var(--swiper-nav-color);
         font-size: 31px;
         width: 55px;
-        height: 55px;
+        height: 155px;
         border-radius: 50%;
     }
-    .swiper-button-prev:after,
-    .swiper-container-rtl .swiper-button-next:after {
-        background: url("../images/icons/arrow-v2-white-left.svg") no-repeat center center #003067;
-    }
     .swiper-button-next:after,
+    .swiper-container-rtl .swiper-button-next:after {
+        background: url("../images/icons/arrow-v3-right.svg") no-repeat center center transparent;
+    }
+    .swiper-button-prev:after,
     .swiper-container-rtl .swiper-button-prev:after {
-        background: url("../images/icons/arrow-v2-white-right.svg") no-repeat center center #003067;
+        background: url("../images/icons/arrow-v3-left.svg") no-repeat center center transparent;
     }
-    .swiper-button-next:hover:after,
-    .swiper-button-prev:hover:after {
-        background: url("../images/icons/arrow-v2-blue-right.svg") no-repeat center center #F0F0F0;
+    .swiper-button-next:hover:after {
+        background: url("../images/icons/arrow-v3-right-gray.svg") no-repeat center center transparent;
     }
     .swiper-button-prev:hover:after {
-        background: url("../images/icons/arrow-v2-blue-left.svg") no-repeat center center #F0F0F0;
+        background: url("../images/icons/arrow-v3-left-gray.svg") no-repeat center center transparent;
     }
     .swiper-button-next,
     .swiper-button-prev {
@@ -520,10 +519,10 @@
         }
     }
     .slider-cube-nav {
-        .swiper-button-prev,
-        .swiper-button-next {
-            display: none;
-        }
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        margin-top: -70px;
         .swiper-pagination {
             bottom: -170px;
             width: 100%;
