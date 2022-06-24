@@ -416,11 +416,9 @@
     .swiper-button-prev:after,
     .swiper-button-next:after {
         content: "";
-        color: var(--swiper-nav-color);
-        font-size: 31px;
+        // color: var(--swiper-nav-color); 
         width: 55px;
-        height: 55px;
-        border-radius: 50%;
+        height: 77px;
     }
     .swiper-button-next:after,
     .swiper-container-rtl .swiper-button-next:after {
@@ -518,13 +516,12 @@
             }
         }
     }
-    .slider-cube-nav {
+    .slider-cube__arrows {
         position: absolute;
         width: 100%;
         top: 50%;
-        margin-top: -70px;
-        .swiper-button-prev,
-        .swiper-button-next {
+        z-index: 100;
+        .swiper-button-disabled {
             display: none;
         }
         .swiper-pagination {
@@ -775,7 +772,7 @@
             //     background-image: url("../images/icons/next-section-blue.svg");
             // }
         }
-        .slider-cube-nav {
+        .slider-cube__arrows {
             &.sliderCube-index-3 {
                 .swiper-button-next {
                     display: none;
@@ -790,33 +787,41 @@
     }
     .slider-prod {
         --bullets-color: #999999;
-        &__main-arrows {
-            display: block;
-            height: 0px;
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            z-index: 50;
-            .swiper-button-prev,
-            .swiper-button-next {
-                width: 90px;
-                height: 100%;
-                bottom: 100px;
-                align-items: flex-end;
-                &:hover:after {
-                    color: var(--color-active);
-                }
-            }
-            .swiper-button-next {
-                right: calc(100px - (var(--swiper-navigation-size) / 2));
-            }
-            .swiper-button-prev {
-                left: calc(100px - (var(--swiper-navigation-size) / 2));
-            }
-            .swiper-button-prev:after,
-            .swiper-button-next:after {
+        &__main {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &-arrows {
+                display: block;
+                height: 0px;
                 position: absolute;
-                bottom: -45px;
+                width: 0px;
+                top: 50%;
+                z-index: 50;
+                .swiper-button-prev,
+                .swiper-button-next {
+                    width: 90px;
+                    height: 100%;
+                    bottom: 100px;
+                    align-items: flex-end;
+                    &:hover:after {
+                        color: var(--color-active);
+                    }
+                }
+                .swiper-button-next {
+                    left: 43vw;
+                    right: auto;
+                }
+                .swiper-button-prev {
+                    right: 43vw;
+                    left: auto;
+                }
+                .swiper-button-prev:after,
+                .swiper-button-next:after {
+                    position: absolute;
+                    bottom: -39px;
+                }
             }
         }
         &__container {
@@ -1617,7 +1622,7 @@ video.js-lazy+.loader-spin {
     position: fixed;
     bottom: 35px;
     left: 50px;
-    background: url("../images/icons/scroll-top.ver3.svg") no-repeat center center transparent;
+    background: url("../images/icons/scroll-top.ver2.svg") no-repeat center center transparent;
     &.visible {
         display: block;
         transform: perspective(1px) translateZ(0);

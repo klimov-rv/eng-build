@@ -33,9 +33,9 @@ lazyLoading.init();
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, EffectCube, Mousewheel, Lazy, Controller]);
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-let resolution_s = "320x182";
-let resolution_lg = "586x330";
-let resolution_wide = "990x560";
+let resolution_s = "448х252";
+let resolution_lg = "640х360";
+let resolution_wide = "1280х720";
 
 var intViewportHeight = window.innerHeight;
 var intViewportWidth = window.innerWidth;
@@ -160,10 +160,8 @@ function anchorPhotoGallery() {
 }
 
 function positionArrowsCube() {
-    var peremen1 = document.getElementById("products").getBoundingClientRect().top;
-    var peremen2 = document.getElementById("slider-prod__pagination").getBoundingClientRect().top;
-    var peremen3 = peremen2 - peremen1;
-    document.querySelector(".slider-prod__main-arrows").style.top = peremen3 + "px";
+    var peremen1 = document.querySelector(".slider-demonstration .swiper-wrapper").offsetHeight;
+    document.querySelector(".slider-cube__arrows").style.top = ((peremen1 / 2) + 35) + "px";
 }
 
 function positionArrowsGallery() {
@@ -1147,11 +1145,11 @@ window.onload = function() {
         slidesPerView: 1,
         speed: 300,
         navigation: {
-            nextEl: '.slider-cube-nav .swiper-button-next',
-            prevEl: '.slider-cube-nav .swiper-button-prev',
+            nextEl: '.slider-cube__arrows .swiper-button-next',
+            prevEl: '.slider-cube__arrows .swiper-button-prev',
         },
         pagination: {
-            el: ".slider-cube-nav .swiper-pagination",
+            el: ".slider-cube__arrows .swiper-pagination",
             clickable: true,
         },
         on: {
@@ -1224,7 +1222,7 @@ window.onload = function() {
                 setTimeout(addZ, 500);
                 // // ---      
                 // // Для фикса глюка с появляющейся стрелкой
-                // let sliderCubeNav = $(".slider-cube-nav");
+                // let sliderCubeNav = $(".slider-cube__arrows");
                 // sliderCubeNav.removeClass("sliderCube-index-" + this.previousIndex);
                 // sliderCubeNav.addClass("sliderCube-index-" + this.activeIndex);
                 // if (!(this.activeIndex == 3)) {
@@ -1249,9 +1247,9 @@ window.onload = function() {
         this.addEventListener('play', (event) => {
             var elActiveTitlesSide = document.querySelector("#prod-section-" + swiperCube.activeIndex + " > div");
             elActiveTitlesSide.setAttribute("id", "showTitlesTo_" + event.target.id);
-            setTimeout(function() {
-                event.target.pause();
-            }, 3000);
+            // setTimeout(function() {
+            //     event.target.pause();
+            // }, 3000);
         });
     });
 
@@ -1388,8 +1386,13 @@ window.onload = function() {
         });
     });
 
-    var inptPhoneMask = new Inputmask("8(999)999-9999");
-    var inptPhoneMaskEn = new Inputmask("+9[9-a{1,3}9{1,3}]");
+    var maskRu = "8(999)999-9999"; // русская маска
+    var maskEn = "+99999999999{1,5}"; // зарубежная маска
+    if (curr_lang == "ru") {
+        var inptPhoneMask = new Inputmask(maskRu);
+    } else {
+        var inptPhoneMask = new Inputmask(maskEn);
+    }
     var inptEmaiMask = new Inputmask({
         mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
         greedy: false,
@@ -1404,21 +1407,8 @@ window.onload = function() {
             }
         }
     });
-    inptPhoneMaskEn.mask(document.getElementById("js-input-phone"));
+    inptPhoneMask.mask(document.getElementById("js-input-phone"));
     inptEmaiMask.mask(document.getElementById("js-input-email"));
-
-    //   input.oninput = function() {
-    //     result.innerHTML = input.value;
-    //   }; 
-
-    // $('.play-button__link').on("click", function(e) {
-    //     console.log(e.currentTarget.offsetParent.children[0].children[0].play());
-    //     var targetPlay = e.currentTarget.offsetParent.children[0].children[0]
-    //     targetPlay.play().catch((e) => {
-    //         console.log(e); 
-    //     });
-    //     $("#products-cube").addClass("playback-started");
-    // });
 
     var sectionHero = document.querySelector(".slider-hero");
     var sectionGallery = document.querySelector(".three");

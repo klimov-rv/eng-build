@@ -1,7 +1,5 @@
 if (curr_lang == 'ru')
 	.ru-analytics
-		//- <!-- Global site tag (gtag.js) - Google Analytics -->
-		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-662209-27") 
 		//- <!-- Yandex.Metrika counter -->
 		script.
 			(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -15,20 +13,23 @@ if (curr_lang == 'ru')
 				webvisor:true
 			}); 
 			//- <!-- /Yandex.Metrika counter -->  
+
+		//- <!-- Global site tag (gtag.js) - Google Analytics -->
+		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-662209-27") 
 			
+		script.
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
 			gtag('config', 'UA-662209-27');
+
 		noscript
 			div
 				img(src="https://mc.yandex.ru/watch/86624081" style="position:absolute; left:-9999px;" alt="")
 
 if (curr_lang == 'en')
 	.eng-analytics
-		//- <!-- Global site tag (gtag.js) - Google Analytics -->
-		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-225490714-1") 
 		//- <!-- Yandex.Metrika counter -->
 		script.
 			(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -41,17 +42,21 @@ if (curr_lang == 'en')
 				accurateTrackBounce:true,
 				webvisor:true
 			});
-			//- <!-- /Yandex.Metrika counter -->  
+
+		noscript
+			div
+				img(src="https://mc.yandex.ru/watch/87539534" style="position:absolute; left:-9999px;" alt="")
+
+		//- <!-- Global site tag (gtag.js) - Google Analytics -->
+		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-225490714-1") 
+
+		script.
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
 
 			gtag('config', 'UA-225490714-1');
 			
-		noscript
-			div
-				img(src="https://mc.yandex.ru/watch/87539534" style="position:absolute; left:-9999px;" alt="") 
-
 				
 if (curr_lang == 'sg')
 	.sg-analytics  
@@ -101,14 +106,16 @@ if (curr_lang == 'fr')
 		noscript
 			div
 				img(src="https://mc.yandex.ru/watch/89159256" style="position:absolute; left:-9999px;" alt="")
+
 		//- <!-- Global site tag (gtag.js) - Google Analytics -->
-		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-225490714-4")
+		script(async src="https://www.googletagmanager.com/gtag/js?id=UA-225490714-5")
 		
 		script.
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date()); 
 			gtag('config', 'UA-225490714-5'); 
+
 if (curr_lang == 'ng')
 	.sg-analytics
 		//- <!-- /Yandex.Metrika counter -->  
