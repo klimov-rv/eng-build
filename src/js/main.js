@@ -798,7 +798,7 @@ window.onload = function() {
                 { slisevid: index, time: 3, triggered: false, textContent: "Vantaux: <br /> verre trempé" },
                 { slisevid: index, time: 9, triggered: false, textContent: "Plaques de recouvrement: <br /> verre trempé" },
                 { slisevid: index, time: 11, triggered: false, textContent: "Plaques de recouvrement: <br /> acier inoxydable" },
-                { slisevid: index, time: 14, triggered: false, textContent: "Plaques de recouvrement: <br /> verre trempé avec inserts en acier inoxydable" },
+                { slisevid: index, time: 13.9, triggered: false, textContent: "Plaques de recouvrement: <br /> verre trempé avec inserts en acier inoxydable" },
             ]
             InsertTitlesInTime(sectioncube, this, timeframes);
         }
