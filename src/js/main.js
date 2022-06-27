@@ -748,7 +748,7 @@ window.onload = function() {
             const timeframes = [
                 { time: 0, triggered: false, textContent: "Poteaux et supports pour l'installation <br /> d'equipments complementaires" },
                 { time: 2.7, triggered: false, textContent: "lecteur de codes a barres" },
-                { time: 4, triggered: false, textContent: "recepteur de cartes" },
+                { time: 3.9, triggered: false, textContent: "recepteur de cartes" },
                 { time: 6, triggered: false, textContent: "terminal de reconnaissance facial " }
             ]
             this.addEventListener('timeupdate', () => {
